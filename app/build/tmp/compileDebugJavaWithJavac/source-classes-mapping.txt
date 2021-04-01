@@ -1,0 +1,14 @@
+com/example/wpqkfwh/CusmaidFragment.java
+ com.example.wpqkfwh.CusmaidFragment
+com/example/wpqkfwh/MainActivity.java
+ com.example.wpqkfwh.MainActivity
+ com.example.wpqkfwh.MainActivity$1
+ com.example.wpqkfwh.MainActivity$2
+com/example/wpqkfwh/MainFragment.java
+ com.example.wpqkfwh.MainFragment
+com/example/wpqkfwh/FragmentAdapter.java
+ com.example.wpqkfwh.FragmentAdapter
+com/example/wpqkfwh/LocalFragment.java
+ com.example.wpqkfwh.LocalFragment
+com/example/wpqkfwh/BuildConfig.java
+ com.example.wpqkfwh.BuildConfig
