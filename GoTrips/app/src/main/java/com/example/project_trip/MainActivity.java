@@ -2,6 +2,8 @@ package com.example.project_trip;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
@@ -14,14 +16,15 @@ public class MainActivity extends AppCompatActivity {
     ViewPager2 pager2;
     FragmentAdapter adapter;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         tabLayout = findViewById(R.id.tab_layout);
         pager2 = findViewById(R.id.view_pager2);
+
 
         FragmentManager fm = getSupportFragmentManager();
         adapter = new FragmentAdapter(fm , getLifecycle());

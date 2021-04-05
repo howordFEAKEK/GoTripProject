@@ -2,21 +2,24 @@ package com.example.project_trip;
 
 public class Main_item {
 
-    private String List;
+    private String list;
+    private int img;
 
-    public Main_item() {
-    }
-
-    public Main_item(String list) {
-        List = list;
-    }
 
     public String getList() {
-        return List;
+        return list;
     }
 
     public void setList(String list) {
-        List = list;
+        this.list = list;
+    }
+
+    public int getImg() {
+        return img;
+    }
+
+    public void setImg(int img) {
+        this.img = img;
     }
 }
 
