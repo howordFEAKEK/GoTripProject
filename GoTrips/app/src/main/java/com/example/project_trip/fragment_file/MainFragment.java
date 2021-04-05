@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class MainFragment extends Fragment {
 
     View v;
-    RecyclerView marylee;
+    RecyclerView marylee , marylee2;
     RecyclerViewAdapter rcvAd;
 
     public MainFragment() {
@@ -43,8 +43,8 @@ public class MainFragment extends Fragment {
 //
 //       myrecyclerview.setAdapter(recyclerViewAdapter);
 //        return v;
-        v = inflater.inflate(R.layout.fragment_main, container, false);
-        marylee = v.findViewById(R.id.recycler_view);
+        ViewGroup vv = (ViewGroup) inflater.inflate(R.layout.fragment_main, container, false);
+        marylee = vv.findViewById(R.id.recycler_view);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         
@@ -55,7 +55,22 @@ public class MainFragment extends Fragment {
         rcvAd = new RecyclerViewAdapter(this, getMyList());
         marylee.setAdapter(rcvAd);
 
-        return v;
+        marylee2 = vv.findViewById(R.id.recycler_view2);
+
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(getContext());
+
+        // 가로 모드
+         layoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
+        marylee2.setLayoutManager(layoutManager2);
+
+        rcvAd = new RecyclerViewAdapter(this, getMyList());
+        marylee2.setAdapter(rcvAd);
+
+
+
+
+
+        return vv;
 
     }
 
