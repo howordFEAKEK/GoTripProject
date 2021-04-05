@@ -63,7 +63,7 @@ public class MainFragment extends Fragment {
          layoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
         marylee2.setLayoutManager(layoutManager2);
 
-        rcvAd = new RecyclerViewAdapter(this, getMyList());
+        rcvAd = new RecyclerViewAdapter(this, getMyList2());
         marylee2.setAdapter(rcvAd);
 
 
@@ -86,6 +86,24 @@ public class MainFragment extends Fragment {
 
         mi = new Main_item();
         mi.setList("제발 되거라2");
+        main_items.add(mi);
+
+
+        return main_items;
+    }
+
+    private ArrayList<Main_item> getMyList2() {
+
+        ArrayList<Main_item> main_items = new ArrayList<>();
+
+        Main_item mi = new Main_item();
+
+        mi.setList("이거도 되냐?");
+        mi.setImg(R.drawable.abc);
+        main_items.add(mi);
+
+        mi = new Main_item();
+        mi.setList("진짜 되냐???/2");
         main_items.add(mi);
 
 
