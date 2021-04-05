@@ -1,4 +1,4 @@
-package com.example.project_trip;
+package com.example.project_trip.fragment_file;
 
 import android.os.Bundle;
 
@@ -10,6 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.project_trip.RecyclerView_item_file.Main_item;
+import com.example.project_trip.R;
+import com.example.project_trip.RecyclerViewAdapter;
 
 import java.util.ArrayList;
 

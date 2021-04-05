@@ -1,4 +1,4 @@
-package com.example.project_trip;
+package com.example.project_trip.fragment_file;
 
 import android.os.Bundle;
 
@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
+
+import com.example.project_trip.R;
 
 import java.util.ArrayList;
 import java.util.EventListener;

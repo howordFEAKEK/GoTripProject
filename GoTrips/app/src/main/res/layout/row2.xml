@@ -13,17 +13,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="0dp"
+        android:padding="17dp"
 
         >
-
-        <ImageView
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:padding="16dp"
-            android:id="@+id/icon_rv"
-            android:src="@mipmap/ic_launcher"
-            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,12 +25,21 @@
             android:textSize="22sp"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:layout_toRightOf="@id/icon_rv"
-            android:layout_toEndOf="@id/icon_rv"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"/>
 
-//dd
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title_id2"
+            android:text="Title"
+            android:textSize="30sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="100dp"/>
+
+
 
     </RelativeLayout>
 

@@ -1,10 +1,14 @@
-package com.example.project_trip;
+package com.example.project_trip.fragment_file;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+
+import com.example.project_trip.fragment_file.CusmaidFragment;
+import com.example.project_trip.fragment_file.LocalFragment;
+import com.example.project_trip.fragment_file.MainFragment;
 
 public class FragmentAdapter extends FragmentStateAdapter {
 

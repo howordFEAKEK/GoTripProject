@@ -1,4 +1,4 @@
-package com.example.project_trip;
+package com.example.project_trip.RecyclerView_item_file;
 
 public class Main_item {
 
