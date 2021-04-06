@@ -9,9 +9,12 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.LocationManager;
@@ -33,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
     //gps 선언 시작
     private GpsTracker gpsTracker;
+    myDBHelper myHelper;
+    SQLiteDatabase sqlDB;
 
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_CODE = 100;
@@ -122,6 +127,60 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    //sqlite 관련 코드
+
+    /* 시작
+
+    //조회 누를시
+    btnSelect.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                sqlDB = myHelper.getReadableDatabase();
+                Cursor cursor;
+                cursor = sqlDB.rawQuery("SELECT * FROM groupTBL;", null);
+
+                String dosi = "도시" + "\r\n" + "--------" + "\r\n";
+                String gungu = "군구" + "\r\n" + "--------" + "\r\n";
+
+                while (cursor.moveToNext()) {
+                    dosi += cursor.getString(0) + "\r\n";
+                    gungu += cursor.getString(1) + "\r\n";
+                }
+
+                edtTextFiled1.setText(dosi);
+                edtTextFiled2.setText(gungu);
+
+                cursor.close();
+                sqlDB.close();
+            }
+        });
+
+//유저가 특정 관광지를 찾을 때 ( getText 앞에 변수명에 텍스트 필드 변수 적어주시면 될 것 같습니다.)
+        btnInsert.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                sqlDB = myHelper.getWritableDatabase();
+                sqlDB.execSQL("INSERT INTO groupTBL VALUES ( '"
+                        + dosi.getText().toString() + "' , "
+                        + gungu.getText().toString() + ");");
+                sqlDB.close();
+                Toast.makeText(getApplicationContext(), "입력됨",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
+//기록 초기화(따로 건드릴 부분 없습니다.)
+        btnInit.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                sqlDB = myHelper.getWritableDatabase();
+                myHelper.onUpgrade(sqlDB, 1, 2); // 인수는 아무거나 입력하면 됨.
+                sqlDB.close();
+            }
+        });
+
+     끝 */
+
+
+    // sqlite 관련 코드 끝
 
     //gps 관련 부가 코드
     @Override
@@ -313,4 +372,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //gps 관련 부가 코드 끝
+
+
+    //Sqlite 관련 부가코드
+    public class myDBHelper extends SQLiteOpenHelper {
+        public myDBHelper(Context context) {
+            super(context, "groupDB", null, 1);
+        }
+
+        @Override
+        public void onCreate(SQLiteDatabase db) {
+            db.execSQL("CREATE TABLE  groupTBL ( dosi CHAR(20) , gungu CHAR(20));");
+        }
+
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+            db.execSQL("DROP TABLE IF EXISTS groupTBL");
+            onCreate(db);
+        }
+    }
+
+    //sqlite 관련 부가코드 끝
 }
