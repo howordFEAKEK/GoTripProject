@@ -158,10 +158,10 @@ public class MainActivity extends AppCompatActivity {
 //유저가 특정 관광지를 찾을 때 ( getText 앞에 변수명에 텍스트 필드 변수 적어주시면 될 것 같습니다.)
         btnInsert.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+            a = dosi.getText().toString();
+            b = gungu.getText().toString();
                 sqlDB = myHelper.getWritableDatabase();
-                sqlDB.execSQL("INSERT INTO groupTBL VALUES ( '"
-                        + dosi.getText().toString() + "' , "
-                        + gungu.getText().toString() + ");");
+                sqlDB.execSQL("INSERT INTO groupTBL VALUES ( '" + a + "' , '"+ b + "');");
                 sqlDB.close();
                 Toast.makeText(getApplicationContext(), "입력됨",
                         Toast.LENGTH_SHORT).show();
