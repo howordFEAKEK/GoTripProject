@@ -1,4 +1,4 @@
-package com.example.project_trip.fragment_file;
+package com.example.project_trip;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

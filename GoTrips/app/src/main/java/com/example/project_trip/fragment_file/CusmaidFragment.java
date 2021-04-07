@@ -2,7 +2,10 @@ package com.example.project_trip.fragment_file;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,57 +13,56 @@ import android.view.ViewGroup;
 
 import com.example.project_trip.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CusmaidFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class CusmaidFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    RecyclerView marylee , marylee2;
+    RecyclerViewAdapter3 rcvAd;
+    List<Main_item3> getMyList;
     public CusmaidFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CusmaidFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CusmaidFragment newInstance(String param1, String param2) {
-        CusmaidFragment fragment = new CusmaidFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cusmaid, container, false);
+
+        ViewGroup vv = (ViewGroup) inflater.inflate(R.layout.fragment_cusmaid, container, false);
+        marylee = (RecyclerView) vv.findViewById(R.id.Cusmaid_recyclerView);
+        rcvAd = new RecyclerViewAdapter3(getContext(), getMyList);
+        marylee.setLayoutManager(new LinearLayoutManager(getActivity()));
+        marylee.setAdapter(rcvAd);
+
+        return vv;
+
+
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        getMyList = new ArrayList<>();
+        getMyList.add(new Main_item3("박물관입니다."));
+        getMyList.add(new Main_item3("박물관입니다2."));
+        getMyList.add(new Main_item3("박물관입니다3."));
+        getMyList.add(new Main_item3("박물관입니다4."));
+        getMyList.add(new Main_item3("박물관입니다5."));
+        getMyList.add(new Main_item3("박물관입니다6."));
+        getMyList.add(new Main_item3("박물관입니다7."));
+        getMyList.add(new Main_item3("박물관입니다8."));
+        getMyList.add(new Main_item3("박물관입니다9."));
+        getMyList.add(new Main_item3("박물관입니다10."));
+        getMyList.add(new Main_item3("박물관입니다11."));
+        getMyList.add(new Main_item3("박물관입니다."));
+
+
+
     }
 }

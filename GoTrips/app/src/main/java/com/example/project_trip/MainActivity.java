@@ -20,12 +20,8 @@ import android.location.Geocoder;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.project_trip.fragment_file.FragmentAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 import java.io.IOException;
