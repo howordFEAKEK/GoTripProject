@@ -8,17 +8,17 @@
 
 
     <TextView
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/title_id"
+        android:id="@+id/title_id11"
         android:text="Title"
         android:textSize="22sp"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:layout_toRightOf="@id/icon_rv"
-        android:layout_toEndOf="@id/icon_rv"
+        android:gravity="center"
 
-        android:layout_gravity="center"/>
+        />
 
 
 </LinearLayout>

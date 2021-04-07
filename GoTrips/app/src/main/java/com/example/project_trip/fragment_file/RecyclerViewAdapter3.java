@@ -1,5 +1,6 @@
 package com.example.project_trip.fragment_file;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.project_trip.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RecyclerViewAdapter3 extends RecyclerView.Adapter<RecyclerViewAdapter3.MyViewHolder> {
 
 
-    CusmaidFragment mContext2;
-    ArrayList<Main_item3> miData2;
+    Context mContext2;
+    List<Main_item3> miData2;
 
-    public RecyclerViewAdapter3(CusmaidFragment mContext2, ArrayList<Main_item3> miData2) {
+    public RecyclerViewAdapter3(Context mContext2, List<Main_item3> miData2) {
         this.mContext2 = mContext2;
         this.miData2 = miData2;
     }
@@ -28,7 +30,7 @@ public class RecyclerViewAdapter3 extends RecyclerView.Adapter<RecyclerViewAdapt
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row2, null);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row2, parent, false);
 
         return new MyViewHolder(v);
 

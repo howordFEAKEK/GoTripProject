@@ -2,17 +2,25 @@ package com.example.project_trip.fragment_file;
 
 public class Main_item {
 
-    private String list;
+    private String List;
 
+    public Main_item(){
+
+    }
+
+    public Main_item(String list){
+        List = list;
+    }
 
     public String getList() {
-        return list;
+
+        return List;
     }
 
     public void setList(String list) {
-        this.list = list;
-    }
 
+        List = list;
+    }
 
 }
 
