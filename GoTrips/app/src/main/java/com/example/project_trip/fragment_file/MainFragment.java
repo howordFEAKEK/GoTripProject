@@ -1,5 +1,7 @@
 package com.example.project_trip.fragment_file;
 
+import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -7,21 +9,22 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.project_trip.RecyclerView_item_file.Main_item;
 import com.example.project_trip.R;
-import com.example.project_trip.RecyclerViewAdapter;
 
 import java.util.ArrayList;
+
+import static android.content.ContentValues.TAG;
 
 
 public class MainFragment extends Fragment {
 
     View v;
-    RecyclerView marylee , marylee2;
+    RecyclerView marylee , marylee2 , marylee3;
     RecyclerViewAdapter rcvAd;
 
     public MainFragment() {
@@ -66,6 +69,17 @@ public class MainFragment extends Fragment {
         rcvAd = new RecyclerViewAdapter(this, getMyList2());
         marylee2.setAdapter(rcvAd);
 
+        marylee3 = vv.findViewById(R.id.recycler_view3);
+
+        LinearLayoutManager layoutManager3 = new LinearLayoutManager(getContext());
+
+        // 가로 모드
+        layoutManager3.setOrientation(LinearLayoutManager.HORIZONTAL);
+        marylee3.setLayoutManager(layoutManager3);
+
+        rcvAd = new RecyclerViewAdapter(this, getMyList3());
+        marylee3.setAdapter(rcvAd);
+
 
 
 
@@ -80,12 +94,11 @@ public class MainFragment extends Fragment {
 
         Main_item mi = new Main_item();
 
-        mi.setList("제발 되거라");
-        mi.setImg(R.drawable.abc);
+        mi.setList("박물관");
         main_items.add(mi);
 
         mi = new Main_item();
-        mi.setList("제발 되거라2");
+        mi.setList("박물관2");
         main_items.add(mi);
 
 
@@ -98,12 +111,28 @@ public class MainFragment extends Fragment {
 
         Main_item mi = new Main_item();
 
-        mi.setList("이거도 되냐?");
-        mi.setImg(R.drawable.abc);
+        mi.setList("주간리뷰?");
         main_items.add(mi);
 
         mi = new Main_item();
-        mi.setList("진짜 되냐???/2");
+        mi.setList("충남박물관");
+        main_items.add(mi);
+
+
+        return main_items;
+    }
+
+    private ArrayList<Main_item> getMyList3() {
+
+        ArrayList<Main_item> main_items = new ArrayList<>();
+
+        Main_item mi = new Main_item();
+
+        mi.setList("월간리뷰?");
+        main_items.add(mi);
+
+        mi = new Main_item();
+        mi.setList("수원박물관");
         main_items.add(mi);
 
 

@@ -3,29 +3,23 @@ package com.example.project_trip.fragment_file;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.example.project_trip.R;
 
 import java.util.ArrayList;
-import java.util.EventListener;
 
 
 public class LocalFragment extends Fragment {
 
-    ListView lv;
 
-    SearchView searchVIew;
-    ArrayAdapter<String> adapter;
-    String[] data = {"1" , "2" , "3" , "4" };
+    RecyclerView marylee , marylee2;
+    RecyclerViewAdapter2 rcvAd;
     public LocalFragment(){
 
 
@@ -35,19 +29,35 @@ public class LocalFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_local, container, false);
-        lv = (ListView) view.findViewById(R.id.Local_List);
-        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,data);
-        lv.setAdapter(adapter);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(),"테스트"+position, Toast.LENGTH_SHORT).show();
+        ViewGroup vv = (ViewGroup) inflater.inflate(R.layout.fragment_local, container, false);
+        marylee = vv.findViewById(R.id.Local_recyclerView);
 
-            }
-        });
-        return view;
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+
+        // 가로 모드
+        // layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        marylee.setLayoutManager(layoutManager);
+
+        rcvAd = new RecyclerViewAdapter2(this , getMyList());
+        marylee.setAdapter(rcvAd);
+
+    return vv;
+    }
+
+    ArrayList<Main_item2> getMyList() {
+        ArrayList<Main_item2> main_items = new ArrayList<>();
+
+        Main_item2 mi = new Main_item2();
+
+        mi.setList("박물관주소내용");
+        main_items.add(mi);
+
+        mi = new Main_item2();
+        mi.setList("박물관2");
+        main_items.add(mi);
+
+
+        return main_items;
 
     }
 }
