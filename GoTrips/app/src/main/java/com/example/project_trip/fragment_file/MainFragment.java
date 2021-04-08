@@ -49,7 +49,6 @@ public class MainFragment extends Fragment {
         marylee.setAdapter(rcvAd3);
 
 
-
         marylee2 = vv.findViewById(R.id.recycler_view2);
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(getContext());
         // 가로 모드
@@ -58,8 +57,6 @@ public class MainFragment extends Fragment {
         marylee2.setLayoutManager(layoutManager2);
 
         marylee2.setAdapter(rcvAd);
-      
-
 
 
         marylee3 = vv.findViewById(R.id.recycler_view3);
@@ -71,15 +68,9 @@ public class MainFragment extends Fragment {
         marylee3.setAdapter(rcvAd);
 
 
-
-
-
-
         return vv;
 
     }
-
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -111,16 +102,6 @@ public class MainFragment extends Fragment {
         getMyList.add(new Main_item3("박물관입니다12."));
 
 
-
-
-
-//        lstContext = new ArrayList<>();
-//        lstContext.add(new Main_item(" 일번마 등장!"));
-//        lstContext.add(new Main_item(" 이번마 등장!"));
-//        lstContext.add(new Main_item(" 삼번마 등장!"));
-//        lstContext.add(new Main_item(" 사번마 등장!"));
-//        lstContext.add(new Main_item(" 오번마 등장!"));
-//        lstContext.add(new Main_item(" 육번마 등장!"));
     }
 
 

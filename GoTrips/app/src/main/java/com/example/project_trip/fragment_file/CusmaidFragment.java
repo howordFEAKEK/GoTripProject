@@ -41,7 +41,6 @@ public class CusmaidFragment extends Fragment {
 
         return vv;
 
-
     }
 
     @Override

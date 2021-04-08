@@ -27,16 +27,13 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
 
 
     Context mContext1;
-    List<Main_item2> miData1;
-    Dialog myDialog;
+    List<Main_item> miData1;
 
-
-    public RecyclerViewAdapter2(Context mContext1, List<Main_item2> miData1) {
+    public RecyclerViewAdapter2(Context mContext1, List<Main_item> miData1) {
         this.mContext1 = mContext1;
         this.miData1 = miData1;
 
     }
-
 
 
     @NonNull
@@ -45,7 +42,7 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
 
         View v;
         v = LayoutInflater.from(mContext1).inflate(R.layout.row2, parent, false);
-        MyViewHolder myViewHolder = new MyViewHolder(v);
+        MyViewHolder myViewHolder = new MyViewHolder(v );
 
         return myViewHolder;
 
@@ -54,8 +51,9 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
-        holder.tv_list.setText(miData1.get(position).getName());
+        holder.tv_list.setText(miData1.get(position).getList());
 //        holder.tv_imglist.setImageResource(miData.get(position).getImg());
+
 
     }
 
@@ -67,13 +65,14 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
 
     
     // 뷰 홀더 클래스
-    
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private LinearLayout item_id;
         private TextView tv_list;
+
 //        private ImageView tv_imglist;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView ) {
             super(itemView);
             tv_list = (TextView) itemView.findViewById(R.id.title_id);
 //            this.tv_imglist = itemView.findViewById(R.id.icon_rv);
@@ -81,8 +80,8 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
 
         }
 
-
     }
+
 
 
 }

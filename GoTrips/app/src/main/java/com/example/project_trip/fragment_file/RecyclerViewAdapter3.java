@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,7 +42,12 @@ public class RecyclerViewAdapter3 extends RecyclerView.Adapter<RecyclerViewAdapt
 
         holder.tv_list.setText(miData2.get(position).getList());
 //        holder.tv_imglist.setImageResource(miData2.get(position).getImg());
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext2, "ccc", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

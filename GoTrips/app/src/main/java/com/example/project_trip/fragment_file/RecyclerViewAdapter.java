@@ -31,8 +31,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @NonNull
     @Override
+    // 뷰홀더 생성
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
 
+        // 연결할 레이아웃 설정
+        // inflate는 레이아웃을 연결 시켜 주는 것
        View v;
         v = LayoutInflater.from(mContext).inflate(R.layout.row, parent, false);
         final MyViewHolder myViewHolder1 = new MyViewHolder(v);
@@ -42,6 +45,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
+    // 뷰홀더가 묶여있을 때 ( 데이터와 요소들을 연결 )
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
         holder.tv_list.setText(miData.get(position).getList());
@@ -50,6 +54,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
+    // 목록 아이템 수
     public int getItemCount() {
 
         return miData.size();
