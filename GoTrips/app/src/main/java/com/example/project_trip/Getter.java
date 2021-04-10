@@ -38,7 +38,7 @@ public class Getter {
     }
 
     String apiGetterName(String sido, String gungu, String resnm) throws IOException {
-        //시도, 군구, 관광지 이름을 입력받고, 해당되는 정보를 출력함
+        //시도, 군구, 관광지 이름을 입력받고, 해당되는 관광지 관련 정보를 출력함
 
         StringBuilder urlBuilder = new StringBuilder("http://openapi.tour.go.kr/openapi/service/TourismResourceService/getTourResourceList"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=HljdApr9dt8GOT0E0H87Ii2Ah7buUCv6SHh5AmjZJLwWZvRO9Ww4hgPgXehtDS3Ytn3hxKWk9J6sVS4MHdURJA%3D%3D"); /*Service Key*/
