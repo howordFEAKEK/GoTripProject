@@ -27,7 +27,7 @@ public class LocalFragment extends Fragment {
 
     private RecyclerView marylee;
     RecyclerViewAdapter2 rcvAd2;
-    private List<Main_item> getMyList2;
+    private List<Main_item2> getMyList2;
 
     public LocalFragment(){
 
@@ -51,18 +51,18 @@ public class LocalFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         getMyList2 = new ArrayList<>();
-        getMyList2.add(new Main_item("박물관입니다."));
-        getMyList2.add(new Main_item("박물관입니다2."));
-        getMyList2.add(new Main_item("박물관입니다3."));
-        getMyList2.add(new Main_item("박물관입니다4."));
-        getMyList2.add(new Main_item("박물관입니다5."));
-        getMyList2.add(new Main_item("박물관입니다6."));
-        getMyList2.add(new Main_item("박물관입니다7."));
-        getMyList2.add(new Main_item("박물관입니다8."));
-        getMyList2.add(new Main_item("박물관입니다9."));
-        getMyList2.add(new Main_item("박물관입니다10."));
-        getMyList2.add(new Main_item("박물관입니다11."));
-        getMyList2.add(new Main_item("박물관입니다12."));
+        getMyList2.add(new Main_item2("박물관입니다."));
+        getMyList2.add(new Main_item2("박물관입니다2."));
+        getMyList2.add(new Main_item2("박물관입니다3."));
+        getMyList2.add(new Main_item2("박물관입니다4."));
+        getMyList2.add(new Main_item2("박물관입니다5."));
+        getMyList2.add(new Main_item2("박물관입니다6."));
+        getMyList2.add(new Main_item2("박물관입니다7."));
+        getMyList2.add(new Main_item2("박물관입니다8."));
+        getMyList2.add(new Main_item2("박물관입니다9."));
+        getMyList2.add(new Main_item2("박물관입니다10."));
+        getMyList2.add(new Main_item2("박물관입니다11."));
+        getMyList2.add(new Main_item2("박물관입니다12."));
 
 
 

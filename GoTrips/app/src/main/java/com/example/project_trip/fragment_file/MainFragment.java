@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.project_trip.R;
 
@@ -27,9 +29,10 @@ public class MainFragment extends Fragment {
     View v;
     RecyclerView marylee , marylee2 , marylee3;
     RecyclerViewAdapter rcvAd;
-    RecyclerViewAdapter3 rcvAd3;
-    List<Main_item3> getMyList;
+    RecyclerViewAdapter2 rcvAd3;
+    List<Main_item2> getMyList;
     List<Main_item> getMyList1;
+    TextView txt;
     public MainFragment() {
         // Required empty public constructor
     }
@@ -44,9 +47,21 @@ public class MainFragment extends Fragment {
 
 
         marylee = (RecyclerView) vv.findViewById(R.id.recycler_view);
-        rcvAd3 = new RecyclerViewAdapter3(getContext(), getMyList);
+        rcvAd3 = new RecyclerViewAdapter2(getContext(), getMyList);
         marylee.setLayoutManager(new LinearLayoutManager(getActivity()));
         marylee.setAdapter(rcvAd3);
+
+
+        txt = vv.findViewById(R.id.local_setting);
+
+        txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity() , HomeActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
 
 
         marylee2 = vv.findViewById(R.id.recycler_view2);
@@ -67,7 +82,6 @@ public class MainFragment extends Fragment {
         marylee3.setLayoutManager(layoutManager3);
         marylee3.setAdapter(rcvAd);
 
-
         return vv;
 
     }
@@ -76,30 +90,33 @@ public class MainFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
+
         getMyList1 = new ArrayList<>();
         getMyList1.add(new Main_item("주간 리뷰"));
-        getMyList1.add(new Main_item(""));
-        getMyList1.add(new Main_item(""));
-        getMyList1.add(new Main_item(""));
-        getMyList1.add(new Main_item(""));
-        getMyList1.add(new Main_item(""));
-        getMyList1.add(new Main_item(""));
-        getMyList1.add(new Main_item(""));
+        getMyList1.add(new Main_item("리뷰1"));
+        getMyList1.add(new Main_item("리뷰2"));
+        getMyList1.add(new Main_item("리뷰3"));
+        getMyList1.add(new Main_item("리뷰4"));
+        getMyList1.add(new Main_item("리뷰5"));
+        getMyList1.add(new Main_item("리뷰6"));
+        getMyList1.add(new Main_item("리뷰7"));
 
 
         getMyList = new ArrayList<>();
-        getMyList.add(new Main_item3("박물관입니다."));
-        getMyList.add(new Main_item3("박물관입니다2."));
-        getMyList.add(new Main_item3("박물관입니다3."));
-        getMyList.add(new Main_item3("박물관입니다4."));
-        getMyList.add(new Main_item3("박물관입니다5."));
-        getMyList.add(new Main_item3("박물관입니다6."));
-        getMyList.add(new Main_item3("박물관입니다7."));
-        getMyList.add(new Main_item3("박물관입니다8."));
-        getMyList.add(new Main_item3("박물관입니다9."));
-        getMyList.add(new Main_item3("박물관입니다10."));
-        getMyList.add(new Main_item3("박물관입니다11."));
-        getMyList.add(new Main_item3("박물관입니다12."));
+        getMyList.add(new Main_item2("박물관입니다."));
+        getMyList.add(new Main_item2("박물관입니다2."));
+        getMyList.add(new Main_item2("박물관입니다3."));
+        getMyList.add(new Main_item2("박물관입니다4."));
+        getMyList.add(new Main_item2("박물관입니다5."));
+        getMyList.add(new Main_item2("박물관입니다6."));
+        getMyList.add(new Main_item2("박물관입니다7."));
+        getMyList.add(new Main_item2("박물관입니다8."));
+        getMyList.add(new Main_item2("박물관입니다9."));
+        getMyList.add(new Main_item2("박물관입니다10."));
+        getMyList.add(new Main_item2("박물관입니다11."));
+        getMyList.add(new Main_item2("박물관입니다12."));
 
 
     }

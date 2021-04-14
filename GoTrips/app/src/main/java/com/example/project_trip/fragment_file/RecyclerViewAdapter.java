@@ -63,7 +63,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     // 뷰 홀더 클래스
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private TextView tv_list;
 //        private ImageView tv_imglist;
@@ -74,9 +74,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             tv_list = itemView.findViewById(R.id.title_id111);
 //            this.tv_imglist = itemView.findViewById(R.id.icon_rv);
 
+            itemView.setOnClickListener(this);
 
         }
 
 
+        @Override
+        public void onClick(View v) {
+            int postion = getAdapterPosition();
+            Toast.makeText(mContext, "pstionr"+ postion +1, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(mContext , Save_ReviewActivity.class);
+            mContext.startActivity(intent);
+        }
     }
 }

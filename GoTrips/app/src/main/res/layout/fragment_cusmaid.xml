@@ -6,6 +6,8 @@
     android:orientation="vertical"
     tools:context=".fragment_file.CusmaidFragment"
 
+    android:id="@+id/ly_2"
+
     >
 
     <!-- TODO: Update blank fragment layout -->
@@ -18,6 +20,8 @@
         android:layout_marginBottom="35dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:padding="10dp"
+        android:background="@drawable/border"
         />
 
 </LinearLayout>

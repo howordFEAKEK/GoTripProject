@@ -20,14 +20,17 @@ public class FragmentAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         switch (position){
+            case 0 :
+                return new LocalFragment();
             case 1 :
                 return new MainFragment();
             case 2 :
                 return new CusmaidFragment();
+            default :
+                return null;
 
         }
 
-        return new LocalFragment();
     }
 
     @Override

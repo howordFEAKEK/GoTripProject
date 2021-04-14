@@ -21,8 +21,8 @@ public class CusmaidFragment extends Fragment {
 
 
     RecyclerView marylee , marylee2;
-    RecyclerViewAdapter3 rcvAd;
-    List<Main_item3> getMyList;
+    RecyclerViewAdapter2 rcvAd;
+    List<Main_item2> getMyList;
     public CusmaidFragment() {
         // Required empty public constructor
     }
@@ -35,7 +35,7 @@ public class CusmaidFragment extends Fragment {
 
         ViewGroup vv = (ViewGroup) inflater.inflate(R.layout.fragment_cusmaid, container, false);
         marylee = (RecyclerView) vv.findViewById(R.id.Cusmaid_recyclerView);
-        rcvAd = new RecyclerViewAdapter3(getContext(), getMyList);
+        rcvAd = new RecyclerViewAdapter2(getContext(), getMyList);
         marylee.setLayoutManager(new LinearLayoutManager(getActivity()));
         marylee.setAdapter(rcvAd);
 
@@ -48,18 +48,18 @@ public class CusmaidFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         getMyList = new ArrayList<>();
-        getMyList.add(new Main_item3("박물관입니다."));
-        getMyList.add(new Main_item3("박물관입니다2."));
-        getMyList.add(new Main_item3("박물관입니다3."));
-        getMyList.add(new Main_item3("박물관입니다4."));
-        getMyList.add(new Main_item3("박물관입니다5."));
-        getMyList.add(new Main_item3("박물관입니다6."));
-        getMyList.add(new Main_item3("박물관입니다7."));
-        getMyList.add(new Main_item3("박물관입니다8."));
-        getMyList.add(new Main_item3("박물관입니다9."));
-        getMyList.add(new Main_item3("박물관입니다10."));
-        getMyList.add(new Main_item3("박물관입니다11."));
-        getMyList.add(new Main_item3("박물관입니다."));
+        getMyList.add(new Main_item2("맞춤 추천 박물관입니다."));
+        getMyList.add(new Main_item2("맞춤 추천 박물관입니다2."));
+        getMyList.add(new Main_item2("맞춤 추천 박물관입니다3."));
+        getMyList.add(new Main_item2("맞춤 추천 박물관입니다4."));
+        getMyList.add(new Main_item2("맞춤 추천 박물관입니다5."));
+        getMyList.add(new Main_item2("맞춤 추천 박물관입니다6."));
+        getMyList.add(new Main_item2("맞춤 추천 박물관입니다7."));
+        getMyList.add(new Main_item2("맞춤 추천 박물관입니다8."));
+        getMyList.add(new Main_item2("맞춤 추천 박물관입니다9."));
+
+
+
 
 
 

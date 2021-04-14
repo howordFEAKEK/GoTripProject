@@ -27,9 +27,9 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
 
 
     Context mContext1;
-    List<Main_item> miData1;
+    List<Main_item2> miData1;
 
-    public RecyclerViewAdapter2(Context mContext1, List<Main_item> miData1) {
+    public RecyclerViewAdapter2(Context mContext1, List<Main_item2> miData1) {
         this.mContext1 = mContext1;
         this.miData1 = miData1;
 
@@ -51,9 +51,8 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
-        holder.tv_list.setText(miData1.get(position).getList());
+        holder.tv_list.setText(miData1.get(position).getName());
 //        holder.tv_imglist.setImageResource(miData.get(position).getImg());
-
 
     }
 
@@ -66,7 +65,7 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
     
     // 뷰 홀더 클래스
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private LinearLayout item_id;
         private TextView tv_list;
 
@@ -77,9 +76,16 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
             tv_list = (TextView) itemView.findViewById(R.id.title_id);
 //            this.tv_imglist = itemView.findViewById(R.id.icon_rv);
 
-
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View v) {
+            int postion = getAdapterPosition();
+            Toast.makeText(mContext1, "pstionr"+ postion +1, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(mContext1 , Local_GuideActivity.class);
+            mContext1.startActivity(intent);
+        }
     }
 
 
