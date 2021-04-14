@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //sqlite 관련 코드
+    //sqlite 관련 코드, DB 관련 코드
 
     /* 시작
 
@@ -154,13 +154,43 @@ public class MainActivity extends AppCompatActivity {
 //유저가 특정 관광지를 찾을 때 ( getText 앞에 변수명에 텍스트 필드 변수 적어주시면 될 것 같습니다.)
         btnInsert.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+            a = dosi.getText().toString();
+            b = gungu.getText().toString();
                 sqlDB = myHelper.getWritableDatabase();
-                sqlDB.execSQL("INSERT INTO groupTBL VALUES ( '"
-                        + dosi.getText().toString() + "' , "
-                        + gungu.getText().toString() + ");");
+                sqlDB.execSQL("INSERT INTO groupTBL VALUES ( '" + a + "' , '"+ b + "');");
                 sqlDB.close();
                 Toast.makeText(getApplicationContext(), "입력됨",
                         Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // 2021-04-10 추가, 내부 DB이용 자주 검색한 지역 찾기
+        btnRecommend.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                sqlDB = myHelper.getWritableDatabase();
+                String gungu
+
+                sqlDB.execSQL("SELECT gungu, count(gungu) cnt from groupTBL GROUP by gungu order by cnt DESC;");
+                //
+                sqlDB.close();
+                Toast.makeText(getApplicationContext(), "조회됨",
+                        Toast.LENGTH_SHORT).show();
+
+
+                while (cursor.moveToNext()) {
+                    gungu += cursor.getString(0) + "\r\n";
+                }
+
+                gungu += cursor.getString(0) + "\r\n"; //혹시 while 문에서 하나 이상 군구 정보를 가져올 시 while 지우고 해당 코드만 사용
+
+                sqlDB.execSQL("SELECT * FROM groupTBL where gungu = '"gungu"';");
+
+                while (cursor.moveToNext()) { // 2줄 위 코드와 동일하게 사용
+                    dosi += cursor.getString(0) + "\r\n";
+                    gungu += cursor.getString(1) + "\r\n";
+                }
+
+
             }
         });
 
