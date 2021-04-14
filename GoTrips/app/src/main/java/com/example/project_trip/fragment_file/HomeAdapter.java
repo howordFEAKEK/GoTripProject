@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.milder> {
-
+    // 지역 위치 리스트 뷰
     ArrayList<Main_item4> data;
     Context context;
 
