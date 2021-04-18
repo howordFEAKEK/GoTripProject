@@ -27,42 +27,28 @@
             android:background="@drawable/border"
             >
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-        >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:text="충남 박물관"
-                android:textSize="30dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.078"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="123dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="220dp"
-                android:layout_marginBottom="7dp"
-                android:text="지도"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:background="#FFFFFF"
-                android:backgroundTint="@color/white"/>
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:text="충남 박물관"
+                    android:textSize="30dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.078"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -87,7 +73,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:text="상세 소개"
+                android:text="상세 주소"
                 android:textSize="30dp"
                 android:gravity=""
                 />
@@ -96,7 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="20dp"
-                android:text="상세 소개가 없다면 URL"
+                android:text="xx시 xx 동 xx 면"
                 android:textSize="20dp"
                 android:gravity=""
                 />
@@ -105,23 +91,26 @@
         </LinearLayout>
 
 
-</LinearLayout>>
+    </LinearLayout>>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="30dp"
+        android:layout_height="230dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="30dp"
-        android:background="@drawable/border"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="10dp"
         android:orientation="vertical"
-     >
+        android:background="@drawable/border">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/local_guide_recyclerview"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="5dp"/>
+            android:text="지도"
+            android:textSize="30dp"
+            android:gravity="center"
+            />
+
 
 
     </LinearLayout>
@@ -133,17 +122,17 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="30dp"
         android:layout_marginLeft="30dp"
-    >
+        >
 
         <TextView
             android:id="@+id/set_review_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="리뷰작성"
+            android:text="네비게이션"
             android:textSize="30dp"
             android:gravity="center"
             />
-</LinearLayout>
+    </LinearLayout>
 
 
 </LinearLayout>

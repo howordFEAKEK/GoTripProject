@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Project_Trip">
-        <activity android:name=".fragment_file.NavigationActivity"></activity>
+        <activity android:name=".fragment_file.Local_mapsActivity"></activity>
+        <activity android:name=".fragment_file.NavigationActivity" />
         <activity android:name=".fragment_file.MapsActivity" />
         <activity android:name=".fragment_file.Local_detailed_selecttActivity" />
         <!--

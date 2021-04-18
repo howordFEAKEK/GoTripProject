@@ -83,7 +83,7 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
         public void onClick(View v) {
             int postion = getAdapterPosition();
             Toast.makeText(mContext1, "pstionr"+ postion +1, Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(mContext1 , Local_GuideActivity.class);
+            Intent intent = new Intent(mContext1 , Local_mapsActivity.class);
             mContext1.startActivity(intent);
         }
     }

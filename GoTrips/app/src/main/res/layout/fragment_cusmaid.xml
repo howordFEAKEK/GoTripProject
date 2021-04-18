@@ -7,6 +7,7 @@
     tools:context=".fragment_file.CusmaidFragment"
 
     android:id="@+id/ly_2"
+    android:background="#FFE4E1"
 
     >
 
