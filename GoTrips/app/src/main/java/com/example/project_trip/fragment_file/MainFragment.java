@@ -31,7 +31,8 @@ public class MainFragment extends Fragment {
     RecyclerViewAdapter rcvAd;
     RecyclerViewAdapter2 rcvAd3;
     List<Main_item2> getMyList;
-    List<Main_item> getMyList1;
+    List<Main_item> getMyList1 , getMyList2;
+
     TextView txt;
     public MainFragment() {
         // Required empty public constructor
@@ -68,7 +69,7 @@ public class MainFragment extends Fragment {
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(getContext());
         // 가로 모드
         layoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
-        rcvAd = new RecyclerViewAdapter(getContext(), getMyList1);
+        rcvAd = new RecyclerViewAdapter(getContext(), getMyList2);
         marylee2.setLayoutManager(layoutManager2);
 
         marylee2.setAdapter(rcvAd);
@@ -102,6 +103,16 @@ public class MainFragment extends Fragment {
         getMyList1.add(new Main_item("리뷰5"));
         getMyList1.add(new Main_item("리뷰6"));
         getMyList1.add(new Main_item("리뷰7"));
+
+        getMyList2 = new ArrayList<>();
+        getMyList2.add(new Main_item("월간 리뷰"));
+        getMyList2.add(new Main_item("리뷰1"));
+        getMyList2.add(new Main_item("리뷰2"));
+        getMyList2.add(new Main_item("리뷰3"));
+        getMyList2.add(new Main_item("리뷰4"));
+        getMyList2.add(new Main_item("리뷰5"));
+        getMyList2.add(new Main_item("리뷰6"));
+        getMyList2.add(new Main_item("리뷰7"));
 
 
         getMyList = new ArrayList<>();
