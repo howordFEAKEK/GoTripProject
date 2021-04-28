@@ -11,6 +11,8 @@ import com.example.project_trip.R;
 
 public class MapsActivity extends AppCompatActivity {
 
+    // 지도 버튼을 클릭하면 나오는 지도 엑티비티
+    
     TextView txt;
 
     @Override

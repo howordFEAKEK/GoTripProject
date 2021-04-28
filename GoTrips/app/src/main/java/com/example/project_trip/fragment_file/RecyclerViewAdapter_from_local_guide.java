@@ -1,35 +1,30 @@
 package com.example.project_trip.fragment_file;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project_trip.R;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapter2.MyViewHolder> {
+public class RecyclerViewAdapter_from_local_guide extends RecyclerView.Adapter<RecyclerViewAdapter_from_local_guide.MyViewHolder> {
 
 
+    // 맞춤 탭 및 메인탭 상단의 박물관 정보 리사이클뷰의 어댑터
+    
     Context mContext1;
-    List<Main_item2> miData1;
+    List<Main_item_from_show_local> miData1;
 
-    public RecyclerViewAdapter2(Context mContext1, List<Main_item2> miData1) {
+    public RecyclerViewAdapter_from_local_guide(Context mContext1, List<Main_item_from_show_local> miData1) {
         this.mContext1 = mContext1;
         this.miData1 = miData1;
 
@@ -51,8 +46,19 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
-        holder.tv_list.setText(miData1.get(position).getName());
+        Main_item_from_show_local temp = miData1.get(position);
+
+        holder.tv_list.setText(miData1.get(position).getLocal_title());
 //        holder.tv_imglist.setImageResource(miData.get(position).getImg());
+        holder.tv_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext1 , Local_GuideActivity.class);
+                intent.putExtra("local_title" , temp.getLocal_title());
+                mContext1.startActivity(intent);
+            }
+        });
+
 
     }
 
@@ -65,7 +71,7 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
     
     // 뷰 홀더 클래스
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class MyViewHolder extends RecyclerView.ViewHolder{
         private LinearLayout item_id;
         private TextView tv_list;
 
@@ -76,16 +82,10 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
             tv_list = (TextView) itemView.findViewById(R.id.title_id);
 //            this.tv_imglist = itemView.findViewById(R.id.icon_rv);
 
-            itemView.setOnClickListener(this);
+
         }
 
-        @Override
-        public void onClick(View v) {
-            int postion = getAdapterPosition();
-            Toast.makeText(mContext1, "pstionr"+ postion +1, Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(mContext1 , Local_mapsActivity.class);
-            mContext1.startActivity(intent);
-        }
+
     }
 
 

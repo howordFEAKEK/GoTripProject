@@ -17,6 +17,8 @@ import java.util.ArrayList;
 
 public class Local_GuideRecyclerAdepter extends RecyclerView.Adapter<Local_GuideRecyclerAdepter.MyViewHodler> {
 
+    // 메인탭의 최상단에 있는 박물관 정보 리사이클뷰의 어댑터
+    
     private ArrayList<Main_item4> data;
     Context context;
 
@@ -63,7 +65,7 @@ public class Local_GuideRecyclerAdepter extends RecyclerView.Adapter<Local_Guide
         public void onClick(View v) {
             int postion = getAdapterPosition();
             Toast.makeText(context, "pstionr"+ postion +1, Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(context , Save_ReviewActivity.class);
+            Intent intent = new Intent(context , Show_ReviewActivity.class);
             context.startActivity(intent);
         }
     }

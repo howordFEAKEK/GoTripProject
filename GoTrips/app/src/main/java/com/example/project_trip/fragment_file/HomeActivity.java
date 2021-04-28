@@ -15,6 +15,8 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
+    // 메인탭에서 현재위치를 클릭하면 나오는 화면의 엑티비티입니다.
+
     RecyclerView rcy;
     HomeAdapter adapter;
     ArrayList<Main_item4> data;
@@ -23,27 +25,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-//        rcy = (RecyclerView) findViewById(R.id.local_select_rcview);
-////        rcy.setLayoutManager(new LinearLayoutManager(this));
-//
-//        adapter = new HomeAdapter(getMyList , getApplicationContext());
-//        rcy.setAdapter(adapter);
-//
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-//        rcy.setLayoutManager(linearLayoutManager);
-//
-//
-//        getMyList = new ArrayList<>();
-//        getMyList.add(new Main_item4("안녕하세요"));
-
-        rcy = (RecyclerView)findViewById(R.id.local_select_rcview);
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-//        rcy.setLayoutManager(linearLayoutManager);
-
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this , 3);
-        rcy.setLayoutManager(gridLayoutManager);
-
 
         data = new ArrayList<>();
         data.add(new Main_item4("서울"));
@@ -62,8 +43,11 @@ public class HomeActivity extends AppCompatActivity {
         data.add(new Main_item4("광주"));
         data.add(new Main_item4("세종"));
 
-        adapter = new HomeAdapter(data,getApplicationContext());
+        rcy = (RecyclerView)findViewById(R.id.local_select_rcview);
+        adapter = new HomeAdapter(data , this);
+        rcy.setLayoutManager(new GridLayoutManager(this , 3));
         rcy.setAdapter(adapter);
+
 
 
     }

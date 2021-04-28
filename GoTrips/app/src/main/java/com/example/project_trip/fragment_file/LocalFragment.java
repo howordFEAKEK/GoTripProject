@@ -1,6 +1,5 @@
 package com.example.project_trip.fragment_file;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -8,26 +7,23 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.project_trip.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.content.ContentValues.TAG;
-
 
 public class LocalFragment extends Fragment {
 
+    // 위치 탭에있는 프레그 먼트 입니다.
 
     private RecyclerView marylee;
-    RecyclerViewAdapter2 rcvAd2;
-    private List<Main_item2> getMyList2;
+    RecyclerViewAdapter_from_show_local rcvAd2;
+    private List<Main_item_from_show_local> getMyList2;
 
     public LocalFragment(){
 
@@ -38,7 +34,7 @@ public class LocalFragment extends Fragment {
                              Bundle savedInstanceState) {
         View vv = inflater.inflate(R.layout.fragment_local, container, false);
         marylee = (RecyclerView) vv.findViewById(R.id.Local_recyclerView);
-        rcvAd2 = new RecyclerViewAdapter2(getContext(), getMyList2);
+        rcvAd2 = new RecyclerViewAdapter_from_show_local(getContext(), getMyList2);
         marylee.setLayoutManager(new LinearLayoutManager(getActivity()));
         marylee.setAdapter(rcvAd2);
         // 가로 모드
@@ -51,19 +47,18 @@ public class LocalFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         getMyList2 = new ArrayList<>();
-        getMyList2.add(new Main_item2("박물관입니다."));
-        getMyList2.add(new Main_item2("박물관입니다2."));
-        getMyList2.add(new Main_item2("박물관입니다3."));
-        getMyList2.add(new Main_item2("박물관입니다4."));
-        getMyList2.add(new Main_item2("박물관입니다5."));
-        getMyList2.add(new Main_item2("박물관입니다6."));
-        getMyList2.add(new Main_item2("박물관입니다7."));
-        getMyList2.add(new Main_item2("박물관입니다8."));
-        getMyList2.add(new Main_item2("박물관입니다9."));
-        getMyList2.add(new Main_item2("박물관입니다10."));
-        getMyList2.add(new Main_item2("박물관입니다11."));
-        getMyList2.add(new Main_item2("박물관입니다12."));
-
+        getMyList2.add(new Main_item_from_show_local("불당동 박물관"));
+        getMyList2.add(new Main_item_from_show_local("아산시 과학 박물관"));
+        getMyList2.add(new Main_item_from_show_local("독립박물관"));
+        getMyList2.add(new Main_item_from_show_local("문화유산지"));
+        getMyList2.add(new Main_item_from_show_local("미술 박물관"));
+        getMyList2.add(new Main_item_from_show_local("공룡 박물관"));
+        getMyList2.add(new Main_item_from_show_local("산꼭대기 절"));
+        getMyList2.add(new Main_item_from_show_local("석굴암"));
+        getMyList2.add(new Main_item_from_show_local("해인사"));
+        getMyList2.add(new Main_item_from_show_local("장안문"));
+        getMyList2.add(new Main_item_from_show_local("화성"));
+        getMyList2.add(new Main_item_from_show_local("국보1호"));
 
 
     }

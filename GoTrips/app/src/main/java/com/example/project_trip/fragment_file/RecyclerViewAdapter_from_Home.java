@@ -5,27 +5,24 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project_trip.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerViewAdapter3 extends RecyclerView.Adapter<RecyclerViewAdapter3.MyViewHolder> {
+public class RecyclerViewAdapter_from_Home extends RecyclerView.Adapter<RecyclerViewAdapter_from_Home.MyViewHolder> {
 
+    // 지역설정의 리사이클 그리드뷰의 리사이클 어댑터
 
    Context mContext2;
     List<Main_item3> miData2;
 
-    public RecyclerViewAdapter3(Context mContext2, List<Main_item3> miData2) {
+    public RecyclerViewAdapter_from_Home(Context mContext2, List<Main_item3> miData2) {
         this.mContext2 = mContext2;
         this.miData2 = miData2;
     }

@@ -19,6 +19,9 @@ import java.util.zip.Inflater;
 
 public class Local_detailed_selectAdepter extends RecyclerView.Adapter<Local_detailed_selectAdepter.MyViewHodler> {
 
+    // 현재 위치에서 지역을 클릭하면 나오면 세부 지역 설정의 어댑터
+
+
     ArrayList<Detailed_Local_Name_item> data;
     Context context;
 

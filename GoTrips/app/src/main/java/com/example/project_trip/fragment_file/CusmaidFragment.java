@@ -10,8 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.project_trip.R;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +23,12 @@ import java.util.List;
 public class CusmaidFragment extends Fragment {
 
 
+    // 개인맞춤 탭에 있는 프레그 먼트 입니다.
+
+    TextView tv1;
     RecyclerView marylee , marylee2;
-    RecyclerViewAdapter2 rcvAd;
-    List<Main_item2> getMyList;
+    RecyclerViewAdapter_from_local_guide rcvAd;
+    List<Main_item_from_show_local> getMyList;
     public CusmaidFragment() {
         // Required empty public constructor
     }
@@ -35,7 +41,7 @@ public class CusmaidFragment extends Fragment {
 
         ViewGroup vv = (ViewGroup) inflater.inflate(R.layout.fragment_cusmaid, container, false);
         marylee = (RecyclerView) vv.findViewById(R.id.Cusmaid_recyclerView);
-        rcvAd = new RecyclerViewAdapter2(getContext(), getMyList);
+        rcvAd = new RecyclerViewAdapter_from_local_guide(getContext(), getMyList);
         marylee.setLayoutManager(new LinearLayoutManager(getActivity()));
         marylee.setAdapter(rcvAd);
 
@@ -48,20 +54,11 @@ public class CusmaidFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         getMyList = new ArrayList<>();
-        getMyList.add(new Main_item2("맞춤 추천 박물관입니다."));
-        getMyList.add(new Main_item2("맞춤 추천 박물관입니다2."));
-        getMyList.add(new Main_item2("맞춤 추천 박물관입니다3."));
-        getMyList.add(new Main_item2("맞춤 추천 박물관입니다4."));
-        getMyList.add(new Main_item2("맞춤 추천 박물관입니다5."));
-        getMyList.add(new Main_item2("맞춤 추천 박물관입니다6."));
-        getMyList.add(new Main_item2("맞춤 추천 박물관입니다7."));
-        getMyList.add(new Main_item2("맞춤 추천 박물관입니다8."));
-        getMyList.add(new Main_item2("맞춤 추천 박물관입니다9."));
-
-
-
-
-
+        getMyList.add(new Main_item_from_show_local("경기도 화성 박물관"));
+        getMyList.add(new Main_item_from_show_local("제주도 돌하르방 박물관"));
+        getMyList.add(new Main_item_from_show_local("제주도 한라산 박물관"));
+        getMyList.add(new Main_item_from_show_local("제주도 올레길"));
+        getMyList.add(new Main_item_from_show_local("경주 박물관"));
 
     }
 }

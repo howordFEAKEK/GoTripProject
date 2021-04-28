@@ -15,8 +15,11 @@ import com.example.project_trip.R;
 import java.util.ArrayList;
 
 public class Local_GuideActivity extends AppCompatActivity {
+
+    // 메인 탭에서 최싱단 박물관 이름을 클릭하면 나오는 엑티비티
+
     Button btn;
-    TextView txt;
+    TextView txt1 , txt2;
     RecyclerView rcyv;
     Local_GuideRecyclerAdepter adepter;
     ArrayList<Main_item4> getMyList;
@@ -24,6 +27,11 @@ public class Local_GuideActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_local__guide);
+
+        txt2 = (TextView) findViewById(R.id.local_guide_title_text);
+        txt2.setText(getIntent().getStringExtra("local_title"));
+
+        // 중단의 리뷰 리스트입니다.
 
         rcyv = (RecyclerView)findViewById(R.id.local_guide_recyclerview);
         rcyv.setLayoutManager(new LinearLayoutManager(this));
@@ -44,16 +52,18 @@ public class Local_GuideActivity extends AppCompatActivity {
         adepter = new Local_GuideRecyclerAdepter(getMyList , this);
         rcyv.setAdapter(adepter);
 
+        // 하단의 리뷰 작성 버튼입니다.
 
-
-        txt = findViewById(R.id.set_review_text);
-        txt.setOnClickListener(new View.OnClickListener() {
+        txt1 = findViewById(R.id.set_review_text);
+        txt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Local_GuideActivity.this ,ReViewActivity.class);
+                Intent intent = new Intent(Local_GuideActivity.this , Save_ReViewActivity.class);
                 startActivity(intent);
             }
         });
+
+        // 지도 탭 접속 버튼입니다.
 
         btn = findViewById(R.id.button2);
         btn.setOnClickListener(new View.OnClickListener() {

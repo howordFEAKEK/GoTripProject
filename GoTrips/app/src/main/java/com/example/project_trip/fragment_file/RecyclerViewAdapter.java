@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,11 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project_trip.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
+    // 하단의 주간리뷰와 월간리뷰의 리사이클 어댑터
+    
     Context mContext;
     List<Main_item> miData;
 
@@ -48,8 +46,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     // 뷰홀더가 묶여있을 때 ( 데이터와 요소들을 연결 )
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
+        Main_item temp = miData.get(position);
+
         holder.tv_list.setText(miData.get(position).getList());
 //        holder.tv_imglist.setImageResource(miData.get(position).getImg());
+        holder.tv_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext , Show_ReviewActivity.class);
+                intent.putExtra("List" , temp.getList());
+                mContext.startActivity(intent);
+            }
+        });
+
 
     }
 
@@ -63,7 +72,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     // 뷰 홀더 클래스
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class MyViewHolder extends RecyclerView.ViewHolder{
 
         private TextView tv_list;
 //        private ImageView tv_imglist;
@@ -74,17 +83,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             tv_list = itemView.findViewById(R.id.title_id111);
 //            this.tv_imglist = itemView.findViewById(R.id.icon_rv);
 
-            itemView.setOnClickListener(this);
+
 
         }
 
 
-        @Override
-        public void onClick(View v) {
-            int postion = getAdapterPosition();
-            Toast.makeText(mContext, "pstionr"+ postion +1, Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(mContext , Save_ReviewActivity.class);
-            mContext.startActivity(intent);
-        }
+
     }
 }

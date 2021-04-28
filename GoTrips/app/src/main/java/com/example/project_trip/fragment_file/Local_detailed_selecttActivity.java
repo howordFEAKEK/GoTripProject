@@ -11,6 +11,10 @@ import com.example.project_trip.R;
 import java.util.ArrayList;
 
 public class Local_detailed_selecttActivity extends AppCompatActivity {
+    
+    // 현재 지역 설정을 클릭하면 나오는 세부 지역 설정 엑티비티
+    
+    
         RecyclerView rcyvdls;
         Local_detailed_selectAdepter adepter;
         ArrayList<Detailed_Local_Name_item> name;

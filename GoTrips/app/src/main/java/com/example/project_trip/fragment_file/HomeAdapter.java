@@ -14,10 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.project_trip.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.milder> {
-    // 지역 위치 리스트 뷰
+    
+    // 현재 위치 리사이클 어댑터
+  
     ArrayList<Main_item4> data;
     Context context;
 
@@ -28,7 +29,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.milder> {
 
     }
 
-
     @NonNull
     @Override
     public milder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -37,7 +37,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.milder> {
         milder holder = new milder(v);
 
         return holder;
-
 
     }
 
@@ -71,7 +70,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.milder> {
         public void onClick(View v) {
             int position = getAdapterPosition();
             Toast.makeText(context, "pstionr"+ position +1, Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(context , Save_ReviewActivity.class);
+            Intent intent = new Intent(context , Local_detailed_selecttActivity.class);
 //            intent.putExtra("Title",data.get(position).getList());
             context.startActivity(intent);
         }

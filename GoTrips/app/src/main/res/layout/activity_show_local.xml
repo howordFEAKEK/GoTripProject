@@ -34,7 +34,7 @@
                 >
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/show_local_title_text"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
@@ -125,7 +125,7 @@
         >
 
         <TextView
-            android:id="@+id/set_review_text"
+            android:id="@+id/local_go_navi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="네비게이션"
