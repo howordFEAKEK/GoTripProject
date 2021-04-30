@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        checkSelfPermission(); // 권한 확인 우선 실행
         //gps 관련 코드 시작
         if (!checkLocationServicesStatus()) {
 
