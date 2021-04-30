@@ -21,6 +21,9 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
+import android.content.Context;
+import androidx.core.content.ContextCompat;
+import android.telephony.TelephonyManager;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -419,4 +422,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //sqlite 관련 부가코드 끝
+
+    //권한 관련 코드
+    public void checkSelfPermission() {
+        String temp = ""; //폰 권한 확인
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_NUMBERS) != PackageManager.PERMISSION_GRANTED) {
+            temp += Manifest.permission.READ_PHONE_NUMBERS + " ";
+        }
+
+
+        if (TextUtils.isEmpty(temp) == false) {
+            // 권한 요청
+            ActivityCompat.requestPermissions(this, temp.trim().split(" "),1); }else {
+            // 모두 허용 상태
+            Toast.makeText(this, "권한을 모두 허용", Toast.LENGTH_SHORT).show();
+        }
+    }
+    //권한 관련 코드 끝
+
+    //폰 정보 가져오기
+    public String check1(MainActivity num) {
+        TelephonyManager tm1 = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_NUMBERS) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+
+
+            return tm1.getLine1Number(); //imei 번호일 경우 겟라인넘버 말고 .getDeviceId
+        }
+
+    //폰 정보 가져오기 끝
 }
