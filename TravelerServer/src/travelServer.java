@@ -13,8 +13,6 @@ import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.tree.*;
 
-import org.omg.CORBA.PRIVATE_MEMBER;
-
 import javax.swing.table.*;
 import java.sql.*;
 import java.io.*;
@@ -57,6 +55,8 @@ public class travelServer extends Thread{
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub=
 		travelServer server = new travelServer();
+		travelDB DB = new travelDB();
+		DB.connectDatabase(); // 연습
 		server.setSocket();
 	}
 
