@@ -8,8 +8,9 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,10 +18,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Project_Trip">
-        <activity android:name=".fragment_file.Show_LocalActivity"></activity>
+        <activity android:name=".fragment_file.dkssudkgptu.KyeongGi_do"></activity>
+        <activity android:name=".fragment_file.dkssudkgptu.Seoul"></activity>
+        <activity android:name=".fragment_file.Show_LocalActivity" />
         <activity android:name=".fragment_file.NavigationActivity" />
         <activity android:name=".fragment_file.MapsActivity" />
-        <activity android:name=".fragment_file.Local_detailed_selecttActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

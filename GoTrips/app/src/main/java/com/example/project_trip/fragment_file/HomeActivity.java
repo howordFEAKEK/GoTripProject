@@ -17,10 +17,11 @@ public class HomeActivity extends AppCompatActivity {
 
     // 메인탭에서 현재위치를 클릭하면 나오는 화면의 엑티비티입니다.
 
-    RecyclerView rcy;
+    RecyclerView rcy , rcy2;
     HomeAdapter adapter;
     ArrayList<Main_item4> data;
-
+    ArrayList<Detail_Region_Item> data2;
+    Detail_Ragion_Adapter detail_ragion_adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,8 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+
+
     }
-    
+
 }

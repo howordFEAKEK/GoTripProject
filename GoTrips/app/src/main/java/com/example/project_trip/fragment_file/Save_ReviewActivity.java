@@ -13,8 +13,8 @@ import com.example.project_trip.R;
 public class Save_ReViewActivity extends AppCompatActivity {
 
     // 리뷰작성 버튼을 클릭하면 나오는 엑티비티
-    
-    
+
+
     TextView txt;
 
     @Override
@@ -23,7 +23,7 @@ public class Save_ReViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_save_review);
 
         txt = findViewById(R.id.save_click_text1);
-        
+
         txt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
