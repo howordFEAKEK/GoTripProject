@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -36,13 +39,14 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/GoTrips/app/src/main/java/com/example/project_trip" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/GoTrips" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\GitHub\GoTripProject\GoTrips\app\src\main\java\com\example\project_trip" />
     </key>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -73,11 +77,12 @@
       <screen x="0" y="0" width="2492" height="1440" />
     </state>
     <state x="983" y="520" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2492.1440@0.0.2492.1440" timestamp="1620389911122" />
-    <state x="1054" y="462" key="FileChooserDialogImpl" timestamp="1618331820275">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="791" y="343" key="FileChooserDialogImpl" timestamp="1620414944560">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1054" y="462" key="FileChooserDialogImpl/-2560.0.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1617783550602" />
     <state x="1054" y="462" key="FileChooserDialogImpl/-3840.0.2560.1413/0.0.2560.1400@0.0.2560.1400" timestamp="1618331820275" />
+    <state x="791" y="343" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1620414944560" />
     <state x="1025" y="475" key="FileChooserDialogImpl/0.0.2490.1440@0.0.2490.1440" timestamp="1617351949738" />
   </component>
 </project>

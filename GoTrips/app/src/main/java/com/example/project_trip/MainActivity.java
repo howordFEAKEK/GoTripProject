@@ -125,6 +125,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // 소켓 통신 시도 코드
+
+//        new Thread() {
+//            public void run() {
+//                SocketManager socketManager = new SocketManager();
+//                System.out.println("시작");
+//                try {
+//                    socketManager.socket = socketManager.getSocket();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                    System.out.println("실패");
+//                }
+//            }
+//        }.start();
+
     }
 
     //sqlite 관련 코드, DB 관련 코드
