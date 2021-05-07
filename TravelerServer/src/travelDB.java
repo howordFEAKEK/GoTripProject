@@ -1,7 +1,5 @@
 import java.sql.*;
-
 import javax.sql.PooledConnection;
-
 import oracle.jdbc.pool.OracleConnectionPoolDataSource;
 
 public class travelDB {

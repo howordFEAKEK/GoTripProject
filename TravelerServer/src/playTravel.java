@@ -2,12 +2,23 @@
 import java.io.*;
 import java.net.*;
 import java.util.StringTokenizer;
+import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import javax.sql.PooledConnection;
 
 public class playTravel extends Thread{
 	private DataInputStream in;
 	private DataOutputStream out;
+	Connection con;
+	Statement stmt;
+	ResultSet rs;
 	StringTokenizer st;
 	Socket sock;
+	
+	SimpleDateFormat format = new SimpleDateFormat("YYYY.MM.DD HH24:MI:SS");
+	
 	public playTravel(Socket socket) {
 		sock = socket;
 	}
@@ -29,6 +40,37 @@ public class playTravel extends Thread{
 				
 				switch (sign) {
 				case "STARTCHART" : // 시작 메시지 - 인기 및 리뷰 차트 전달
+					
+					break;
+					
+				case "TOURLOG" : // 관광지 조회 로그 저장
+					String ph = null;
+					String logpre = null;
+					String lognow = null;
+					int att = 0;
+					String tourName = null;
+					long logtime = 0;
+					
+					Tourism tour = new Tourism();
+					st = new StringTokenizer(nextMsg, "$"); // 신호 자르기
+					ph = st.nextToken();
+					logpre = st.nextToken();
+					lognow = st.nextToken();
+					att = Integer.parseInt(st.nextToken());
+					tourName = st.nextToken();
+					
+					try {
+						Date date1 = (Date) format.parse(logpre);
+						Date date2 = (Date) format.parse(lognow);
+						
+						logtime = date2.getTime() - date1.getTime();
+						logtime = logtime/1000;
+					}catch (ParseException e) { }
+					
+					tour.saveTourLog(ph, logtime, att, tourName);
+					break;
+					
+				case "REVLOG" : // 리뷰 조회 로그 저장
 					
 					break;
 					
