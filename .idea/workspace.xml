@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="de215b88-5cf9-4dec-8e15-ba6da8343c08" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,7 +36,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/GoTrips/app/src/main/java/com/example/project_trip" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\GitHub\GoTripProject\GoTrips\app\src\main\java\com\example\project_trip" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -33,7 +56,23 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="983" y="520" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1620389911122">
+      <screen x="0" y="0" width="2492" height="1440" />
+    </state>
+    <state x="983" y="520" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2492.1440@0.0.2492.1440" timestamp="1620389911122" />
     <state x="1054" y="462" key="FileChooserDialogImpl" timestamp="1618331820275">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
