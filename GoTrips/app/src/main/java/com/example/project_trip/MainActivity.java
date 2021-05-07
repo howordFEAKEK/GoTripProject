@@ -455,8 +455,8 @@ public class MainActivity extends AppCompatActivity {
             // for ActivityCompat#requestPermissions for more details.
 
 
-            return tm1.getLine1Number(); //imei 번호일 경우 겟라인넘버 말고 .getDeviceId
+            
         }
-//
+        return tm1.getLine1Number(); //imei 번호일 경우 겟라인넘버 말고 .getDeviceId
 //        //폰 정보 가져오기 끝
     }
