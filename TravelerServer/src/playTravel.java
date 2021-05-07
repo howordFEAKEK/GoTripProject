@@ -19,6 +19,7 @@ public class playTravel extends Thread{
 		try {
 			out = new DataOutputStream(sock.getOutputStream());
 			while(true) {
+				System.out.println("접속 확인");
 				in = new DataInputStream(sock.getInputStream()); // 해당 클라이언트에서 받기
 				allmsg = in.readUTF(); // 신호 및 매세지 받기
 				System.out.println(allmsg);
@@ -64,7 +65,7 @@ public class playTravel extends Thread{
 				}
 			}
 		}catch(IOException e) {
-			
+			e.printStackTrace();
 		}
 		
 	}
