@@ -5,6 +5,7 @@ import java.util.StringTokenizer;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.sql.PooledConnection;
 
@@ -17,7 +18,7 @@ public class playTravel extends Thread{
 	StringTokenizer st;
 	Socket sock;
 	
-	SimpleDateFormat format = new SimpleDateFormat("YYYY.MM.DD HH24:MI:SS");
+	SimpleDateFormat sample = new SimpleDateFormat("YYYY.MM.DD HH:mm:ss");
 	
 	public playTravel(Socket socket) {
 		sock = socket;
@@ -47,8 +48,8 @@ public class playTravel extends Thread{
 					String ph = null;
 					String logpre = null;
 					String lognow = null;
-					int att = 0;
 					String tourName = null;
+					long att = 0;
 					long logtime = 0;
 					
 					Tourism tour = new Tourism();
@@ -56,16 +57,22 @@ public class playTravel extends Thread{
 					ph = st.nextToken();
 					logpre = st.nextToken();
 					lognow = st.nextToken();
-					att = Integer.parseInt(st.nextToken());
 					tourName = st.nextToken();
 					
 					try {
-						Date date1 = (Date) format.parse(logpre);
-						Date date2 = (Date) format.parse(lognow);
+						Date date1 = sample.parse(logpre);
+						Date date2 = sample.parse(lognow);
 						
-						logtime = date2.getTime() - date1.getTime();
-						logtime = logtime/1000;
+						logtime = date2.getTime()/1000;
+						
+						att = date2.getTime() - date1.getTime();
+						att = logtime/10000;
+						if(att > 30) {
+							att = 30;
+						}
 					}catch (ParseException e) { }
+					
+					System.out.println(ph + " " + logtime + " " + att + " " + tourName);
 					
 					tour.saveTourLog(ph, logtime, att, tourName);
 					break;

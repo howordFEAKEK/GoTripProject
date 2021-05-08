@@ -7,7 +7,7 @@ public class Tourism {
 	//Statement stmt = null;
 	//ResultSet rs = null; // 결과값을 저장하고 있음
 	
-	public List<String> changeTour;
+	public List<String> changeTour; // 변동 관광지
 	
 	//-------------------관광지 관련 SQL-------------------------//
 	// 관광지 유무 조회
@@ -71,15 +71,15 @@ public class Tourism {
 	}
 	
 	// 로그 등록
-	public void saveTourLog (String ph, long logtime, int att, String tourName) {
+	public void saveTourLog (String ph, long logtime, long att, String tourName) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO TOUR_LOG(READER, TOUR_LOG_NO, TOUR_ATT_POINT, TOUR_NAME) VALUES (?,?,?,?);";
+		String sql = "INSERT INTO TOUR_LOG(READER, TOUR_LOG_NO, TOUR_ATT_POINT, TOUR_NAME) VALUES (?,?,TRUNC(?, 0),?)";
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
 			System.out.println("풀 빌려오기");
 			try {
-	            pstmt = con.prepareStatement(sql); // SQL 해석
+				pstmt = con.prepareStatement(sql); // SQL 해석
 	            pstmt.setString(1, ph);
 	            pstmt.setLong(2, logtime);
 	            pstmt.setLong(3, att);
