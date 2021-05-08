@@ -51,6 +51,10 @@ public class travelServer extends Thread{
 			System.out.println("포트가 잘못 지정되었습니다.");
 		}
 	}
+	
+	public void data () {
+		
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub=

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReView {
-	public List<ReviewList> reviewLists;
+	public List<ReviewList> reviewLists = new ArrayList<ReviewList>();
 	
 	
 	//리뷰 저장

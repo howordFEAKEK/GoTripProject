@@ -6,7 +6,7 @@ public class Tourism {
 	//PreparedStatement pstmt = null;
 	//Statement stmt = null;
 	//ResultSet rs = null; // 결과값을 저장하고 있음
-	
+	public static List<PopChart> popcharts = new ArrayList<PopChart>();
 	public List<String> changeTour; // 변동 관광지
 	
 	//-------------------관광지 관련 SQL-------------------------//
@@ -297,7 +297,43 @@ public class Tourism {
 	
 	// 인기 차트 갱신
 	public void updatePopChart () {
-		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT TOUR_NAME, LOCATION_DATA " + 
+				"FROM (SELECT TOUR_NAME, LOCATION_DATA, POP_SCORE " + 
+				"FROM TOUR_PLACE ORDER BY POP_SCORE DESC) " + 
+				"WHERE ROWNUM <= 20";
+		PopChart chart = null;
+		try {
+			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
+			System.out.println("풀 빌려오기");
+			try {
+	            pstmt = con.prepareStatement(sql); // SQL 해석
+	            rs = pstmt.executeQuery();
+	            
+	            while(rs.next()) {
+	            	chart = new PopChart();
+	            	chart.TUName = rs.getString(1);
+	            	chart.TUlocate = rs.getString(2);
+	            	popcharts.add(chart);
+	            }
+	 
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally {
+	        	rs.close();
+				pstmt.close();
+				con.close();
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
+}
+
+class PopChart {
+	public String TUName = null; //관광지 이름
+	public String TUlocate = null; // 관광지 지역정보
 }
