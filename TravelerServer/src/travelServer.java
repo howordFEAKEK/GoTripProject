@@ -51,17 +51,18 @@ public class travelServer extends Thread{
 			System.out.println("포트가 잘못 지정되었습니다.");
 		}
 	}
-	
-	public void data () {
-		
-	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub=
 		travelServer server = new travelServer();
 		travelDB DB = new travelDB();
+		RealTimeCheck real = new RealTimeCheck();
+		
 		DB.connectDatabase(); // 연습
-		server.setSocket();
+		
+		real.start(); // 알고리즘 스레드 시작
+		
+		server.setSocket(); // 서버 시작
 	}
 
 }
