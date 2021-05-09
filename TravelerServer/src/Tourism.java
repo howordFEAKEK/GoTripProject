@@ -164,7 +164,7 @@ public class Tourism {
 	}
 	
 	// 변동사항 있는 관광지 확인
-	public void selectChangeTour (long prevtime, long nowtime) {
+	public List<String> selectChangeTour (long prevtime, long nowtime) {
 		changeTour = new ArrayList<String>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -194,16 +194,16 @@ public class Tourism {
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		return changeTour;
 	}
 	
 	// 관광지 조회수 확인 (하나씩)
-	public int lookTour (String tourName, long prevtime, long nowtime) {
+	public long lookTour (String tourName, long prevtime, long nowtime) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "SELECT COUNT(*) FROM (SELECT TOUR_LOG_NO, TOUR_ATT_POINT FROM TOUR_LOG WHERE TOUR_NAME = ?) WHERE TOUR_LOG_NO BETWEEN ? AND ?;";
-		int result = 0;
+		long result = 0;
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
 			System.out.println("풀 빌려오기");
@@ -231,7 +231,7 @@ public class Tourism {
 	}
 	
 	// 관광지 관심 평균 계산 (하나씩)
-	public int attAvgTour (String tourName, long prevtime, long nowtime) {
+	public long attAvgTour (String tourName, long prevtime, long nowtime) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -239,7 +239,7 @@ public class Tourism {
 				"FROM (SELECT TOUR_LOG_NO, TOUR_ATT_POINT " + 
 				"FROM TOUR_LOG WHERE TOUR_NAME = ?) " + 
 				"WHERE TOUR_LOG_NO BETWEEN ? AND ?;";
-		int result = 0;
+		long result = 0;
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
 			System.out.println("풀 빌려오기");
@@ -266,7 +266,7 @@ public class Tourism {
 	}
 	
 	// 인기점수 갱신 (하나씩)
-	public void popScoreSetting (int popScore, String tourName) {
+	public void popScoreSetting (long popScore, String tourName) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = "UPDATE TOUR_PLACE SET POP_SCORE = ? WHERE TOUR_NAME = ?;";
@@ -275,7 +275,7 @@ public class Tourism {
 			System.out.println("풀 빌려오기");
 			try {
 	            pstmt = con.prepareStatement(sql); // SQL 해석
-	            pstmt.setInt(1, popScore);
+	            pstmt.setLong(1, popScore);
 	            pstmt.setString(2, tourName);
 	 
 	            if (pstmt.executeUpdate() == 1) {

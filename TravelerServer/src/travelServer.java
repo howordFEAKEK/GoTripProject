@@ -55,10 +55,10 @@ public class travelServer extends Thread{
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub=
 		travelServer server = new travelServer();
-		travelDB DB = new travelDB();
+		//travelDB DB = new travelDB();
 		RealTimeCheck real = new RealTimeCheck();
 		
-		DB.connectDatabase(); // 연습
+		//DB.connectDatabase(); // 연습
 		
 		real.start(); // 알고리즘 스레드 시작
 		

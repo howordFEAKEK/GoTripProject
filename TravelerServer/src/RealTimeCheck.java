@@ -1,6 +1,8 @@
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class RealTimeCheck extends Thread{
 	private int MININFROW = 100;
@@ -16,12 +18,33 @@ public class RealTimeCheck extends Thread{
 		infrow = new Infrow();
 	}
 	
-	public void popChartAlgorism() { // 인기 차트 알고리즘
-		
-		
+	public void popChartAlgorism(long infrow) { // 인기 차트 알고리즘
+		List<String> changeTour = new ArrayList<>();
+		long prevtime = 0; // 이전 시간
+		long nowtime = 0; // 최근 시간
+		long infrw = 0; // 유입량
+		infrw = infrow; // 유입량
 		
 		tour.resetPop(); // 인기 점수 초기화
 		
+		changeTour = tour.selectChangeTour (prevtime, nowtime); // 변동 있는 관광지 확인
+		
+		for(int i = 0; i < changeTour.size(); i ++) {
+			String tourName = null;
+			long popScore = 0;
+			tourName = changeTour.get(i);
+			
+			long looknum = 0;
+			long attnum = 0;
+			
+			looknum = tour.lookTour (tourName,  prevtime, nowtime); // 관광지 조회수 확인 (하나씩)
+			
+			attnum = tour.attAvgTour (tourName,  prevtime, nowtime); // 관심점수 평균 계산 (하나씩)
+			
+			popScore = looknum/infrw * 100 * attnum;
+		 	
+			tour.popScoreSetting (popScore, tourName); // 인기 점수 갱신 (하나씩)
+		}
 	}
 	
 	public void revChartAlgorism() { // 리뷰 차트 알고리즘
