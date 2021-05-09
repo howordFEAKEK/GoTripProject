@@ -1,3 +1,4 @@
+import java.awt.desktop.SystemEventListener;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -59,6 +60,7 @@ public class RealTimeCheck extends Thread{
 			long nowtime = 0;
 			
 			prevtime = infrow.lastLogNum(); // 이전 유입 날짜 가져오기
+			//System.out.println(prevtime); // 이전 유입 날짜 성공 - 단, 데이터베이스 정리 필요
 			
 			// 현재 시간 가져오기 성공
 			Date now = new Date(); // 현재 날짜, 시간 가져오기
@@ -66,12 +68,14 @@ public class RealTimeCheck extends Thread{
 			
 			//여기서 NullPointerException이 나타남 -> 유입량이 없을 경우.
 			infwAmount = tour.logInflowNum(prevtime, nowtime); // 유입량 가져오기
+			System.out.println(infwAmount);
 			
 			if (waitTime < 30) { // 30분이 안 지나면
 				if(infwAmount < MININFROW) {
 					try {
-						Thread.sleep(60000); // 1분 대기
 						System.out.println("휴식");
+						Thread.sleep(60000); // 1분 대기
+						waitTime = waitTime + 1;
 					}catch(InterruptedException e) {}
 					continue; //다시 처음으로
 				}else {
@@ -81,7 +85,8 @@ public class RealTimeCheck extends Thread{
 			
 			
 			try {
-				Thread.sleep(10000);
+				Thread.sleep(10000); // 10분 대기
+				waitTime = 10;
 				System.out.println("휴식");
 			}catch(InterruptedException e) {}
 		}

@@ -112,7 +112,7 @@ public class ReView {
 	}
 	
 	//리뷰 조회
-	public String selectReview (String writer, long wirteDate) {
+	public String selectReview (String writer, long writeDate) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -125,7 +125,7 @@ public class ReView {
 			try {
 	            pstmt = con.prepareStatement(sql); // SQL 해석
 	            pstmt.setString(1, writer);
-	            pstmt.setLong(2, wirteDate);
+	            pstmt.setLong(2, writeDate);
 	            rs = pstmt.executeQuery();
 	            
 	            result = "REVIEWCALL/" + rs.getString(1) +"$"+ rs.getLong(2) +"$"+ rs.getString(3) +"$"+
@@ -144,6 +144,68 @@ public class ReView {
 		return result;
 	}
 	
+	//리뷰 좋아요
+	public void revLike (String writer, long writeDate) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE REVIEW SET  GOOD_POINT = GOOD_POINT + 1 WHERE WRITER = ? AND WRITE_DATE = ?";
+		try {
+			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
+			System.out.println("풀 빌려오기");
+			try {
+	            pstmt = con.prepareStatement(sql); // SQL 해석
+	            pstmt.setString(1, writer);
+	            pstmt.setLong(2, writeDate);
+	 
+	            if (pstmt.executeUpdate() == 1) {
+	                System.out.println("좋아요 성공");
+	            } else {
+	                System.out.println("좋아요 실패");
+	            }
+	 
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally {
+				pstmt.close();
+				con.close();
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//리뷰 싫어요
+	public void rewBad (String writer, long writeDate) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE REVIEW SET  BAD_POINT = BAD_POINT + 1 WHERE WRITER = ? AND WRITE_DATE = ?";
+		try {
+			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
+			System.out.println("풀 빌려오기");
+			try {
+	            pstmt = con.prepareStatement(sql); // SQL 해석
+	            pstmt.setString(1, writer);
+	            pstmt.setLong(2, writeDate);
+	 
+	            if (pstmt.executeUpdate() == 1) {
+	                System.out.println("싫어요 성공");
+	            } else {
+	                System.out.println("싫어요 실패");
+	            }
+	 
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally {
+				pstmt.close();
+				con.close();
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	//------------------------ 리뷰 차트 알고리즘 부분 ---------------------------------//
 	
 }
 

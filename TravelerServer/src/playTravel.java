@@ -187,11 +187,25 @@ public class playTravel extends Thread{
 					break;
 					
 				case "REVIEWGOOD" : // 리뷰 좋아요
-					
+					st = new StringTokenizer(nextMsg, "$"); // 신호 자르기
+					writer = st.nextToken(); // 작성자
+					writeDate = st.nextToken(); //작성일자
+					try {
+						wrDate = sample.parse(writeDate); // 작성일자
+						writeday = wrDate.getTime()/1000; // 작성일자 숫자 변환
+					}catch (ParseException e) { }
+					reView.revLike(writer, writeday);
 					break;
 					
 				case "REVIEWBAD" : // 리뷰 싫어요
-					
+					st = new StringTokenizer(nextMsg, "$"); // 신호 자르기
+					writer = st.nextToken(); // 작성자
+					writeDate = st.nextToken(); //작성일자
+					try {
+						wrDate = sample.parse(writeDate); // 작성일자
+						writeday = wrDate.getTime()/1000; // 작성일자 숫자 변환
+					}catch (ParseException e) { }
+					reView.rewBad(writer, writeday);
 					break;
 
 				default:
