@@ -107,7 +107,7 @@ public class Tourism {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT COUNT(*) FROM TOUR_LOG WHERE TOUR_LOG_NO BETWEEN ? AND ?;";
+		String sql = "SELECT COUNT(*) FROM TOUR_LOG WHERE TOUR_LOG_NO BETWEEN ? AND ?";
 		int result = 0;
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
@@ -117,14 +117,22 @@ public class Tourism {
 	            pstmt.setLong(1, prevtime);
 	            pstmt.setLong(2, nowtime);
 	            rs = pstmt.executeQuery();
-	            result = rs.getInt(1);
+	            
+	            while(rs.next()) {
+	            	result = rs.getInt(1);
+	            }
 	 
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }finally {
-	        	rs.close();
+	        	if(rs != null) {
+	        		rs.close();
+	        	}
 				pstmt.close();
 				con.close();
+				if(rs == null) {
+	        		System.out.println("null 값을 가졌");
+	        	}
 			}
 		}catch (SQLException e) {
 			e.printStackTrace();
@@ -139,7 +147,7 @@ public class Tourism {
 	public void resetPop () {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "UPDATE TOUR_PLACE SET POP_SCORE = 0;";
+		String sql = "UPDATE TOUR_PLACE SET POP_SCORE = 0";
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
 			System.out.println("풀 빌려오기");
@@ -169,7 +177,7 @@ public class Tourism {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT DISTINCT TOUR_NAME FROM (SELECT TOUR_NAME FROM TOUR_LOG WHERE TOUR_LOG_NO BETWEEN ? AND ?);";
+		String sql = "SELECT DISTINCT TOUR_NAME FROM (SELECT TOUR_NAME FROM TOUR_LOG WHERE TOUR_LOG_NO BETWEEN ? AND ?)";
 		
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
@@ -202,7 +210,7 @@ public class Tourism {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT COUNT(*) FROM (SELECT TOUR_LOG_NO, TOUR_ATT_POINT FROM TOUR_LOG WHERE TOUR_NAME = ?) WHERE TOUR_LOG_NO BETWEEN ? AND ?;";
+		String sql = "SELECT COUNT(*) FROM (SELECT TOUR_LOG_NO, TOUR_ATT_POINT FROM TOUR_LOG WHERE TOUR_NAME = ?) WHERE TOUR_LOG_NO BETWEEN ? AND ?";
 		long result = 0;
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
@@ -238,7 +246,7 @@ public class Tourism {
 		String sql = "SELECT ROUND(AVG(TOUR_ATT_POINT), 2) " + 
 				"FROM (SELECT TOUR_LOG_NO, TOUR_ATT_POINT " + 
 				"FROM TOUR_LOG WHERE TOUR_NAME = ?) " + 
-				"WHERE TOUR_LOG_NO BETWEEN ? AND ?;";
+				"WHERE TOUR_LOG_NO BETWEEN ? AND ?";
 		long result = 0;
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
@@ -269,7 +277,7 @@ public class Tourism {
 	public void popScoreSetting (long popScore, String tourName) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "UPDATE TOUR_PLACE SET POP_SCORE = ? WHERE TOUR_NAME = ?;";
+		String sql = "UPDATE TOUR_PLACE SET POP_SCORE = ? WHERE TOUR_NAME = ?";
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
 			System.out.println("풀 빌려오기");

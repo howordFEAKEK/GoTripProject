@@ -90,7 +90,11 @@ public class Infrow {
 			try {
 	            pstmt = con.prepareStatement(sql); // SQL 해석
 	            rs = pstmt.executeQuery();
-	            result = rs.getLong(1);
+	            
+	            while(rs.next()) {
+	            	result = rs.getLong(1);
+	            }
+	            
 	 
 	        } catch (SQLException e) {
 	            e.printStackTrace();

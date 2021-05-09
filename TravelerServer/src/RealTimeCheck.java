@@ -59,9 +59,12 @@ public class RealTimeCheck extends Thread{
 			long nowtime = 0;
 			
 			prevtime = infrow.lastLogNum(); // 이전 유입 날짜 가져오기
+			
+			// 현재 시간 가져오기 성공
 			Date now = new Date(); // 현재 날짜, 시간 가져오기
 			nowtime = now.getTime()/1000; // 현재 시간 - 최신 로그 번호
 			
+			//여기서 NullPointerException이 나타남 -> 유입량이 없을 경우.
 			infwAmount = tour.logInflowNum(prevtime, nowtime); // 유입량 가져오기
 			
 			if (waitTime < 30) { // 30분이 안 지나면

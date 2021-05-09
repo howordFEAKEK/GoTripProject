@@ -44,7 +44,7 @@ public class ReView {
 	public void saveReviewLog (String ph, long logtime, long att, String writer, long writeTime) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO REVIEW_LOG(READER, REVIEW_LOG_NO, REVIEW_ATT_POINT, WRITER, WRITE_DATE)\r\n" + 
+		String sql = "INSERT INTO REVIEW_LOG(READER, REVIEW_LOG_NO, REVIEW_ATT_POINT, WRITER, WRITE_DATE) " + 
 				"VALUES (?, ?, TRUNC(?, 0), ?, ?)";
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
@@ -117,7 +117,7 @@ public class ReView {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "SELECT WRITER, WRITE_DATE, TITLE, CONTENT, GOOD_POINT, BAD_POINT, TOUR_NAME " + 
-				"FROM REVIEW WHERE WRITER = '?' AND WRITE_DATE = ?;";
+				"FROM REVIEW WHERE WRITER = '?' AND WRITE_DATE = ?";
 		String result = null;
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기

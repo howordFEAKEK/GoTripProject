@@ -15,12 +15,14 @@ import javax.swing.tree.*;
 
 import javax.swing.table.*;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 // 아래 구문은 'https://blog.naver.com/kkj6369/220599492477'에서 참고한 부분입니다.
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator; 
 import java.util.Map;
@@ -55,10 +57,10 @@ public class travelServer extends Thread{
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub=
 		travelServer server = new travelServer();
-		//travelDB DB = new travelDB();
+		travelDB DB = new travelDB();
 		RealTimeCheck real = new RealTimeCheck();
 		
-		//DB.connectDatabase(); // 연습
+		DB.connectDatabase(); // 연습
 		
 		real.start(); // 알고리즘 스레드 시작
 		
