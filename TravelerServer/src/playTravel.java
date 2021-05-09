@@ -164,7 +164,9 @@ public class playTravel extends Thread{
 								sendMsg = sendMsg + reView.reviewLists.get(i).writer + "$"
 										+ reView.reviewLists.get(i).date + "$" + reView.reviewLists.get(i).title + "$";
 							}
-							out.writeUTF(sendMsg);
+							try {
+								out.writeUTF(sendMsg);
+							}catch(IOException e) {}
 						}
 					}
 					
@@ -183,7 +185,9 @@ public class playTravel extends Thread{
 					sendMsg = reView.selectReview(writer, writeday); //보낼 리뷰 정보 가져오기
 					
 					// 메시지 보내기 부분
-					
+					try {
+						out.writeUTF(sendMsg); // 리뷰에 대한 정보 보내기
+					}catch(IOException e) {}
 					break;
 					
 				case "REVIEWGOOD" : // 리뷰 좋아요
