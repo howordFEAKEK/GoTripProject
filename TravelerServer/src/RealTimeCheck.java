@@ -13,7 +13,9 @@ public class RealTimeCheck extends Thread{
 	
 	SimpleDateFormat sample = new SimpleDateFormat("YYYY.MM.DD HH:mm:ss");
 	
-	public void popChartAlgorism(long infrow) { // 인기 차트 알고리즘 (유입량을 받아와야 함)
+	
+	// 인기 차트 알고리즘 (유입량을 받아와야 함)
+	public void popChartAlgorism(long infrow) { // 유입량이 없으면 진행 안 함
 		List<String> changeTour = new ArrayList<>();
 		long prevtime = 0; // 이전 시간
 		long nowtime = 0; // 최근 시간
@@ -42,9 +44,12 @@ public class RealTimeCheck extends Thread{
 		}
 	}
 	
-	public void revChartAlgorism() { // 리뷰 차트 알고리즘
+	
+	// 리뷰 차트 알고리즘
+	public void revChartAlgorism() { // 
 		
 	}
+	
 	
 	public void run () {
 		RealTimeCheck realCheck = new RealTimeCheck(); 
@@ -71,7 +76,7 @@ public class RealTimeCheck extends Thread{
 			
 			//여기서 NullPointerException이 나타남 -> 유입량이 없을 경우.
 			infwAmount = tour.logInflowNum(prevtime, nowtime); // 유입량 가져오기 (현재 파트까지 유입량 계산하기)
-			System.out.println(infwAmount);
+			System.out.println(infwAmount); // 유입량 확인
 			
 			if (waitTime < 30) { // 30분이 안 지나면
 				if(infwAmount < MININFROW) {
@@ -83,6 +88,7 @@ public class RealTimeCheck extends Thread{
 						
 					}catch(InterruptedException e) {}
 					continue; //다시 처음으로
+					
 				}else { // 30분이 안 지났지만 유입량이 최소 100보다 크면
 					
 					long inf = infrow.lookInfrowGet(); // 이전 유입량 3개 평균치
@@ -106,14 +112,30 @@ public class RealTimeCheck extends Thread{
 					//인기 차트 알고리즘 동작하기
 					//realCheck.popChartAlgorism(infwAmount); // (유입량) 필요
 					
+					//리뷰 차트 알고리즘 동작하기
+					
 				}
-			}else { } // 30분 지나면 진행
+			}else { // 30분 지나면 진행
+				if(infwAmount > 0){ // 유입량이 0만 아니면 진행
+					
+					//현재 유입량 기록 및 저장하기
+					//infrow.infrowSave (nowtime, waitTime, infwAmount); // (현재시간, 대기시간, 유입량) 필요
+					
+					//인기 차트 알고리즘 동작하기
+					//realCheck.popChartAlgorism(infwAmount); // (유입량) 필요
+					
+					//리뷰 차트 알고리즘 동작하기
+					
+					
+				}else { // 유입량이 0이면 진행
+					//현재 유입량 기록 및 저장하기
+					//infrow.infrowSave (nowtime, waitTime, infwAmount); // (현재시간, 대기시간, 유입량) 필요
+					// ---> 유입량 0 기록 후 차트 갱신하지 않음
+				}
+			}
 			
 			
-			
-			
-			
-			try {
+			try { // 처리 작업 후 10분 딜레이
 				Thread.sleep(10000); // 10분 대기 (실험은 10초 대기)
 				System.out.println("휴식");
 				 waitTime = 10; // 인기 및 리뷰 차트 마치고 10분 대기했으니, 대기시간 10으로 지정
