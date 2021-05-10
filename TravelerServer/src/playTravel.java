@@ -149,24 +149,43 @@ public class playTravel extends Thread{
 					tourName = st.nextToken();
 					tourLoc = st.nextToken();
 					
-					tourNN = tour.selectTour(tourName);
-					if (tourNN == null) {
+					tourNN = tour.selectTour(tourName); // 관광지 목록에서 관광지명 검색
+					
+					if (tourNN == null) { //관광지가 없는 경우
+						
 						tour.saveTour(tourName, tourLoc); // 관광지 목록에 등록
+						tour.saveTU(tourName, tourLoc); // 조회용 목록에 등록 (뷰용 테이블)
+						
 						// 목록 없음 표시
-					}else {
+						
+						
+					}else { // 관광지가 있는 경우
+						
+						// 관광지에 대한 목록 조회
 						reView.selectReviewIndex(tourName);
-						if(reView.reviewLists == null) { //리스트가 null인 경우, 관광지에 리뷰 목록이 없는 경우 처리
+						
+						 //리스트가 null인 경우, 관광지에 리뷰 목록이 없는 경우 처리
+						if(reView.reviewLists == null) {
+							
 							//목록 없음 표시
+							
+							
 						}else { // 리뷰 목록이 있으면 여기서 처리
 							String sendMsg = "REVIEWINDEX/";
 							
+							// 메시지 작성하기
 							for(int i = 0 ; i < reView.reviewLists.size() ; i ++) {
 								sendMsg = sendMsg + reView.reviewLists.get(i).writer + "$"
 										+ reView.reviewLists.get(i).date + "$" + reView.reviewLists.get(i).title + "$";
 							}
+							
+							// 마지막에 붙은 $ 처리용...
+							sendMsg = sendMsg + "last";
+							
 							try {
 								out.writeUTF(sendMsg);
 							}catch(IOException e) {}
+							
 						}
 					}
 					

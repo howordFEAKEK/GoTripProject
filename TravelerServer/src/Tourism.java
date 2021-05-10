@@ -6,7 +6,7 @@ public class Tourism {
 	//PreparedStatement pstmt = null;
 	//Statement stmt = null;
 	//ResultSet rs = null; // 결과값을 저장하고 있음
-	public static List<PopChart> popcharts = new ArrayList<PopChart>();
+	
 	public List<String> changeTour; // 변동 관광지
 	
 	//-------------------관광지 관련 SQL-------------------------//
@@ -69,6 +69,37 @@ public class Tourism {
 			e.printStackTrace();
 		}
 	}
+	
+	// 조회용 테이블에 관광지 저장
+	public void saveTU(String tourName, String location) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "INSERT INTO TOUR_VIEW(TU_NAME, LOC_DATA) VALUES ('관광지명', '위치정보')";
+		try {
+			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
+			System.out.println("풀 빌려오기");
+			try {
+	            pstmt = con.prepareStatement(sql); // SQL 해석
+	            pstmt.setString(1, tourName);
+	            pstmt.setString(2, location);
+	 
+	            if (pstmt.executeUpdate() == 1) {
+	                System.out.println("관광지 저장 성공");
+	            } else {
+	                System.out.println("관광지 저장 실패");
+	            }
+	 
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally {
+				pstmt.close();
+				con.close();
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	// 로그 등록
 	public void saveTourLog (String ph, long logtime, long att, String tourName) {
@@ -303,29 +334,19 @@ public class Tourism {
 		}
 	}
 	
-	// 인기 차트 갱신
+	// 인기 차트 갱신 - 인기 차트 조회용 테이블에 등록
 	public void updatePopChart () {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT TOUR_NAME, LOCATION_DATA " + 
-				"FROM (SELECT TOUR_NAME, LOCATION_DATA, POP_SCORE " + 
-				"FROM TOUR_PLACE ORDER BY POP_SCORE DESC) " + 
-				"WHERE ROWNUM <= 20";
-		PopChart chart = null;
+		String sql = "UPDATE (SELECT A.POP_SC AS A_POP_SC, B.POP_SCORE AS B_POP_SCORE " + 
+				"FROM TOUR_VIEW A, TOUR_PLACE B WHERE A.TU_NAME = B.TOUR_NAME) SET A_POP_SC = B_POP_SCORE";
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
 			System.out.println("풀 빌려오기");
 			try {
 	            pstmt = con.prepareStatement(sql); // SQL 해석
 	            rs = pstmt.executeQuery();
-	            
-	            while(rs.next()) {
-	            	chart = new PopChart();
-	            	chart.TUName = rs.getString(1);
-	            	chart.TUlocate = rs.getString(2);
-	            	popcharts.add(chart);
-	            }
 	 
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -338,6 +359,35 @@ public class Tourism {
 			e.printStackTrace();
 		}
 	}
+	
+	// 인기 차트 조회 - 조회용 테이블에서 인기 차트 목록 가져오기
+	public void lookingPopChart () {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT TU_NAME, LOC_DATA " + 
+				"FROM (SELECT TU_NAME, LOC_DATA, POP_SC " + 
+				"FROM TOUR_VIEW ORDER BY POP_SC DESC) " + 
+				"WHERE ROWNUM <= 10";
+		try {
+			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
+			System.out.println("풀 빌려오기");
+			try {
+	            pstmt = con.prepareStatement(sql); // SQL 해석
+	            rs = pstmt.executeQuery();
+	 
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally {
+	        	rs.close();
+				pstmt.close();
+				con.close();
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 }
 
