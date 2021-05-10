@@ -13,13 +13,7 @@ public class RealTimeCheck extends Thread{
 	
 	SimpleDateFormat sample = new SimpleDateFormat("YYYY.MM.DD HH:mm:ss");
 	
-	public RealTimeCheck () {
-		tour = new Tourism();
-		rev = new ReView();
-		infrow = new Infrow();
-	}
-	
-	public void popChartAlgorism(long infrow) { // 인기 차트 알고리즘
+	public void popChartAlgorism(long infrow) { // 인기 차트 알고리즘 (유입량을 받아와야 함)
 		List<String> changeTour = new ArrayList<>();
 		long prevtime = 0; // 이전 시간
 		long nowtime = 0; // 최근 시간
@@ -53,7 +47,16 @@ public class RealTimeCheck extends Thread{
 	}
 	
 	public void run () {
-		int waitTime = 0; // 대기 시간
+		RealTimeCheck realCheck = new RealTimeCheck(); 
+		tour = new Tourism();
+		rev = new ReView();
+		infrow = new Infrow();
+		
+		try {
+			Thread.sleep(10000); // 10분 대기 (실험은 10초 대기)
+			System.out.println("휴식");
+		}catch(InterruptedException e) {}
+		long waitTime = 10; // 대기 시간 
 		while(true) {
 			long infwAmount = 0; // 유입량
 			long prevtime = 0;
@@ -67,7 +70,7 @@ public class RealTimeCheck extends Thread{
 			nowtime = now.getTime()/1000; // 현재 시간 - 최신 로그 번호
 			
 			//여기서 NullPointerException이 나타남 -> 유입량이 없을 경우.
-			infwAmount = tour.logInflowNum(prevtime, nowtime); // 유입량 가져오기
+			infwAmount = tour.logInflowNum(prevtime, nowtime); // 유입량 가져오기 (현재 파트까지 유입량 계산하기)
 			System.out.println(infwAmount);
 			
 			if (waitTime < 30) { // 30분이 안 지나면
@@ -75,19 +78,45 @@ public class RealTimeCheck extends Thread{
 					try {
 						System.out.println("휴식");
 						Thread.sleep(60000); // 1분 대기
-						waitTime = waitTime + 1;
+						
+						waitTime = waitTime + 1; // 대기시간에 1 추가
+						
 					}catch(InterruptedException e) {}
 					continue; //다시 처음으로
-				}else {
+				}else { // 30분이 안 지났지만 유입량이 최소 100보다 크면
+					
+					long inf = infrow.lookInfrowGet(); // 이전 유입량 3개 평균치
+					
+					if(infwAmount < inf) { // 유입량이 이전 유입량 평균보다 작은 경우
+						try {
+							System.out.println("휴식");
+							Thread.sleep(60000); // 1분 대기
+							
+							waitTime = waitTime + 1; // 대기시간에 1 추가
+							
+						}catch(InterruptedException e) {}
+						continue; //다시 처음으로
+					}
+					
+					// 유입량이 이전 유입량 평균보다 큰 경우 시작..
+					
+					//현재 유입량 기록 및 저장하기
+					//infrow.infrowSave (nowtime, waitTime, infwAmount); // (현재시간, 대기시간, 유입량) 필요
+					
+					//인기 차트 알고리즘 동작하기
+					//realCheck.popChartAlgorism(infwAmount); // (유입량) 필요
 					
 				}
 			}else { } // 30분 지나면 진행
 			
 			
+			
+			
+			
 			try {
-				Thread.sleep(10000); // 10분 대기
-				waitTime = 10;
+				Thread.sleep(10000); // 10분 대기 (실험은 10초 대기)
 				System.out.println("휴식");
+				 waitTime = 10; // 인기 및 리뷰 차트 마치고 10분 대기했으니, 대기시간 10으로 지정
 			}catch(InterruptedException e) {}
 		}
 	}
