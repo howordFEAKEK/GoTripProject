@@ -19,11 +19,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Project_Trip">
-        <activity android:name=".fragment_file.dkssudkgptu.KyeongGi_do"></activity>
-        <activity android:name=".fragment_file.dkssudkgptu.Seoul"></activity>
-        <activity android:name=".fragment_file.Show_LocalActivity" />
-        <activity android:name=".fragment_file.NavigationActivity" />
-        <activity android:name=".fragment_file.MapsActivity" />
+        <activity android:name=".SubLocalSeletFile.LocalActivity.KyeongGi_do"></activity>
+        <activity android:name=".SubLocalSeletFile.LocalActivity.Seoul"></activity>
+        <activity android:name=".SubActivityFile.Show_LocalActivity" />
+        <activity android:name=".SubActivityFile.NavigationActivity" />
+        <activity android:name=".SubActivityFile.MapsActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -36,11 +36,11 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".fragment_file.Show_ReviewActivity" />
-        <activity android:name=".fragment_file.Save_ReViewActivity" />
-        <activity android:name=".fragment_file.Local_GuideActivity" />
-        <activity android:name=".fragment_file.HomeActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".SubActivityFile.Show_ReviewActivity" />
+        <activity android:name=".SubActivityFile.Save_ReViewActivity" />
+        <activity android:name=".SubActivityFile.Local_GuideActivity" />
+        <activity android:name=".SubActivityFile.Local_SelectActivity" />
+        <activity android:name=".Main_API_DB_GPSFile.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

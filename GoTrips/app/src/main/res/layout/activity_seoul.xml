@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragment_file.HomeActivity"
+    tools:context=".SubActivityFile.Local_SelectActivity"
     android:layout_margin="20dp"
     >
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#FFE4E1"
-    tools:context=".fragment_file.Save_ReViewActivity">
+    tools:context=".SubActivityFile.Save_ReViewActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
