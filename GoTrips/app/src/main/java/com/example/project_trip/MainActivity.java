@@ -26,6 +26,8 @@ import android.content.Context;
 import androidx.core.content.ContextCompat;
 import android.telephony.TelephonyManager;
 
+import com.example.project_trip.Main_API_DB_GPSFile.FragmentAdapter;
+import com.example.project_trip.Main_API_DB_GPSFile.GpsTracker;
 import com.google.android.material.tabs.TabLayout;
 
 import java.io.IOException;
