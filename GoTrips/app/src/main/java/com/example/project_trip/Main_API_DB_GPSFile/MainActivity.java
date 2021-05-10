@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -89,12 +90,10 @@ public class MainActivity extends AppCompatActivity {
 
         // 탭 레이아웃 , 뷰페이저 관리
         tabLayout = findViewById(R.id.tab_layout);
-        pager2 = findViewById(R.id.view_pager2);
-
-
+        ViewPager2 viewPager2 = findViewById(R.id.view_pager2);
         FragmentManager fm = getSupportFragmentManager();
         adapter = new FragmentAdapter(fm, getLifecycle());
-        pager2.setAdapter(adapter);
+
 
         tabLayout.addTab(tabLayout.newTab().setText("위치"));
         tabLayout.addTab(tabLayout.newTab().setText("메인"));
@@ -103,7 +102,8 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                pager2.setCurrentItem(tab.getPosition());
+                int pos = tab.getPosition();
+                changeView(pos);
             }
 
             @Override
@@ -117,12 +117,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        pager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                tabLayout.selectTab(tabLayout.getTabAt(position));
-            }
-        });
+
+
+    }
+
+    private void changeView(int index){
 
     }
 
