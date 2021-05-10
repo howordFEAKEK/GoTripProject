@@ -157,6 +157,12 @@ public class playTravel extends Thread{
 						tour.saveTU(tourName, tourLoc); // 조회용 목록에 등록 (뷰용 테이블)
 						
 						// 목록 없음 표시
+						String noMsg1 = null;
+						noMsg1 = "NOLIST/nolist"; // ---> 1번째 NOLIST
+						
+						try {
+							out.writeUTF(noMsg1); // 리스트 없음 메시지 보내기
+						}catch(IOException e) {}
 						
 						
 					}else { // 관광지가 있는 경우
@@ -168,6 +174,12 @@ public class playTravel extends Thread{
 						if(reView.reviewLists == null) {
 							
 							//목록 없음 표시
+							String noMsg2 = null; // ---> 2번째 NOLIST
+							noMsg2 = "NOLIST/nolist";
+							
+							try {
+								out.writeUTF(noMsg2); // 리스트 없음 메시지 보내기
+							}catch(IOException e) {}
 							
 							
 						}else { // 리뷰 목록이 있으면 여기서 처리
