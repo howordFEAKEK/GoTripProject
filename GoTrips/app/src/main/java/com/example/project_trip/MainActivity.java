@@ -26,8 +26,8 @@ import android.content.Context;
 import androidx.core.content.ContextCompat;
 import android.telephony.TelephonyManager;
 
-import com.example.project_trip.Main_API_DB_GPSFile.FragmentAdapter;
-import com.example.project_trip.Main_API_DB_GPSFile.GpsTracker;
+import com.example.project_trip.FragmentAdapter;
+import com.example.project_trip.GpsTracker;
 import com.google.android.material.tabs.TabLayout;
 
 import java.io.IOException;
@@ -459,7 +459,7 @@ public class MainActivity extends AppCompatActivity {
 
     //권한 관련 코드 끝
 
-//    //폰 정보 가져오기
+    //    //폰 정보 가져오기
     public String check1(MainActivity num) {
         TelephonyManager tm1 = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_NUMBERS) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
@@ -472,8 +472,8 @@ public class MainActivity extends AppCompatActivity {
             // for ActivityCompat#requestPermissions for more details.
 
 
-            
         }
         return tm1.getLine1Number(); //imei 번호일 경우 겟라인넘버 말고 .getDeviceId
 //        //폰 정보 가져오기 끝
     }
+}
