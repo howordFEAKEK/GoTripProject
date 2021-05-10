@@ -28,7 +28,7 @@ public class CusmaidFragment extends Fragment {
     TextView tv1;
     RecyclerView marylee , marylee2;
     RecyclerViewAdapter_from_local_guide rcvAd;
-    List<Main_item_from_show_local> getMyList;
+    ArrayList<Main_item_from_show_local> getMyList;
     public CusmaidFragment() {
         // Required empty public constructor
     }

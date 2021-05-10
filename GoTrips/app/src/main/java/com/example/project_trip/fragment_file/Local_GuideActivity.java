@@ -19,10 +19,10 @@ public class Local_GuideActivity extends AppCompatActivity {
     // 메인 탭에서 최싱단 박물관 이름을 클릭하면 나오는 엑티비티
 
     Button btn;
-    TextView txt1 , txt2;
+    TextView txt1 , txt2 , txt3;
     RecyclerView rcyv;
     Local_GuideRecyclerAdepter adepter;
-    ArrayList<Main_item4> getMyList;
+    ArrayList<Main_item_from_show_local> getMyList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,23 +30,24 @@ public class Local_GuideActivity extends AppCompatActivity {
 
         txt2 = (TextView) findViewById(R.id.local_guide_title_text);
         txt2.setText(getIntent().getStringExtra("local_title"));
-
+        txt3 = (TextView) findViewById(R.id.title_id);
+        txt3.setText(getIntent().getStringExtra("local title"));
         // 중단의 리뷰 리스트입니다.
 
         rcyv = (RecyclerView)findViewById(R.id.local_guide_recyclerview);
         rcyv.setLayoutManager(new LinearLayoutManager(this));
 
-
-        getMyList = new ArrayList<>();
-        getMyList.add(new Main_item4("리뷰입니다1"));
-        getMyList.add(new Main_item4("리뷰입니다2"));
-        getMyList.add(new Main_item4("리뷰입니다3"));
-        getMyList.add(new Main_item4("리뷰입니다4"));
-        getMyList.add(new Main_item4("리뷰입니다5"));
-        getMyList.add(new Main_item4("리뷰입니다6"));
-        getMyList.add(new Main_item4("리뷰입니다7"));
-        getMyList.add(new Main_item4("리뷰입니다8"));
-        getMyList.add(new Main_item4("리뷰입니다9"));
+//
+//        getMyList = new ArrayList<>();
+//        getMyList.add(new Main_item4("리뷰입니다1"));
+//        getMyList.add(new Main_item4("리뷰입니다2"));
+//        getMyList.add(new Main_item4("리뷰입니다3"));
+//        getMyList.add(new Main_item4("리뷰입니다4"));
+//        getMyList.add(new Main_item4("리뷰입니다5"));
+//        getMyList.add(new Main_item4("리뷰입니다6"));
+//        getMyList.add(new Main_item4("리뷰입니다7"));
+//        getMyList.add(new Main_item4("리뷰입니다8"));
+//        getMyList.add(new Main_item4("리뷰입니다9"));
 
 
         adepter = new Local_GuideRecyclerAdepter(getMyList , this);

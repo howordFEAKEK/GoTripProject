@@ -28,21 +28,23 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         data = new ArrayList<>();
-        data.add(new Main_item4("서울"));
-        data.add(new Main_item4("경기"));
+        data.add(new Main_item4("시/도 선택"));
+        data.add(new Main_item4("서울특별시"));
+        data.add(new Main_item4("인천광역시"));
+        data.add(new Main_item4("대전광역시"));
+        data.add(new Main_item4("광주광역시"));
+        data.add(new Main_item4("대구광역시"));
+        data.add(new Main_item4("울산광역시"));
+        data.add(new Main_item4("부산광역시"));
+        data.add(new Main_item4("경기도"));
+        data.add(new Main_item4("강원도"));
+        data.add(new Main_item4("충청북도"));
+        data.add(new Main_item4("충청남도"));
         data.add(new Main_item4("전라북도"));
         data.add(new Main_item4("전라남도"));
         data.add(new Main_item4("경상북도"));
         data.add(new Main_item4("경상남도"));
-        data.add(new Main_item4("충청북도"));
-        data.add(new Main_item4("충청남도"));
-        data.add(new Main_item4("인천"));
-        data.add(new Main_item4("부산"));
-        data.add(new Main_item4("대전"));
-        data.add(new Main_item4("강원도"));
-        data.add(new Main_item4("대구"));
-        data.add(new Main_item4("광주"));
-        data.add(new Main_item4("세종"));
+        data.add(new Main_item4("제주도"));
 
         rcy = (RecyclerView)findViewById(R.id.local_select_rcview);
         adapter = new HomeAdapter(data , this);

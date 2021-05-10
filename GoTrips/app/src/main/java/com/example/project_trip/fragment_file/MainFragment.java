@@ -28,8 +28,8 @@ public class MainFragment extends Fragment {
     RecyclerView marylee , marylee2 , marylee3;
     RecyclerViewAdapter rcvAd;
     RecyclerViewAdapter_from_local_guide rcvAd3;
-    List<Main_item_from_show_local> getMyList;
-    List<Main_item> getMyList1 , getMyList2;
+    ArrayList<Main_item_from_show_local> getMyList;
+    ArrayList<Main_item> getMyList1 , getMyList2;
 
     TextView txt;
     public MainFragment() {

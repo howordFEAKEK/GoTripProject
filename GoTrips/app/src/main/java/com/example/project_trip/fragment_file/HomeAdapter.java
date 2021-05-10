@@ -12,8 +12,22 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project_trip.R;
+import com.example.project_trip.fragment_file.dkssudkgptu.Busan_si;
+import com.example.project_trip.fragment_file.dkssudkgptu.Chung_cheong_bukdo;
+import com.example.project_trip.fragment_file.dkssudkgptu.Chung_cheong_namdo;
+import com.example.project_trip.fragment_file.dkssudkgptu.Daegu_si;
+import com.example.project_trip.fragment_file.dkssudkgptu.Daejeon_si;
+import com.example.project_trip.fragment_file.dkssudkgptu.Gangwon_do;
+import com.example.project_trip.fragment_file.dkssudkgptu.Gwangju_si;
+import com.example.project_trip.fragment_file.dkssudkgptu.Gyeongsangbuk_do;
+import com.example.project_trip.fragment_file.dkssudkgptu.Gyeongsangnam_do;
+import com.example.project_trip.fragment_file.dkssudkgptu.Incheon_SI;
+import com.example.project_trip.fragment_file.dkssudkgptu.Jeju_Island;
+import com.example.project_trip.fragment_file.dkssudkgptu.Jeollabuk_do;
+import com.example.project_trip.fragment_file.dkssudkgptu.Jeollanam_do;
 import com.example.project_trip.fragment_file.dkssudkgptu.KyeongGi_do;
 import com.example.project_trip.fragment_file.dkssudkgptu.Seoul;
+import com.example.project_trip.fragment_file.dkssudkgptu.Ulsan_si;
 
 import java.util.ArrayList;
 
@@ -57,13 +71,83 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.milder> {
         holder.t1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (position == 0) {
+                if (position == 1) {
                     Intent intent = new Intent( context , Seoul.class);
                     context.startActivity(intent);
 
                 }
-                else if (position == 1) {
+                else if (position == 2) {
+                    Intent intent = new Intent( context , Incheon_SI.class);
+                    context.startActivity(intent);
+
+                }
+                else if (position == 3) {
+                    Intent intent = new Intent( context , Daejeon_si.class);
+                    context.startActivity(intent);
+
+                }
+                else if (position == 4) {
+                    Intent intent = new Intent( context , Gwangju_si.class);
+                    context.startActivity(intent);
+
+                }
+                else if (position == 5) {
+                    Intent intent = new Intent( context , Daegu_si.class);
+                    context.startActivity(intent);
+
+                }
+                else if (position == 6) {
+                    Intent intent = new Intent( context , Ulsan_si.class);
+                    context.startActivity(intent);
+
+                }
+                else if (position == 7) {
+                    Intent intent = new Intent( context , Busan_si.class);
+                    context.startActivity(intent);
+
+                }
+                else if (position == 8) {
                     Intent intent = new Intent( context , KyeongGi_do.class);
+                    context.startActivity(intent);
+
+                }
+                else if (position == 9) {
+                    Intent intent = new Intent( context , Gangwon_do.class);
+                    context.startActivity(intent);
+
+                }
+                else if (position == 10) {
+                    Intent intent = new Intent( context , Chung_cheong_bukdo.class);
+                    context.startActivity(intent);
+
+                }
+                else if (position == 11) {
+                    Intent intent = new Intent( context , Chung_cheong_namdo.class);
+                    context.startActivity(intent);
+
+                }
+                else if (position == 12) {
+                    Intent intent = new Intent( context , Jeollabuk_do.class);
+                    context.startActivity(intent);
+
+                }
+                else if (position == 13) {
+                    Intent intent = new Intent( context , Jeollanam_do.class);
+                    context.startActivity(intent);
+
+                }
+                else if (position == 14) {
+                    Intent intent = new Intent( context , Gyeongsangbuk_do.class);
+                    context.startActivity(intent);
+
+                }
+                else if (position == 15) {
+                    Intent intent = new Intent( context , Gyeongsangnam_do.class);
+                    context.startActivity(intent);
+
+                }
+                else if (position == 16) {
+                    Intent intent = new Intent( context , Jeju_Island.class);
                     context.startActivity(intent);
 
                 }
