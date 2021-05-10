@@ -36,6 +36,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
+
     //gps 선언 시작
     private GpsTracker gpsTracker;
     myDBHelper myHelper;
