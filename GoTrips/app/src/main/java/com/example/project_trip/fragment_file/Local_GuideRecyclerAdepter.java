@@ -19,10 +19,10 @@ public class Local_GuideRecyclerAdepter extends RecyclerView.Adapter<Local_Guide
 
     // 메인탭의 최상단에 있는 박물관 정보 리사이클뷰의 어댑터
     
-    private ArrayList<Main_item_from_show_local> data;
+    private ArrayList<Main_item4> data;
     Context context;
 
-    public Local_GuideRecyclerAdepter(ArrayList<Main_item_from_show_local> data, Context context) {
+    public Local_GuideRecyclerAdepter(ArrayList<Main_item4> data, Context context) {
         this.data = data;
         this.context = context;
 
@@ -40,7 +40,7 @@ public class Local_GuideRecyclerAdepter extends RecyclerView.Adapter<Local_Guide
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHodler holder, int position) {
-        holder.tv_name.setText(data.get(position).getLocal_title());
+        holder.tv_name.setText(data.get(position).getList());
     }
 
     @Override
