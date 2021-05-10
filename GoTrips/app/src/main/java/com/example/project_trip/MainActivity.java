@@ -90,12 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         tabLayout = findViewById(R.id.tab_layout);
-        pager2 = findViewById(R.id.view_pager2);
 
-
-        FragmentManager fm = getSupportFragmentManager();
-        adapter = new FragmentAdapter(fm, getLifecycle());
-        pager2.setAdapter(adapter);
 
         tabLayout.addTab(tabLayout.newTab().setText("위치"));
         tabLayout.addTab(tabLayout.newTab().setText("메인"));

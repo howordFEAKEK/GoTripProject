@@ -25,7 +25,12 @@ import android.util.Log;
 import android.widget.Toast;
 import android.telephony.TelephonyManager;
 
+import com.example.project_trip.FragmentAdapter;
+import com.example.project_trip.GpsTracker;
 import com.example.project_trip.R;
+import com.example.project_trip.fragment_file.CusmaidFragment;
+import com.example.project_trip.fragment_file.LocalFragment;
+import com.example.project_trip.fragment_file.MainFragment;
 import com.google.android.material.tabs.TabLayout;
 
 import java.io.IOException;
@@ -48,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager2 pager2;
     FragmentAdapter adapter;
+    // 프레그먼트 선언
+    MainFragment mainFragment;
+    LocalFragment localFragment;
+    CusmaidFragment cusmaidFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
         // gps 관련 코드 끝
 
         // 탭 레이아웃 , 뷰페이저 관리
+
+        ma
         tabLayout = findViewById(R.id.tab_layout);
         ViewPager2 viewPager2 = findViewById(R.id.view_pager2);
         FragmentManager fm = getSupportFragmentManager();
