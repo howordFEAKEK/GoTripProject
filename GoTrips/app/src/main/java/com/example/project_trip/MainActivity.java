@@ -26,8 +26,8 @@ import android.content.Context;
 import androidx.core.content.ContextCompat;
 import android.telephony.TelephonyManager;
 
-import com.example.project_trip.Main_API_DB_GPSFile.FragmentAdapter;
-import com.example.project_trip.Main_API_DB_GPSFile.GpsTracker;
+import com.example.project_trip.FragmentAdapter;
+import com.example.project_trip.GpsTracker;
 import com.google.android.material.tabs.TabLayout;
 
 import java.io.IOException;
@@ -35,7 +35,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
-
     //gps 선언 시작
     private GpsTracker gpsTracker;
     myDBHelper myHelper;
