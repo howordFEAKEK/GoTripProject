@@ -14,12 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.project_trip.AdapterFile.Weekly_Monthly_ReviewAdapter;
-import com.example.project_trip.AdapterFile.Local_GuideAdapter;
-import com.example.project_trip.ItemFile.Main_item;
-import com.example.project_trip.ItemFile.Main_item_from_show_local;
 import com.example.project_trip.R;
-import com.example.project_trip.SubActivityFile.Local_SelectActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +26,8 @@ public class MainFragment extends Fragment {
 
     View v;
     RecyclerView marylee , marylee2 , marylee3;
-    Weekly_Monthly_ReviewAdapter rcvAd;
-    Local_GuideAdapter rcvAd3;
+    RecyclerViewAdapter rcvAd;
+    RecyclerViewAdapter_from_local_guide rcvAd3;
     List<Main_item_from_show_local> getMyList;
     List<Main_item> getMyList1 , getMyList2;
 
@@ -52,7 +47,7 @@ public class MainFragment extends Fragment {
         // 관광지 리스트
         
         marylee = (RecyclerView) vv.findViewById(R.id.recycler_view);
-        rcvAd3 = new Local_GuideAdapter(getContext(), getMyList);
+        rcvAd3 = new RecyclerViewAdapter_from_local_guide(getContext(), getMyList);
         marylee.setLayoutManager(new LinearLayoutManager(getActivity()));
         marylee.setAdapter(rcvAd3);
 
@@ -65,7 +60,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity() , Local_SelectActivity.class);
+                Intent intent = new Intent(getActivity() , HomeActivity.class);
                 getActivity().startActivity(intent);
             }
         });
@@ -77,7 +72,7 @@ public class MainFragment extends Fragment {
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(getContext());
         // 가로 모드
         layoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
-        rcvAd = new Weekly_Monthly_ReviewAdapter(getContext(), getMyList2);
+        rcvAd = new RecyclerViewAdapter(getContext(), getMyList2);
         marylee2.setLayoutManager(layoutManager2);
 
         marylee2.setAdapter(rcvAd);
@@ -88,7 +83,7 @@ public class MainFragment extends Fragment {
         LinearLayoutManager layoutManager3 = new LinearLayoutManager(getContext());
         // 가로 모드
         layoutManager3.setOrientation(LinearLayoutManager.HORIZONTAL);
-        rcvAd = new Weekly_Monthly_ReviewAdapter(getContext(), getMyList1);
+        rcvAd = new RecyclerViewAdapter(getContext(), getMyList1);
         marylee3.setLayoutManager(layoutManager3);
         marylee3.setAdapter(rcvAd);
 
@@ -120,41 +115,18 @@ public class MainFragment extends Fragment {
 
 
         getMyList = new ArrayList<>();
-
-        // 메인 프레그먼트 최상단 관광지 정보의 리스트 아이템
-        
-        Main_item_from_show_local show_local = new Main_item_from_show_local();
-
-        show_local = new Main_item_from_show_local();
-        show_local.setLocal_title("수원 화성");
-        getMyList.add(show_local);
-
-        show_local = new Main_item_from_show_local();
-        show_local.setLocal_title("독립박물관");
-        getMyList.add(show_local);
-
-        show_local = new Main_item_from_show_local();
-        show_local.setLocal_title("해인사");
-        getMyList.add(show_local);
-
-        show_local = new Main_item_from_show_local();
-        show_local.setLocal_title("아산박물관");
-        getMyList.add(show_local);
-
-        show_local = new Main_item_from_show_local();
-        show_local.setLocal_title("천안미술관");
-        getMyList.add(show_local);
-
-        show_local = new Main_item_from_show_local();
-        show_local.setLocal_title("아산공원");
-        getMyList.add(show_local);
-
-        show_local = new Main_item_from_show_local();
-        show_local.setLocal_title("역사박물관");
-        getMyList.add(show_local);
-
-
-
+        getMyList.add(new Main_item_from_show_local("수원 화성"));
+        getMyList.add(new Main_item_from_show_local("독립 박물관"));
+        getMyList.add(new Main_item_from_show_local("해인사"));
+        getMyList.add(new Main_item_from_show_local("아산 박물관"));
+        getMyList.add(new Main_item_from_show_local("천안 장군 박물관"));
+        getMyList.add(new Main_item_from_show_local("천안 미술관"));
+        getMyList.add(new Main_item_from_show_local("충북 역사 박물관"));
+        getMyList.add(new Main_item_from_show_local("산꼭대기 절"));
+        getMyList.add(new Main_item_from_show_local("근현대 박물관"));
+        getMyList.add(new Main_item_from_show_local("유적지"));
+        getMyList.add(new Main_item_from_show_local("이순신 장군 동상"));
+        getMyList.add(new Main_item_from_show_local("조선 박물관"));
 
 
     }

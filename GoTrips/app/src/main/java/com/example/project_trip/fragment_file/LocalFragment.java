@@ -11,8 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.project_trip.AdapterFile.RecyclerViewAdapter_from_show_local;
-import com.example.project_trip.ItemFile.Main_item_from_show_local;
 import com.example.project_trip.R;
 
 import java.util.ArrayList;
