@@ -23,10 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de215b88-5cf9-4dec-8e15-ba6da8343c08" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/GoTrips/app/src/main/java/com/example/project_trip/SocketManager2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/GoTrips/app/src/main/res/values/arrays.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoTrips/app/src/main/java/com/example/project_trip/SocketManager.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,15 +42,19 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/GoTrips/app/src/main/java/com/example/project_trip" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/GoTrips/app/src/main/res/values" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\GitHub\GoTripProject\GoTrips\app\src\main\res\values" />
       <recent name="C:\GitHub\GoTripProject\GoTrips\app\src\main\java\com\example\project_trip" />
       <recent name="C:\GitHub\GoTripProject\GoTrips\app\src\main\java\com\example\project_trip\fragment_file" />
     </key>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -79,16 +81,25 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="700" y="375" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1620570210653">
+      <screen x="0" y="0" width="2492" height="1440" />
+    </state>
+    <state x="700" y="375" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2492.1440@0.0.2492.1440" timestamp="1620570210653" />
     <state x="983" y="520" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1620389911122">
       <screen x="0" y="0" width="2492" height="1440" />
     </state>
     <state x="983" y="520" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2492.1440@0.0.2492.1440" timestamp="1620389911122" />
-    <state x="791" y="343" key="FileChooserDialogImpl" timestamp="1620414944560">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="1027" y="475" key="FileChooserDialogImpl" timestamp="1620569185449">
+      <screen x="0" y="0" width="2492" height="1440" />
     </state>
     <state x="1054" y="462" key="FileChooserDialogImpl/-2560.0.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1617783550602" />
     <state x="1054" y="462" key="FileChooserDialogImpl/-3840.0.2560.1413/0.0.2560.1400@0.0.2560.1400" timestamp="1618331820275" />
     <state x="791" y="343" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1620414944560" />
     <state x="1025" y="475" key="FileChooserDialogImpl/0.0.2490.1440@0.0.2490.1440" timestamp="1617351949738" />
+    <state x="1027" y="475" key="FileChooserDialogImpl/0.0.2492.1440@0.0.2492.1440" timestamp="1620569185449" />
+    <state x="103" y="294" key="SettingsEditor" timestamp="1620632471562">
+      <screen x="0" y="0" width="2492" height="1440" />
+    </state>
+    <state x="103" y="294" key="SettingsEditor/0.0.2492.1440@0.0.2492.1440" timestamp="1620632471562" />
   </component>
 </project>
