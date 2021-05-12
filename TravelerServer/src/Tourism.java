@@ -270,7 +270,7 @@ public class Tourism {
 	}
 	
 	// 관광지 관심 평균 계산 (하나씩)
-	public long attAvgTour (String tourName, long prevtime, long nowtime) {
+	public double attAvgTour (String tourName, long prevtime, long nowtime) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -278,7 +278,7 @@ public class Tourism {
 				"FROM (SELECT TOUR_LOG_NO, TOUR_ATT_POINT " + 
 				"FROM TOUR_LOG WHERE TOUR_NAME = ?) " + 
 				"WHERE TOUR_LOG_NO BETWEEN ? AND ?";
-		long result = 0;
+		double result = 0; // 평균이기 때문에.. 소수점 필요 - 계산에서 소수점 2자리까지 인정
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
 			System.out.println("풀 빌려오기");
@@ -305,7 +305,7 @@ public class Tourism {
 	}
 	
 	// 인기점수 갱신 (하나씩)
-	public void popScoreSetting (long popScore, String tourName) {
+	public void popScoreSetting (double popScore, String tourName) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = "UPDATE TOUR_PLACE SET POP_SCORE = ? WHERE TOUR_NAME = ?";
@@ -314,7 +314,7 @@ public class Tourism {
 			System.out.println("풀 빌려오기");
 			try {
 	            pstmt = con.prepareStatement(sql); // SQL 해석
-	            pstmt.setLong(1, popScore);
+	            pstmt.setDouble(1, popScore);
 	            pstmt.setString(2, tourName);
 	 
 	            if (pstmt.executeUpdate() == 1) {

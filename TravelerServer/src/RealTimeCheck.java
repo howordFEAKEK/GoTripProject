@@ -19,17 +19,44 @@ public class RealTimeCheck extends Thread{
 		List<String> changeTour = new ArrayList<>();
 		long prevtime = 0; // 이전 시간
 		long nowtime = 0; // 최근 시간
-		long infrw = 0; // 유입량
-		infrw = infrow; // 유입량
+		long infrw = 0; // 전체 유입량
+		infrw = infrow; // 전체 유입량
 		
 		tour.resetPop(); // 인기 점수 초기화
 		
 		changeTour = tour.selectChangeTour (prevtime, nowtime); // 변동 있는 관광지 확인
 		
-		for(int i = 0; i < changeTour.size(); i ++) {
+		for (String s : changeTour) { // 개선된 for문 사용해서 구성
+			String tourName = null;
+			double popScore = 0;
+			tourName = s; // 관광지 이름 가져오기
+			
+			long looknum = 0; // 관광지 조회수
+			double attnum = 0; // 관심 점수
+			
+			double persent = 0; //백분율 계산용
+			
+			// 관광지 조회수 확인 (하나씩)
+			looknum = tour.lookTour (tourName,  prevtime, nowtime);
+			
+			// 관심점수 평균 계산 (하나씩)
+			attnum = tour.attAvgTour (tourName,  prevtime, nowtime);
+			
+			// 조회수/유입량 = 백분율..(소수점 구현을 위해서)
+			persent = Math.round(looknum/infrw * 100) / 100.00;
+			
+			// 조회수/유입량의 백분율  * 관심평균
+			popScore = persent * 100 * attnum;
+			
+			// 인기 점수 갱신 (하나씩)
+			tour.popScoreSetting (popScore, tourName);
+		}
+		
+		/*
+		for(int i = 0; i < changeTour.size(); i ++) { //일반적인 for문 사용해서 구성
 			String tourName = null;
 			long popScore = 0;
-			tourName = changeTour.get(i);
+			tourName = changeTour.get(i); //관광지 이름 가져오기
 			
 			long looknum = 0;
 			long attnum = 0;
@@ -42,6 +69,7 @@ public class RealTimeCheck extends Thread{
 		 	
 			tour.popScoreSetting (popScore, tourName); // 인기 점수 갱신 (하나씩)
 		}
+		*/
 	}
 	
 	
