@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//유저가 특정 관광지를 찾을 때 ( getText 앞에 변수명에 텍스트 필드 변수 적어주시면 될 것 같습니다.)
+//유저가 특정 관광지를 찾을 때 ( getText 앞에 변수명에 텍스트 필드 변수 적어주시면 될 것 같습니다.) 조회버튼에 삽입하여, 조회 할때마다 내부 데이터 베이스에 저장하는게 좋아보입니다.
         btnInsert.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             a = dosi.getText().toString();
