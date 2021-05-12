@@ -4,6 +4,7 @@ import java.util.List;
 
 public class ReView {
 	public List<ReviewList> reviewLists = new ArrayList<ReviewList>();
+	public List<RevChange> chRevs = new ArrayList<RevChange>();
 	
 	
 	//리뷰 저장
@@ -206,6 +207,206 @@ public class ReView {
 	
 	
 	//------------------------ 리뷰 차트 알고리즘 부분 ---------------------------------//
+	// 변동 리뷰 확인
+	public void changeReview(long prevtime, long nowtime) {
+		chRevs = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT DISTINCT WRITER, WRITE_DATE FROM (SELECT WRITER, WRITE_DATE " + 
+				"FROM REVIEW_LOG WHERE REVIEW_LOG_NO BETWEEN ? AND ?)";
+		
+		try {
+			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
+			System.out.println("풀 빌려오기");
+			try {
+	            pstmt = con.prepareStatement(sql); // SQL 해석
+	            pstmt.setLong(1, prevtime);
+	            pstmt.setLong(2, nowtime);
+	            rs = pstmt.executeQuery();
+	            while(rs.next()) {
+	            	RevChange rev = new RevChange();
+	            	rev.writer = rs.getString(1);
+	            	rev.date = rs.getLong(2);
+	            	chRevs.add(rev);
+	            }
+	            
+	 
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally {
+	        	rs.close();
+				pstmt.close();
+				con.close();
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 좋아요, 싫어요 확인
+	public double getLikePoint(String name, long wrdate) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT GOOD_POINT, BAD_POINT FROM REVIEW WHERE WRITER = ? AND WRITE_DATE = ?";
+		double result = 0;
+		int like = 0;
+		int dislike = 0;
+		try {
+			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
+			System.out.println("풀 빌려오기");
+			try {
+	            pstmt = con.prepareStatement(sql); // SQL 해석
+	            pstmt.setString(1, name);
+	            pstmt.setLong(2, wrdate);
+	            rs = pstmt.executeQuery();
+	            
+	            while (rs.next()) {
+					like = rs.getInt(1);
+					dislike = rs.getInt(2);
+				}
+	 
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally {
+	        	rs.close();
+				pstmt.close();
+				con.close();
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		if (like == 0 && dislike == 0) {return 1;} // 좋아요, 싫어요... 0인 경우
+		if (like == 0) {return 0.1;} // 좋아요... 0인 경우
+		if (dislike == 0) {return 10;} // 싫어요... 0인 경우
+		
+		result = Math.round(like/dislike*100)/100.00; // 좋아요, 싫어요... 둘 다 값이 있는 경우
+		
+		return result;
+	}
+	
+	// 관심 조회수 확인 (하나씩)
+	public long lookAttReview(long prevtime, long nowtime) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT COUNT(*) (SELECT REVIEW_LOG_NO FROM REVIEW_LOG WHERE WRITER = '작성자' AND WRITE_DATE = 작성일자 " + 
+				"AND REVIEW_ATT_POINT >= 2) WHERE REVIEW_LOG_NO BETWEEN ? AND ?";
+		long result = 0;
+		try {
+			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
+			System.out.println("풀 빌려오기");
+			try {
+	            pstmt = con.prepareStatement(sql); // SQL 해석
+	            pstmt.setLong(1, prevtime);
+	            pstmt.setLong(2, nowtime);
+	            rs = pstmt.executeQuery();
+	            result = rs.getLong(1);
+	 
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally {
+	        	rs.close();
+				pstmt.close();
+				con.close();
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	// 관심 평균 계산 (하나씩)
+	public double attAvgReview(String writer, long date, long prevtime, long nowtime ) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT ROUND(AVG(REVIEW_ATT_POINT), 2) " + 
+				"FROM (SELECT REVIEW_LOG_NO, REVIEW_ATT_POINT " + 
+				"FROM REVIEW_LOG WHERE WRITER = ? AND WRITE_DATE = ?) " + 
+				"WHERE REVIEW_LOG_NO BETWEEN ? AND ?";
+		double result = 0; // 평균이기 때문에.. 소수점 필요 - 계산에서 소수점 2자리까지 인정
+		try {
+			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
+			System.out.println("풀 빌려오기");
+			try {
+	            pstmt = con.prepareStatement(sql); // SQL 해석
+	            pstmt.setString(1, writer);
+	            pstmt.setLong(2, date);
+	            pstmt.setLong(3, prevtime);
+	            pstmt.setLong(4, nowtime);
+	            rs = pstmt.executeQuery();
+	            
+	            result = rs.getInt(1);
+	 
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally {
+	        	rs.close();
+				pstmt.close();
+				con.close();
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	// 월간, 주간 점수 갱신 (하나씩)
+	public void scoreSetting(double weeksc, double monthsc, String writer, long date) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE REVIEW SET WEEKLY_SCORE = ?, MONTHLY_SCORE = ? WHERE WRITER = ? AND WRITE_DATE = ?";
+		try {
+			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
+			System.out.println("풀 빌려오기");
+			try {
+	            pstmt = con.prepareStatement(sql); // SQL 해석
+	            pstmt.setDouble(1, weeksc);
+	            pstmt.setDouble(2, monthsc);
+	            pstmt.setString(3, writer);
+	            pstmt.setLong(4, date);
+	 
+	            if (pstmt.executeUpdate() == 1) {
+	                System.out.println("리뷰 점수 갱신 성공");
+	            } else {
+	                System.out.println("리뷰 점수 갱신 실패");
+	            }
+	 
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally {
+				pstmt.close();
+				con.close();
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 리뷰 차트 조회
+	public void lookRevChart() {
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
 
@@ -214,5 +415,10 @@ class ReviewList {
 	public String writer = null; // 작성자
 	public long date = 0; //작성일자
 	public String title = null; //리뷰 제목
+}
+
+class RevChange {
+	public String writer = null; // 작성자
+	public long date = 0; //작성일자
 }
 

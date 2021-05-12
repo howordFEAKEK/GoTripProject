@@ -15,7 +15,7 @@ public class Tourism {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT TOUR_NAME FROM TOUR_PLACE WHERE TOUR_NAME=?;";
+		String sql = "SELECT TOUR_NAME FROM TOUR_PLACE WHERE TOUR_NAME=?";
 		String result = null;
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
