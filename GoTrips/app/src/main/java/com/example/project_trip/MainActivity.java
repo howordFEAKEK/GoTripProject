@@ -45,7 +45,15 @@ public class MainActivity extends AppCompatActivity {
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
     // gps 선언 끝
 
+    //api 호출하기
+    Getter g = new Getter();
+    Cutter c = new Cutter();
 
+    String tour;
+    String tourimpor;
+    String val;
+
+    //
     TabLayout tabLayout;
     ViewPager2 pager2;
     FragmentAdapter adapter;
@@ -63,6 +71,18 @@ public class MainActivity extends AppCompatActivity {
 
             checkRunTimePermission();
         }
+
+
+       //api 내용 받아오기 도시와 군구, 네임태그는 필요하신대로 수정 및 변수를 넣어 이용하셔도 됩니다.
+        val = g.apiGetter("서울특별시","종로구");
+        tour = c.apiCutter(test3, "EPreSimpleDesc");
+
+        val = g.apiGetterName("서울특별시","종로구","경복궁");
+        tourimpor = c.apiCutter(test3, "EPreSimpleDesc");
+
+       //
+
+
 
         // final TextView textview_address = (TextView)findViewById(R.id.textview); 현 주소 사용하고 싶을때 사용
 
