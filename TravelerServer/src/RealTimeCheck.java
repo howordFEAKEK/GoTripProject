@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import oracle.net.aso.i;
+
 public class RealTimeCheck extends Thread{
 	private int MININFROW = 100;
 	Tourism tour;
@@ -74,7 +76,54 @@ public class RealTimeCheck extends Thread{
 	
 	
 	// 리뷰 차트 알고리즘
-	public void revChartAlgorism() { // 
+	public void revChartAlgorism() { //
+		long prevtime = 0; // 이전 시간
+		long nowtime = 0; // 최근 시간
+		
+		rev.changeReview(prevtime, nowtime); // 변동 리뷰 조회
+		
+		for(int i = 0; i < rev.chRevs.size(); i ++) {
+			String name = rev.chRevs.get(i).writer; // 작성자
+			long wrdate = rev.chRevs.get(i).date; // 작성일자
+			
+			long wkdate = 0; // 한 주의 시작일
+			long mtdate = 0; // 한 달의 시작일
+			
+			double likePoint = 0; // 상관 점수
+			
+			long attLook1 = 0; // 관심 조회수 (주간)
+			long attLook2 = 0; // 관심 조회수 (월간)
+			
+			double attNum1 = 0; // 관심 점수 (주간)
+			double attNum2 = 0; // 관심 점수 (월간)
+			
+			
+			double weeksc = 0; // 주간 점수
+			double monthsc = 0; // 월간 점수
+			
+			// 좋아요, 싫어요  (비율에 따른 점수 좋아요/싫어요 값)
+			likePoint = rev.getLikePoint(name, wrdate);
+			
+			//해당 관광지의 관심 조회수 확인
+			attLook1 = rev.lookAttReview(wkdate, nowtime); // 주간
+			attLook2 = rev.lookAttReview(mtdate, nowtime); // 월간
+			
+			//관심 평균 계산
+			attNum1 = rev.attAvgReview(name, wrdate, wkdate, nowtime); // 주간
+			attNum2 = rev.attAvgReview(name, wrdate, mtdate, nowtime); // 월간
+			
+			//주간 점수 계산 (상관점수 * 관심평균  * 관심조회수)
+			weeksc = attNum1 * attLook1 * likePoint;
+			weeksc = Math.round(weeksc * 100)/100.00;
+			
+			//월간 점수 계산 (상관점수 * 관심평균  * 관심조회수)
+			monthsc = attNum2 * attLook2 * likePoint;
+			monthsc = Math.round(weeksc * 100)/100.00;
+			
+			//월간, 주간 점수 갱신
+			rev.scoreSetting(weeksc, monthsc, name, wrdate);
+			
+		}
 		
 	}
 	
@@ -141,6 +190,7 @@ public class RealTimeCheck extends Thread{
 					//realCheck.popChartAlgorism(infwAmount); // (유입량) 필요
 					
 					//리뷰 차트 알고리즘 동작하기
+					//realCheck.revChartAlgorism();
 					
 				}
 			}else { // 30분 지나면 진행
@@ -153,7 +203,7 @@ public class RealTimeCheck extends Thread{
 					//realCheck.popChartAlgorism(infwAmount); // (유입량) 필요
 					
 					//리뷰 차트 알고리즘 동작하기
-					
+					//realCheck.revChartAlgorism();
 					
 				}else { // 유입량이 0이면 진행
 					//현재 유입량 기록 및 저장하기
