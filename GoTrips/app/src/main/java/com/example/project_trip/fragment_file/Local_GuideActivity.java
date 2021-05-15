@@ -28,6 +28,9 @@ public class Local_GuideActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_local__guide);
 
+        Intent intent = getIntent();
+        int num = intent.getIntExtra("number" , 0);
+
         txt2 = (TextView) findViewById(R.id.local_guide_title_text);
         txt2.setText(getIntent().getStringExtra("local_title"));
 
@@ -36,17 +39,49 @@ public class Local_GuideActivity extends AppCompatActivity {
         rcyv = (RecyclerView)findViewById(R.id.local_guide_recyclerview);
         rcyv.setLayoutManager(new LinearLayoutManager(this));
 
+        
+        //리스트
+        switch (num){
+            
+            case 0:
+                getMyList=new ArrayList<>();
+                getMyList.add(new Main_item4("인덱스0번 첫째리뷰"));
+                getMyList.add(new Main_item4("인덱스0번 둘째리뷰"));
+                getMyList.add(new Main_item4("인덱스0번 셋째리뷰"));
+                break;
+            case 1:
+                getMyList=new ArrayList<>();
+                getMyList.add(new Main_item4("인덱스1번 첫째리뷰"));
+                getMyList.add(new Main_item4("인덱스1번 둘째리뷰"));
+                getMyList.add(new Main_item4("인덱스1번 3째리뷰"));
+                break;
+            case 2:
+                getMyList=new ArrayList<>();
+                getMyList.add(new Main_item4("인덱스2번 첫째리뷰"));
+                getMyList.add(new Main_item4("인덱스2번 2째리뷰"));
+                getMyList.add(new Main_item4("인덱스2번 3째리뷰"));
+                break;
+            case 3:
+                getMyList=new ArrayList<>();
+                getMyList.add(new Main_item4("인덱스3번 첫째리뷰"));
+                getMyList.add(new Main_item4("인덱스3번 2째리뷰"));
+                getMyList.add(new Main_item4("인덱스3번 3째리뷰"));
+                break;
+        }
+        
+        
+        
 
-        getMyList = new ArrayList<>();
-        getMyList.add(new Main_item4("리뷰입니다1"));
-        getMyList.add(new Main_item4("리뷰입니다2"));
-        getMyList.add(new Main_item4("리뷰입니다3"));
-        getMyList.add(new Main_item4("리뷰입니다4"));
-        getMyList.add(new Main_item4("리뷰입니다5"));
-        getMyList.add(new Main_item4("리뷰입니다6"));
-        getMyList.add(new Main_item4("리뷰입니다7"));
-        getMyList.add(new Main_item4("리뷰입니다8"));
-        getMyList.add(new Main_item4("리뷰입니다9"));
+//        getMyList = new ArrayList<>();
+//        getMyList.add(new Main_item4("리뷰입니다1"));
+//        getMyList.add(new Main_item4("리뷰입니다2"));
+//        getMyList.add(new Main_item4("리뷰입니다3"));
+//        getMyList.add(new Main_item4("리뷰입니다4"));
+//        getMyList.add(new Main_item4("리뷰입니다5"));
+//        getMyList.add(new Main_item4("리뷰입니다6"));
+//        getMyList.add(new Main_item4("리뷰입니다7"));
+//        getMyList.add(new Main_item4("리뷰입니다8"));
+//        getMyList.add(new Main_item4("리뷰입니다9"));
 
 
         adepter = new Local_GuideRecyclerAdepter(getMyList , this);
