@@ -18,9 +18,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Project_Trip">
-        <activity android:name=".fragment_file.dkssudkgptu.KyeongGi_do"></activity>
-        <activity android:name=".fragment_file.dkssudkgptu.Seoul"></activity>
+        android:theme="@style/Theme.Project_Trip"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".fragment_file.Local_SelectedActivity"></activity>
+        <activity android:name=".fragment_file.dkssudkgptu.KyeongGi_do" />
+        <activity android:name=".fragment_file.dkssudkgptu.Seoul" />
         <activity android:name=".fragment_file.Show_LocalActivity" />
         <activity android:name=".fragment_file.NavigationActivity" />
         <activity android:name=".fragment_file.MapsActivity" />

@@ -75,11 +75,11 @@ public class MainActivity extends AppCompatActivity {
 
 
        //api 내용 받아오기 도시와 군구, 네임태그는 필요하신대로 수정 및 변수를 넣어 이용하셔도 됩니다.
-        val = g.apiGetter("서울특별시","종로구");
-        tour = c.apiCutter(val, "EPreSimpleDesc");
-
-        val2 = g.apiGetterName("서울특별시","종로구","경복궁");
-        tourimpor = c.apiCutter(val2, "EPreSimpleDesc");
+//        val = g.apiGetter("서울특별시","종로구");
+//        tour = c.apiCutter(val, "EPreSimpleDesc");
+//
+//        val2 = g.apiGetterName("서울특별시","종로구","경복궁");
+//        tourimpor = c.apiCutter(val2, "EPreSimpleDesc");
 
        //
 

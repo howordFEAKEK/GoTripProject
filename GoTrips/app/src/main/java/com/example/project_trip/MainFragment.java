@@ -1,4 +1,4 @@
-package com.example.project_trip.fragment_file;
+package com.example.project_trip;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,14 +8,20 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.project_trip.R;
+import com.example.project_trip.fragment_file.Local_SelectedActivity;
+import com.example.project_trip.fragment_file.Main_item;
+import com.example.project_trip.fragment_file.Main_item_from_show_local;
+import com.example.project_trip.fragment_file.RecyclerViewAdapter;
+import com.example.project_trip.fragment_file.RecyclerViewAdapter_from_local_guide;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,13 +34,21 @@ public class MainFragment extends Fragment {
     RecyclerView marylee , marylee2 , marylee3;
     RecyclerViewAdapter rcvAd;
     RecyclerViewAdapter_from_local_guide rcvAd3;
-    List<Main_item_from_show_local> getMyList;
+    ArrayList<Main_item_from_show_local> getMyList;
     List<Main_item> getMyList1 , getMyList2;
 
-    TextView txt;
+    TextView txt , tv_local_selected;
+    String test1 , test2;
+    Getter getter =new Getter();
+    Cutter cutter = new Cutter();
+
+
+
     public MainFragment() {
         // Required empty public constructor
     }
+
+
 
 
 
@@ -43,27 +57,39 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         ViewGroup vv = (ViewGroup) inflater.inflate(R.layout.fragment_main, container, false);
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
 
-        // 관광지 리스트
-        
-        marylee = (RecyclerView) vv.findViewById(R.id.recycler_view);
-        rcvAd3 = new RecyclerViewAdapter_from_local_guide(getContext(), getMyList);
-        marylee.setLayoutManager(new LinearLayoutManager(getActivity()));
-        marylee.setAdapter(rcvAd3);
 
-        
+
         // 위치 선택 버튼
 
-        txt = vv.findViewById(R.id.local_setting);
-
-        txt.setOnClickListener(new View.OnClickListener() {
+        tv_local_selected = vv.findViewById(R.id.title_tv_mainfragment);
+        tv_local_selected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity() , HomeActivity.class);
-                getActivity().startActivity(intent);
+                Intent intent = new Intent(getActivity() , Local_SelectedActivity.class);
+                startActivityForResult(intent , 0);
             }
         });
+
+
+
+        // 관광지 리스트
+        marylee = (RecyclerView) vv.findViewById(R.id.recycler_view);
+
+
+
+//        txt.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(getActivity() , HomeActivity.class);
+//                getActivity().startActivity(intent);
+//            }
+//        });
 
 
         // 월간 리뷰
@@ -90,6 +116,45 @@ public class MainFragment extends Fragment {
         return vv;
 
     }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+        String name = data.getStringExtra("name");
+        String name2 = data.getStringExtra("data_name2");
+        String name3 = name.concat(name2);
+
+        tv_local_selected.setText(name +" " + name2);
+
+
+        if(tv_local_selected.getText().toString().equals(name +" " + name2))  {
+
+            try {
+                test1 = getter.apiGetter(name, name2);
+
+                test2 = cutter.apiCutter(test1, "BResNm");
+
+                String str = test2;
+                String[] target = str.split("\n");
+                getMyList = new ArrayList<>();
+                for(int i = 0; i < target.length; i++){
+                    getMyList.add(new Main_item_from_show_local(target[i]));
+                }
+
+
+                rcvAd3 = new RecyclerViewAdapter_from_local_guide(getContext(), getMyList);
+                marylee.setLayoutManager(new LinearLayoutManager(getActivity()));
+                marylee.setAdapter(rcvAd3);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+    }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -114,22 +179,10 @@ public class MainFragment extends Fragment {
 
 
 
-        getMyList = new ArrayList<>();
-        getMyList.add(new Main_item_from_show_local("수원 화성"));
-        getMyList.add(new Main_item_from_show_local("독립 박물관"));
-        getMyList.add(new Main_item_from_show_local("해인사"));
-        getMyList.add(new Main_item_from_show_local("아산 박물관"));
-        getMyList.add(new Main_item_from_show_local("천안 장군 박물관"));
-        getMyList.add(new Main_item_from_show_local("천안 미술관"));
-        getMyList.add(new Main_item_from_show_local("충북 역사 박물관"));
-        getMyList.add(new Main_item_from_show_local("산꼭대기 절"));
-        getMyList.add(new Main_item_from_show_local("근현대 박물관"));
-        getMyList.add(new Main_item_from_show_local("유적지"));
-        getMyList.add(new Main_item_from_show_local("이순신 장군 동상"));
-        getMyList.add(new Main_item_from_show_local("조선 박물관"));
-
 
     }
+
+
 
 
 }

@@ -20,7 +20,7 @@ public class Cutter {
 
         while (matcher.find()) {  // 일치하는 게 있다면
             System.out.println("ok");
-            val += matcher.group(1)+"\n\n";
+            val += matcher.group(1)+"\n";
             if(matcher.group(1) ==  null)
                 break;
         }

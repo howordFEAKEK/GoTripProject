@@ -5,10 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragment_file.LocalFragment"
+    tools:context=".LocalFragment"
     android:background="#FFE4E1"
     >
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title_tv_mainfragment"
+            android:text="위치"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:layout_marginTop="15dp"
+            />
+
+
+
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
 

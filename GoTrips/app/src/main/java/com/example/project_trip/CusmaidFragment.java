@@ -1,4 +1,4 @@
-package com.example.project_trip.fragment_file;
+package com.example.project_trip;
 
 import android.os.Bundle;
 
@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.project_trip.R;
+import com.example.project_trip.fragment_file.Main_item_from_show_local;
+import com.example.project_trip.fragment_file.RecyclerViewAdapter_from_local_guide;
 
 import org.w3c.dom.Text;
 

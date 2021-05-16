@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragment_file.CusmaidFragment"
+    tools:context=".CusmaidFragment"
 
     android:id="@+id/ly_2"
     android:background="#FFE4E1"
