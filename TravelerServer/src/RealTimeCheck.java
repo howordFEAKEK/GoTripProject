@@ -20,11 +20,13 @@ public class RealTimeCheck extends Thread{
 	
 	
 	// 인기 차트 알고리즘 (유입량을 받아와야 함)
-	public void popChartAlgorism(long infrow) { // 유입량이 없으면 진행 안 함
+	public void popChartAlgorism(long preTi, long nowTi, long infrow) { // 유입량이 없으면 진행 안 함
 		List<String> changeTour = new ArrayList<>();
 		long prevtime = 0; // 이전 시간
 		long nowtime = 0; // 최근 시간
 		long infrw = 0; // 전체 유입량
+		prevtime = preTi; // 이전 시간
+		nowtime = nowTi; // 현재 시간(최근 시간)
 		infrw = infrow; // 전체 유입량
 		
 		tour.resetPop(); // 인기 점수 초기화
@@ -79,13 +81,15 @@ public class RealTimeCheck extends Thread{
 	
 	
 	// 리뷰 차트 알고리즘
-	public void revChartAlgorism() { //
+	public void revChartAlgorism(long preTi, long nowTi) { //
 		SimpleDateFormat caltype = new SimpleDateFormat("yyyy.MM.dd"); // 날짜 형태 지정
 		Calendar cal = Calendar.getInstance(Locale.KOREA); // 캘린더 선언
 		
 		// 받아와야 하는 값 
 		long prevtime = 0; // 이전 시간
 		long nowtime = 0; // 최근 시간
+		prevtime = preTi; // 이전 시간
+		nowtime = nowTi; // 현재 시간(최근 시간)
 		
 		// 주간, 월간 계산할 때, 필요한 변수들
 		long prev = 0; // 이전 시간 계산용
@@ -246,10 +250,10 @@ public class RealTimeCheck extends Thread{
 					//infrow.infrowSave (nowtime, waitTime, infwAmount); // (현재시간, 대기시간, 유입량) 필요
 					
 					//인기 차트 알고리즘 동작하기
-					//realCheck.popChartAlgorism(infwAmount); // (유입량) 필요
+					//realCheck.popChartAlgorism(prevtime, nowtime, infwAmount); // (유입량) 필요
 					
 					//리뷰 차트 알고리즘 동작하기
-					//realCheck.revChartAlgorism();
+					//realCheck.revChartAlgorism(prevtime, nowtime);
 					
 				}
 			}else { // 30분 지나면 진행
@@ -259,10 +263,10 @@ public class RealTimeCheck extends Thread{
 					//infrow.infrowSave (nowtime, waitTime, infwAmount); // (현재시간, 대기시간, 유입량) 필요
 					
 					//인기 차트 알고리즘 동작하기
-					//realCheck.popChartAlgorism(infwAmount); // (유입량) 필요
+					//realCheck.popChartAlgorism(prevtime, nowtime, infwAmount); // (유입량) 필요
 					
 					//리뷰 차트 알고리즘 동작하기
-					//realCheck.revChartAlgorism();
+					//realCheck.revChartAlgorism(prevtime, nowtime);
 					
 				}else { // 유입량이 0이면 진행
 					//현재 유입량 기록 및 저장하기
