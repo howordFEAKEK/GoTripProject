@@ -1,9 +1,12 @@
 import java.awt.desktop.SystemEventListener;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import oracle.net.aso.i;
 
@@ -77,17 +80,73 @@ public class RealTimeCheck extends Thread{
 	
 	// 리뷰 차트 알고리즘
 	public void revChartAlgorism() { //
+		SimpleDateFormat caltype = new SimpleDateFormat("yyyy.MM.dd"); // 날짜 형태 지정
+		Calendar cal = Calendar.getInstance(Locale.KOREA); // 캘린더 선언
+		
+		// 받아와야 하는 값 
 		long prevtime = 0; // 이전 시간
 		long nowtime = 0; // 최근 시간
+		
+		// 주간, 월간 계산할 때, 필요한 변수들
+		long prev = 0; // 이전 시간 계산용
+		long nowv = 0; // 최근 시간 계산용
+		long lwkdate = 0; // 한 주의 시작일(이전)
+		long lmtdate = 0; // 한 달의 시작일(이전)
+		long wkdate = 0; // 한 주의 시작일(최근)
+		long mtdate = 0; // 한 달의 시작일(최근)
+		Date d1 = new Date(); // 이전 시간
+		Date d2 = new Date(); // 최근 시간
+		String d1str = null; // 이전 시간
+		String d2str = null; // 최근 시간
+		
+		
+		//--------------------------- 날짜 처리 -----------------------------------//
+		
+		// 밀리 세컨드 단위로 맞춰주기
+		prev = prevtime * 1000; // 이전 시간
+		nowv = nowtime * 1000; // 최근 시간
+		
+		//숫자를 날짜 형식으로 바꾸기
+		d1.setTime(prev); // 이전
+		d2.setTime(nowv); // 최근
+		
+		//이전 날짜가 속한 주차 구하기
+		cal.setTime(d1);
+		cal.add(Calendar.DATE, 1 - cal.get(Calendar.DAY_OF_WEEK));
+		lwkdate = cal.getTimeInMillis()/1000; // 이전 주 시작일
+		
+		//이전 날짜가 속한 달 구하기
+		cal.setTime(d1);
+		cal.add(Calendar.DATE, 1 - cal.get(Calendar.DAY_OF_MONTH));
+		lmtdate = cal.getTimeInMillis()/1000; // 이전 달 시작일
+		
+		//최근 날짜가 속한 주차 구하기
+		cal.setTime(d2);
+		cal.add(Calendar.DATE, 1 - cal.get(Calendar.DAY_OF_WEEK));
+		wkdate = cal.getTimeInMillis()/1000; // 최근 주 시작일
+				
+		//최근 날짜가 속한 달 구하기
+		cal.setTime(d2);
+		cal.add(Calendar.DATE, 1 - cal.get(Calendar.DAY_OF_MONTH));
+		mtdate = cal.getTimeInMillis()/1000; // 최근 달 시작일
+		
+		//--------------------------- 날짜 처리 -----------------------------------//
+		
+		// 이전 주와 최근 주가 다르면 진행
+		if(lwkdate != wkdate) {
+			//모든 리뷰의 주간 점수 초기화
+		}
+		
+		// 이전 달과 최근 달이 다르면 진행
+		if(lmtdate != mtdate) {
+			//모든 리뷰의 월간 점수 초기화
+		}
 		
 		rev.changeReview(prevtime, nowtime); // 변동 리뷰 조회
 		
 		for(int i = 0; i < rev.chRevs.size(); i ++) {
 			String name = rev.chRevs.get(i).writer; // 작성자
 			long wrdate = rev.chRevs.get(i).date; // 작성일자
-			
-			long wkdate = 0; // 한 주의 시작일
-			long mtdate = 0; // 한 달의 시작일
 			
 			double likePoint = 0; // 상관 점수
 			
