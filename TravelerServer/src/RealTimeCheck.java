@@ -20,12 +20,14 @@ public class RealTimeCheck extends Thread{
 	
 	
 	// 인기 차트 알고리즘 (유입량을 받아와야 함)
-	public void popChartAlgorism(long infrow) { // 유입량이 없으면 진행 안 함
+	public void popChartAlgorism(long prev, long nowv, long infrow) { // 유입량이 없으면 진행 안 함
 		List<String> changeTour = new ArrayList<>();
 		long prevtime = 0; // 이전 시간
 		long nowtime = 0; // 최근 시간
 		long infrw = 0; // 전체 유입량
 		infrw = infrow; // 전체 유입량
+		prevtime = prev;
+		nowtime = nowv;
 		
 		tour.resetPop(); // 인기 점수 초기화
 		
@@ -79,13 +81,15 @@ public class RealTimeCheck extends Thread{
 	
 	
 	// 리뷰 차트 알고리즘
-	public void revChartAlgorism() { //
+	public void revChartAlgorism(long prvTi, long nowTi) { //
 		SimpleDateFormat caltype = new SimpleDateFormat("yyyy.MM.dd"); // 날짜 형태 지정
 		Calendar cal = Calendar.getInstance(Locale.KOREA); // 캘린더 선언
 		
 		// 받아와야 하는 값 
 		long prevtime = 0; // 이전 시간
 		long nowtime = 0; // 최근 시간
+		prevtime = prvTi;
+		nowtime = nowTi;
 		
 		// 주간, 월간 계산할 때, 필요한 변수들
 		long prev = 0; // 이전 시간 계산용
@@ -94,10 +98,8 @@ public class RealTimeCheck extends Thread{
 		long lmtdate = 0; // 한 달의 시작일(이전)
 		long wkdate = 0; // 한 주의 시작일(최근)
 		long mtdate = 0; // 한 달의 시작일(최근)
-		Date d1 = new Date(); // 이전 시간
-		Date d2 = new Date(); // 최근 시간
-		String d1str = null; // 이전 시간
-		String d2str = null; // 최근 시간
+		Date d1 = new Date(); // 이전 시간 (날짜 형식)
+		Date d2 = new Date(); // 최근 시간 (날짜 형식)
 		
 		
 		//--------------------------- 날짜 처리 -----------------------------------//
@@ -135,11 +137,13 @@ public class RealTimeCheck extends Thread{
 		// 이전 주와 최근 주가 다르면 진행
 		if(lwkdate != wkdate) {
 			//모든 리뷰의 주간 점수 초기화
+			rev.resetWeek();
 		}
 		
 		// 이전 달과 최근 달이 다르면 진행
 		if(lmtdate != mtdate) {
 			//모든 리뷰의 월간 점수 초기화
+			rev.resetMonth();
 		}
 		
 		rev.changeReview(prevtime, nowtime); // 변동 리뷰 조회
