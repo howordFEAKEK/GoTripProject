@@ -251,7 +251,7 @@ public class ReView {
 		}
 	}
 	
-	// 좋아요, 싫어요 확인
+	// 좋아요, 싫어요 확인 (통과 O)
 	public double getLikePoint(String name, long wrdate) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -272,11 +272,8 @@ public class ReView {
 	            rs = pstmt.executeQuery();
 	            
 	            if (rs.next()) {
-	            	System.out.println("좋아요, 싫어요");
-					like = rs.getDouble(1);
-					dislike = rs.getDouble(2);
-					System.out.println(rs.getLong(1));
-					System.out.println(dislike);
+					like = rs.getLong(1);
+					dislike = rs.getLong(2);
 				}
 	 
 	        } catch (SQLException e) {
@@ -410,142 +407,143 @@ public class ReView {
 	}
 	
 	// 리뷰 차트 조회(주간)
-		public void lookWeekRevChart() {
-			revChart.clear();
-			Connection con = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			String sql = "SELECT WRITER, WRITE_DATE, TITLE FROM " + 
+	public void lookWeekRevChart() {
+		revChart.clear();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT WRITER, WRITE_DATE, TITLE FROM " + 
 					"(SELECT WRITER, WRITE_DATE, TITLE, WEEKLY_SCORE " + 
 					"FROM REVIEW ORDER BY WEEKLY_SCORE DESC) WHERE ROWNUM <= 10";
-			ReviewCH result = null;
+		ReviewCH result = null;
+		try {
+			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
+			System.out.println("풀 빌려오기");
 			try {
-				con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
-				System.out.println("풀 빌려오기");
-				try {
-		            pstmt = con.prepareStatement(sql); // SQL 해석
+	            pstmt = con.prepareStatement(sql); // SQL 해석
 		            rs = pstmt.executeQuery();
-		            
-		            while(rs.next()) {
-		            	result = new ReviewCH();
-		            	result.writer = rs.getString(1);
-		            	result.date = rs.getLong(2);
-		            	result.title = rs.getString(3);
+	            
+	            while(rs.next()) {
+	            	result = new ReviewCH();
+	            	result.writer = rs.getString(1);
+	            	result.date = rs.getLong(2);
+	            	result.title = rs.getString(3);
 		            	
-		            	revChart.add(result);
-		            }
+	            	revChart.add(result);
+	            }
 		 
-		        } catch (SQLException e) {
-		            e.printStackTrace();
-		        }finally {
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally {
 		        	
-		        	if (rs != null) {
-		        		rs.close();
-					}
-					pstmt.close();
-					con.close();
+	        	if (rs != null) {
+	        		rs.close();
 				}
-			}catch (SQLException e) {
-				e.printStackTrace();
+				pstmt.close();
+				con.close();
 			}
+		}catch (SQLException e) {
+			e.printStackTrace();
 		}
-		
+	}
+	
+	// 리뷰 차트 조회 (월간)
 		// 리뷰 차트 조회(월간)
-		public void lookMonthRevChart() {
-			revChart.clear();
-			Connection con = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			String sql = "SELECT WRITER, WRITE_DATE, TITLE FROM " + 
+	public void lookMonthRevChart() {
+		revChart.clear();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT WRITER, WRITE_DATE, TITLE FROM " + 
 					"(SELECT WRITER, WRITE_DATE, TITLE, MONTHLY_SCORE " + 
 					"FROM REVIEW ORDER BY WEEKLY_SCORE DESC) WHERE ROWNUM <= 10";
-			ReviewCH result = null;
+		ReviewCH result = null;
+		try {
+			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
+			System.out.println("풀 빌려오기");
 			try {
-				con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
-				System.out.println("풀 빌려오기");
-				try {
-		            pstmt = con.prepareStatement(sql); // SQL 해석
-		            rs = pstmt.executeQuery();
-		            
-		            while(rs.next()) {
-		            	result = new ReviewCH();
-		            	result.writer = rs.getString(1);
-		            	result.date = rs.getLong(2);
-		            	result.title = rs.getString(3);
-		            	
-		            	revChart.add(result);
-		            }
+	            pstmt = con.prepareStatement(sql); // SQL 해석
+	            rs = pstmt.executeQuery();
+	            
+	            while(rs.next()) {
+	            	result = new ReviewCH();
+	            	result.writer = rs.getString(1);
+	            	result.date = rs.getLong(2);
+	            	result.title = rs.getString(3);
+	            	
+	            	revChart.add(result);
+	            }
 		 
-		        } catch (SQLException e) {
-		            e.printStackTrace();
-		        }finally {
-		        	
-		        	if (rs != null) {
-		        		rs.close();
-					}
-					pstmt.close();
-					con.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally {
+	        	
+	        	if (rs != null) {
+	        		rs.close();
 				}
-			}catch (SQLException e) {
-				e.printStackTrace();
+				pstmt.close();
+				con.close();
 			}
+		}catch (SQLException e) {
+			e.printStackTrace();
 		}
+	}
 	
-		//주간 점수 초기화
-		public void resetWeek() {
-			Connection con = null;
-			PreparedStatement pstmt = null;
-			String sql = "UPDATE REVIEW SET WEEKLY_SCORE = 0";
+	//주간 점수 초기화 (통과 O)
+	public void resetWeek() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE REVIEW SET WEEKLY_SCORE = 0";
+		try {
+			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
+			System.out.println("풀 빌려오기");
 			try {
-				con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
-				System.out.println("풀 빌려오기");
-				try {
-		            pstmt = con.prepareStatement(sql); // SQL 해석
-		 
-		            if (pstmt.executeUpdate() == 1) {
-		                System.out.println("주간 초기화 성공");
-		            } else {
-		                System.out.println("주간 초기화 실패");
-		            }
-		 
-		        } catch (SQLException e) {
-		            e.printStackTrace();
-		        }finally {
-					pstmt.close();
-					con.close();
-				}
-			}catch (SQLException e) {
-				e.printStackTrace();
+	            pstmt = con.prepareStatement(sql); // SQL 해석
+	 
+	            if (pstmt.executeUpdate() == 1) {
+	                System.out.println("주간 초기화 성공");
+	            } else {
+	                System.out.println("주간 초기화 실패");
+	            }
+	 
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally {
+				pstmt.close();
+				con.close();
 			}
+		}catch (SQLException e) {
+			e.printStackTrace();
 		}
+	}
 	
-		//월간 점수 초기화
-		public void resetMonth() {
-			Connection con = null;
-			PreparedStatement pstmt = null;
-			String sql = "UPDATE REVIEW SET MONTHLY_SCORE = 0";
+	//월간 점수 초기화 (통과 O)
+	public void resetMonth() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE REVIEW SET MONTHLY_SCORE = 0";
+		try {
+			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
+			System.out.println("풀 빌려오기");
 			try {
-				con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
-				System.out.println("풀 빌려오기");
-				try {
-		            pstmt = con.prepareStatement(sql); // SQL 해석
-		 
-		            if (pstmt.executeUpdate() == 1) {
-		                System.out.println("주간 초기화 성공");
-		            } else {
-		                System.out.println("주간 초기화 실패");
-		            }
-		 
-		        } catch (SQLException e) {
-		            e.printStackTrace();
-		        }finally {
-					pstmt.close();
-					con.close();
-				}
-			}catch (SQLException e) {
-				e.printStackTrace();
+	            pstmt = con.prepareStatement(sql); // SQL 해석
+	 
+	            if (pstmt.executeUpdate() == 1) {
+	                System.out.println("월간 초기화 성공");
+	            } else {
+	                System.out.println("월간 초기화 실패");
+	            }
+	 
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally {
+				pstmt.close();
+				con.close();
 			}
+		}catch (SQLException e) {
+			e.printStackTrace();
 		}
+	}
 	
 }
 

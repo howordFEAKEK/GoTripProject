@@ -177,7 +177,7 @@ public class Tourism {
 	
 	
 	//-------------------인기 차트 관련 SQL-------------------------//
-	// 인기 점수 초기화
+	// 인기 점수 초기화 (통과 O)
 	public void resetPop () {
 		Connection con = null;
 		PreparedStatement pstmt = null;

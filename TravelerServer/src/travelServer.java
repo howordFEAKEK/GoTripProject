@@ -84,6 +84,10 @@ public class travelServer extends Thread{
 		
 		System.out.println(rev.lookAttReview(name, 1609030813, 1609038350, 1609038354));
 		
+		//rev.resetWeek();
+		//rev.resetMonth();
+		tor.resetPop();
+		
 	}
 
 }
