@@ -24,7 +24,10 @@ public class Tourism {
 	            pstmt = con.prepareStatement(sql); // SQL 해석
 	            pstmt.setString(1, tourName);
 	            rs = pstmt.executeQuery();
-	            result = rs.getString(1);
+	            
+	            if(rs.next()) {
+	            	result = rs.getString(1);
+	            }
 	 
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -44,7 +47,7 @@ public class Tourism {
 	public void saveTour(String tourName, String location) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO TOUR_PLACE(TOUR_NAME, LOCATION_DATA) VALUES (?, ?);";
+		String sql = "INSERT INTO TOUR_PLACE(TOUR_NAME, LOCATION_DATA) VALUES (?, ?)";
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
 			System.out.println("풀 빌려오기");
@@ -74,7 +77,7 @@ public class Tourism {
 	public void saveTU(String tourName, String location) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO TOUR_VIEW(TU_NAME, LOC_DATA) VALUES ('관광지명', '위치정보')";
+		String sql = "INSERT INTO TOUR_VIEW(TU_NAME, LOC_DATA) VALUES (?, ?)";
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
 			System.out.println("풀 빌려오기");

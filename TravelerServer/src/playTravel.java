@@ -85,8 +85,9 @@ public class playTravel extends Thread{
 						
 						logtime = nowDate.getTime()/1000;
 						
-						att = nowDate.getTime() - preDate.getTime();
-						att = logtime/10000;
+						att = nowDate.getTime() - preDate.getTime(); // 마감시간 - 조회시간
+						
+						att = att/10000;
 						if(att > 30) {
 							att = 30;
 						}
@@ -149,6 +150,8 @@ public class playTravel extends Thread{
 					tourName = st.nextToken();
 					tourLoc = st.nextToken();
 					
+					System.out.println(tourName + " " + tourLoc);
+					
 					tourNN = tour.selectTour(tourName); // 관광지 목록에서 관광지명 검색
 					
 					if (tourNN == null) { //관광지가 없는 경우
@@ -170,8 +173,8 @@ public class playTravel extends Thread{
 						// 관광지에 대한 목록 조회
 						reView.selectReviewIndex(tourName);
 						
-						 //리스트가 null인 경우, 관광지에 리뷰 목록이 없는 경우 처리
-						if(reView.reviewLists == null) {
+						// 리스트가 비어있는지 확인
+						if(reView.reviewLists.isEmpty()) {
 							
 							//목록 없음 표시
 							String noMsg2 = null; // ---> 2번째 NOLIST

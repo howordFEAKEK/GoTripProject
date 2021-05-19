@@ -77,11 +77,12 @@ public class ReView {
 	
 	//리뷰 목록 조회
 	public void selectReviewIndex (String tourName) {
+		reviewLists.clear();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "SELECT WRITER, WRITE_DATE, TITLE FROM REVIEW " + 
-				"WHERE TOUR_NAME = '?' ORDER BY WEEKLY_SCORE DESC";
+				"WHERE TOUR_NAME = ? ORDER BY WEEKLY_SCORE DESC";
 		ReviewList result = null;
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
@@ -103,7 +104,10 @@ public class ReView {
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }finally {
-	        	rs.close();
+	        	
+	        	if (rs != null) {
+	        		rs.close();
+				}
 				pstmt.close();
 				con.close();
 			}
@@ -118,7 +122,7 @@ public class ReView {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "SELECT WRITER, WRITE_DATE, TITLE, CONTENT, GOOD_POINT, BAD_POINT, TOUR_NAME " + 
-				"FROM REVIEW WHERE WRITER = '?' AND WRITE_DATE = ?";
+				"FROM REVIEW WHERE WRITER = ? AND WRITE_DATE = ?";
 		String result = null;
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
@@ -209,7 +213,7 @@ public class ReView {
 	//------------------------ 리뷰 차트 알고리즘 부분 ---------------------------------//
 	// 변동 리뷰 확인
 	public void changeReview(long prevtime, long nowtime) {
-		chRevs = null;
+		chRevs.clear();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

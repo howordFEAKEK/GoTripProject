@@ -69,45 +69,6 @@ public class travelServer extends Thread{
 		
 		//real.start(); // 알고리즘 스레드 시작
 		
-		// 현재 일이 속한 주차 구하기 성공
-		SimpleDateFormat sample = new SimpleDateFormat("yyyy.MM.dd");
-		
-		// 현재 일이 속한 주차 구하기 성공
-		Calendar c = Calendar.getInstance();
-		c.set(Calendar.DAY_OF_WEEK,Calendar.SUNDAY);
-		System.out.println(sample.format(c.getTime()));
-		
-		// 특정 일이 속한 주차 구하기
-		String date = "2021.06.12";
-		Date d1 = new Date();
-		try {
-			d1 = sample.parse(date); // 문자를 날짜로
-		}catch (ParseException e) {}
-		Calendar cal = Calendar.getInstance(Locale.KOREA);
-		cal.setTime(d1);
-		cal.add(Calendar.DATE, 1 - cal.get(Calendar.DAY_OF_WEEK));
-		System.out.println(sample.format(cal.getTime()));
-		
-		// 특정 일이 속한 달 구하기
-		cal.setTime(d1);
-		cal.add(Calendar.DATE, 1 - cal.get(Calendar.DAY_OF_MONTH));
-		System.out.println(sample.format(cal.getTime()));
-		
-		// 문자, 숫자, 날짜 형태 변경하기
-		Date d2 = null;
-		try {
-			d2 = sample.parse(date); // 문자를 날짜로
-		}catch (ParseException e) {}
-		
-		long ldate = d2.getTime(); // 날짜를 숫자로
-		
-		Date dd = new Date(ldate); // 숫자를 날짜로
-		
-		String log = sample.format(ldate); // 숫자를 문자로
-		
-		System.out.println(log);
-		
-		
 		server.setSocket(); // 서버 시작
 	}
 
