@@ -406,7 +406,7 @@ public class ReView {
 		}
 	}
 	
-	// 리뷰 차트 조회(주간)
+	// 리뷰 차트 조회(주간) (통과 O)
 	public void lookWeekRevChart() {
 		revChart.clear();
 		Connection con = null;
@@ -447,7 +447,7 @@ public class ReView {
 		}
 	}
 	
-	// 리뷰 차트 조회 (월간)
+	// 리뷰 차트 조회 (월간) (통과 O)
 		// 리뷰 차트 조회(월간)
 	public void lookMonthRevChart() {
 		revChart.clear();
@@ -456,7 +456,7 @@ public class ReView {
 		ResultSet rs = null;
 		String sql = "SELECT WRITER, WRITE_DATE, TITLE FROM " + 
 					"(SELECT WRITER, WRITE_DATE, TITLE, MONTHLY_SCORE " + 
-					"FROM REVIEW ORDER BY WEEKLY_SCORE DESC) WHERE ROWNUM <= 10";
+					"FROM REVIEW ORDER BY MONTHLY_SCORE DESC) WHERE ROWNUM <= 10";
 		ReviewCH result = null;
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기

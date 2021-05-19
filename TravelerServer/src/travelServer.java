@@ -84,9 +84,20 @@ public class travelServer extends Thread{
 		
 		System.out.println(rev.lookAttReview(name, 1609030813, 1609038350, 1609038354));
 		
+		System.out.println("-----------주간 리뷰 차트 부분-----------------");
+		rev.lookWeekRevChart();
+		for(int i = 0 ; i < rev.revChart.size(); i ++) {
+			System.out.println(rev.revChart.get(i).writer + " " + rev.revChart.get(i).date + " " + rev.revChart.get(i).title);
+		}
+		System.out.println("-----------월간 리뷰 차트 부분-----------------");
+		rev.lookMonthRevChart();
+		for(int i = 0 ; i < rev.revChart.size(); i ++) {
+			System.out.println(rev.revChart.get(i).writer + " " + rev.revChart.get(i).date + " " + rev.revChart.get(i).title);
+		}
+		
 		//rev.resetWeek();
 		//rev.resetMonth();
-		tor.resetPop();
+		//tor.resetPop();
 		
 	}
 
