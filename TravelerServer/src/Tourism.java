@@ -8,6 +8,7 @@ public class Tourism {
 	//ResultSet rs = null; // 결과값을 저장하고 있음
 	
 	public List<String> changeTour = new ArrayList<String>(); // 변동 관광지
+	public List<PopChart> poplist = new ArrayList<>();
 	
 	//-------------------관광지 관련 SQL-------------------------//
 	// 관광지 유무 조회 (통과 O)
@@ -371,8 +372,9 @@ public class Tourism {
 		}
 	}
 	
-	// 인기 차트 조회 - 조회용 테이블에서 인기 차트 목록 가져오기
+	// 인기 차트 조회 - 조회용 테이블에서 인기 차트 목록 가져오기 (통과 O)
 	public void lookingPopChart () {
+		poplist.clear();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -386,11 +388,20 @@ public class Tourism {
 			try {
 	            pstmt = con.prepareStatement(sql); // SQL 해석
 	            rs = pstmt.executeQuery();
+	            
+	            while(rs.next()) {
+	            	PopChart pop = new PopChart();
+	            	pop.TUName = rs.getString(1);
+	            	pop.TUlocate = rs.getString(2);
+	            	poplist.add(pop);
+	            }
 	 
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }finally {
-	        	rs.close();
+	        	if (rs != null) {
+	        		rs.close();
+				}
 				pstmt.close();
 				con.close();
 			}

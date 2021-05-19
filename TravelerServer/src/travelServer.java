@@ -90,6 +90,13 @@ public class travelServer extends Thread{
 		//tor.updatePopChart();
 		
 		/*
+		tor.lookingPopChart();
+		for(int i = 0 ; i < tor.poplist.size(); i ++) {
+			System.out.println(tor.poplist.get(i).TUName + " " + tor.poplist.get(i).TUlocate);
+		}
+		*/
+		
+		/*
 		rev.changeReview(1609038350, 1609038354);
 		for(int i = 0 ; i < rev.chRevs.size(); i ++) {
 			System.out.println(rev.chRevs.get(i).writer + " " + rev.chRevs.get(i).date);
