@@ -24,10 +24,12 @@ public class RealTimeCheck extends Thread{
 		List<String> changeTour = new ArrayList<>();
 		long prevtime = 0; // 이전 시간
 		long nowtime = 0; // 최근 시간
-		long infrw = 0; // 전체 유입량
+		double infrw = 0; // 전체 유입량
 		infrw = infrow; // 전체 유입량
 		prevtime = prev;
 		nowtime = nowv;
+		
+		tour = new Tourism();
 		
 		tour.resetPop(); // 인기 점수 초기화
 		
@@ -45,15 +47,19 @@ public class RealTimeCheck extends Thread{
 			
 			// 관광지 조회수 확인 (하나씩)
 			looknum = tour.lookTour (tourName,  prevtime, nowtime);
+			System.out.println(looknum);
 			
 			// 관심점수 평균 계산 (하나씩)
 			attnum = tour.attAvgTour (tourName,  prevtime, nowtime);
+			System.out.println(attnum);
 			
 			// 조회수/유입량 = 백분율..(소수점 구현을 위해서)
 			persent = Math.round(looknum/infrw * 100) / 100.00;
+			System.out.println(looknum/infrw * 100);
 			
 			// 조회수/유입량의 백분율  * 관심평균
-			popScore = persent * 100 * attnum;
+			popScore = persent * 100 * attnum; // 소수점 제어
+			popScore = Math.round(popScore * 100) / 100.00;
 			
 			// 인기 점수 갱신 (하나씩)
 			tour.popScoreSetting (popScore, tourName);

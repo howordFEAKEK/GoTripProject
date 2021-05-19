@@ -330,9 +330,9 @@ public class Tourism {
 	            pstmt.setString(2, tourName);
 	 
 	            if (pstmt.executeUpdate() == 1) {
-	                System.out.println("인기 초기화 성공");
+	                System.out.println(tourName + " 인기 갱신 성공");
 	            } else {
-	                System.out.println("인기 초기화 실패");
+	                System.out.println("인기 갱신 실패");
 	            }
 	 
 	        } catch (SQLException e) {

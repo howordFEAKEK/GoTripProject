@@ -121,6 +121,14 @@ public class travelServer extends Thread{
 		//rev.resetMonth();
 		//tor.resetPop();
 		*/
+		
+		// 인기 차트 알고리즘 테스트
+		/*
+		int infwAmount = 0;
+		infwAmount = tor.logInflowNum(1609029233, 1609038353);
+		System.out.println(infwAmount);
+		real.popChartAlgorism(1609029233, 1609038353, infwAmount);
+		*/
 	}
 
 }
