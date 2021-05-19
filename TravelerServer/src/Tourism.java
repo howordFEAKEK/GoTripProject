@@ -7,7 +7,7 @@ public class Tourism {
 	//Statement stmt = null;
 	//ResultSet rs = null; // 결과값을 저장하고 있음
 	
-	public List<String> changeTour; // 변동 관광지
+	public List<String> changeTour = new ArrayList<String>(); // 변동 관광지
 	
 	//-------------------관광지 관련 SQL-------------------------//
 	// 관광지 유무 조회 (통과 O)
@@ -136,7 +136,7 @@ public class Tourism {
 		}
 	}
 	
-	// 관광지 로그 유입량 조회
+	// 관광지 로그 유입량 조회 (통과 O)
 	public int logInflowNum (long prevtime, long nowtime) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -205,9 +205,9 @@ public class Tourism {
 		}
 	}
 	
-	// 변동사항 있는 관광지 확인
+	// 변동사항 있는 관광지 확인 (통과 O)
 	public List<String> selectChangeTour (long prevtime, long nowtime) {
-		changeTour = new ArrayList<String>();
+		changeTour.clear();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -239,7 +239,7 @@ public class Tourism {
 		return changeTour;
 	}
 	
-	// 관광지 조회수 확인 (하나씩)
+	// 관광지 조회수 확인 (하나씩) (통과 O)
 	public long lookTour (String tourName, long prevtime, long nowtime) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -256,12 +256,16 @@ public class Tourism {
 	            pstmt.setLong(3, nowtime);
 	            rs = pstmt.executeQuery();
 	            
-	            result = rs.getInt(1);
+	            if (rs.next()) {
+	            	result = rs.getInt(1);
+				}
 	 
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }finally {
-	        	rs.close();
+	        	if(rs != null) {
+	        		rs.close();
+	        	}
 				pstmt.close();
 				con.close();
 			}
@@ -272,7 +276,7 @@ public class Tourism {
 		return result;
 	}
 	
-	// 관광지 관심 평균 계산 (하나씩)
+	// 관광지 관심 평균 계산 (하나씩) (통과 O)
 	public double attAvgTour (String tourName, long prevtime, long nowtime) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -292,12 +296,16 @@ public class Tourism {
 	            pstmt.setLong(3, nowtime);
 	            rs = pstmt.executeQuery();
 	            
-	            result = rs.getInt(1);
+	            if (rs.next()) {
+	            	result = rs.getDouble(1);
+				}
 	 
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }finally {
-	        	rs.close();
+	        	if (rs != null) {
+	        		rs.close();
+				}
 				pstmt.close();
 				con.close();
 			}
@@ -307,7 +315,7 @@ public class Tourism {
 		return result;
 	}
 	
-	// 인기점수 갱신 (하나씩)
+	// 인기점수 갱신 (하나씩) (통과 O)
 	public void popScoreSetting (double popScore, String tourName) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -337,7 +345,7 @@ public class Tourism {
 		}
 	}
 	
-	// 인기 차트 갱신 - 인기 차트 조회용 테이블에 등록
+	// 인기 차트 갱신 - 인기 차트 조회용 테이블에 등록 (통과 O)
 	public void updatePopChart () {
 		Connection con = null;
 		PreparedStatement pstmt = null;

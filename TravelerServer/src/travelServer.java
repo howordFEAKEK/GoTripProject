@@ -74,7 +74,22 @@ public class travelServer extends Thread{
 		// 각 알고리즘 테스트
 		ReView rev = new ReView();
 		Tourism tor = new Tourism();
-				
+		//System.out.println(tor.logInflowNum(1609029233, 1609029353));
+		/*
+		tor.selectChangeTour(1609029233, 1609029353);
+		for(int i = 0 ; i < tor.changeTour.size(); i ++) {
+			System.out.println(tor.changeTour.get(i));
+		}
+		*/
+		//System.out.println(tor.lookTour("이천박물관", 1609029233, 1609029353));
+		
+		//System.out.println(tor.attAvgTour("이천박물관", 1609029233, 1609029353));
+		
+		//tor.popScoreSetting(3.75, "이천박물관");
+		
+		//tor.updatePopChart();
+		
+		/*
 		rev.changeReview(1609038350, 1609038354);
 		for(int i = 0 ; i < rev.chRevs.size(); i ++) {
 			System.out.println(rev.chRevs.get(i).writer + " " + rev.chRevs.get(i).date);
@@ -98,7 +113,7 @@ public class travelServer extends Thread{
 		//rev.resetWeek();
 		//rev.resetMonth();
 		//tor.resetPop();
-		
+		*/
 	}
 
 }
