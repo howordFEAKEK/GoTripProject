@@ -7,7 +7,7 @@ public class ReView {
 	public List<RevChange> chRevs = new ArrayList<RevChange>();
 	public List<ReviewCH> revChart = new ArrayList<>(); // 리뷰 차트 보관용	
 	
-	//리뷰 저장
+	//리뷰 저장 (통과 O)
 	public void reviewSave (String ph, long writeTime, String title, String text, String tourName) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -41,7 +41,7 @@ public class ReView {
 		}
 	}
 	
-	//리뷰 로그 저장
+	//리뷰 로그 저장 (통과 O)
 	public void saveReviewLog (String ph, long logtime, long att, String writer, long writeTime) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -75,7 +75,7 @@ public class ReView {
 		}
 	}
 	
-	//리뷰 목록 조회
+	//리뷰 목록 조회 (통과 O)
 	public void selectReviewIndex (String tourName) {
 		reviewLists.clear();
 		Connection con = null;
@@ -116,7 +116,7 @@ public class ReView {
 		}
 	}
 	
-	//리뷰 조회
+	//리뷰 조회 (통과 O)
 	public String selectReview (String writer, long writeDate) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -214,7 +214,7 @@ public class ReView {
 	
 	
 	//------------------------ 리뷰 차트 알고리즘 부분 ---------------------------------//
-	// 변동 리뷰 확인
+	// 변동 리뷰 확인 (통과 O)
 	public void changeReview(long prevtime, long nowtime) {
 		chRevs.clear();
 		Connection con = null;
@@ -251,7 +251,7 @@ public class ReView {
 		}
 	}
 	
-	// 좋아요, 싫어요 확인
+	// 좋아요, 싫어요 확인 (통과 O)
 	public double getLikePoint(String name, long wrdate) {
 		Connection con = null;
 		PreparedStatement pstmt = null;

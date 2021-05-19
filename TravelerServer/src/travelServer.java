@@ -69,7 +69,20 @@ public class travelServer extends Thread{
 		
 		//real.start(); // 알고리즘 스레드 시작
 		
-		server.setSocket(); // 서버 시작
+		//server.setSocket(); // 서버 시작
+		
+		// 각 알고리즘 테스트
+		ReView rev = new ReView();
+		Tourism tor = new Tourism();
+				
+		rev.changeReview(1609038350, 1609038354);
+		for(int i = 0 ; i < rev.chRevs.size(); i ++) {
+			System.out.println(rev.chRevs.get(i).writer + " " + rev.chRevs.get(i).date);
+		}
+		System.out.println(rev.getLikePoint("CB76PI", 1609030813));
+		
+		
+		
 	}
 
 }

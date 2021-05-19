@@ -10,7 +10,7 @@ public class Tourism {
 	public List<String> changeTour; // 변동 관광지
 	
 	//-------------------관광지 관련 SQL-------------------------//
-	// 관광지 유무 조회
+	// 관광지 유무 조회 (통과 O)
 	public String selectTour(String tourName) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -43,7 +43,7 @@ public class Tourism {
 		return result;
 	}
 	
-	// 관광지를 목록에 저장
+	// 관광지를 목록에 저장 (통과 O)
 	public void saveTour(String tourName, String location) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -73,7 +73,7 @@ public class Tourism {
 		}
 	}
 	
-	// 조회용 테이블에 관광지 저장
+	// 조회용 테이블에 관광지 저장 (통과 O)
 	public void saveTU(String tourName, String location) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -104,7 +104,7 @@ public class Tourism {
 	}
 	
 	
-	// 로그 등록
+	// 로그 등록 (통과 O)
 	public void saveTourLog (String ph, long logtime, long att, String tourName) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
