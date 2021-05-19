@@ -5,7 +5,7 @@ import java.util.List;
 public class ReView {
 	public List<ReviewList> reviewLists = new ArrayList<ReviewList>();
 	public List<RevChange> chRevs = new ArrayList<RevChange>();
-	
+	public List<ReviewCH> revChart = new ArrayList<>(); // 리뷰 차트 보관용	
 	
 	//리뷰 저장
 	public void reviewSave (String ph, long writeTime, String title, String text, String tourName) {
@@ -258,8 +258,8 @@ public class ReView {
 		ResultSet rs = null;
 		String sql = "SELECT GOOD_POINT, BAD_POINT FROM REVIEW WHERE WRITER = ? AND WRITE_DATE = ?";
 		double result = 0;
-		int like = 0;
-		int dislike = 0;
+		double like = 0;
+		double dislike = 0;
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
 			System.out.println("풀 빌려오기");
@@ -289,6 +289,8 @@ public class ReView {
 		if (like == 0 && dislike == 0) {return 1;} // 좋아요, 싫어요... 0인 경우
 		if (like == 0) {return 0.1;} // 좋아요... 0인 경우
 		if (dislike == 0) {return 10;} // 싫어요... 0인 경우
+		if (like/dislike < 0.1) {return 0.1;}
+		if (like/dislike > 10) {return 10;}
 		
 		result = Math.round(like/dislike*100)/100.00; // 좋아요, 싫어요... 둘 다 값이 있는 경우
 		
@@ -395,23 +397,87 @@ public class ReView {
 		}
 	}
 	
-	// 리뷰 차트 조회
-	public void lookRevChart() {
+	// 리뷰 차트 조회(주간)
+		public void lookWeekRevChart() {
+			revChart.clear();
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = "SELECT WRITER, WRITE_DATE, TITLE FROM " + 
+					"(SELECT WRITER, WRITE_DATE, TITLE, WEEKLY_SCORE " + 
+					"FROM REVIEW ORDER BY WEEKLY_SCORE DESC) WHERE ROWNUM <= 10";
+			ReviewCH result = null;
+			try {
+				con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
+				System.out.println("풀 빌려오기");
+				try {
+		            pstmt = con.prepareStatement(sql); // SQL 해석
+		            rs = pstmt.executeQuery();
+		            
+		            while(rs.next()) {
+		            	result = new ReviewCH();
+		            	result.writer = rs.getString(1);
+		            	result.date = rs.getLong(2);
+		            	result.title = rs.getString(3);
+		            	
+		            	revChart.add(result);
+		            }
+		 
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		        }finally {
+		        	
+		        	if (rs != null) {
+		        		rs.close();
+					}
+					pstmt.close();
+					con.close();
+				}
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		// 리뷰 차트 조회(월간)
+		public void lookMonthRevChart() {
+			revChart.clear();
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = "SELECT WRITER, WRITE_DATE, TITLE FROM " + 
+					"(SELECT WRITER, WRITE_DATE, TITLE, MONTHLY_SCORE " + 
+					"FROM REVIEW ORDER BY WEEKLY_SCORE DESC) WHERE ROWNUM <= 10";
+			ReviewCH result = null;
+			try {
+				con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
+				System.out.println("풀 빌려오기");
+				try {
+		            pstmt = con.prepareStatement(sql); // SQL 해석
+		            rs = pstmt.executeQuery();
+		            
+		            while(rs.next()) {
+		            	result = new ReviewCH();
+		            	result.writer = rs.getString(1);
+		            	result.date = rs.getLong(2);
+		            	result.title = rs.getString(3);
+		            	
+		            	revChart.add(result);
+		            }
+		 
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		        }finally {
+		        	
+		        	if (rs != null) {
+		        		rs.close();
+					}
+					pstmt.close();
+					con.close();
+				}
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	
 	
 	
@@ -429,3 +495,9 @@ class RevChange {
 	public long date = 0; //작성일자
 }
 
+//리뷰 차트 담기용
+class ReviewCH {
+	public String writer = null; // 작성자
+	public long date = 0; //작성일자
+	public String title = null; //리뷰 제목
+}
