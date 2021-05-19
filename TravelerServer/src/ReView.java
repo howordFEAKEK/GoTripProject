@@ -133,8 +133,11 @@ public class ReView {
 	            pstmt.setLong(2, writeDate);
 	            rs = pstmt.executeQuery();
 	            
-	            result = "REVIEWCALL/" + rs.getString(1) +"$"+ rs.getLong(2) +"$"+ rs.getString(3) +"$"+
-	            rs.getString(4) +"$"+ rs.getLong(5) +"$"+ rs.getLong(6) +"$"+ rs.getString(7);
+	            if(rs.next()) {
+	            	System.out.println("리뷰 조회하기");
+	            	result = "REVIEWCALL/" + rs.getString(1) +"$"+ rs.getLong(2) +"$"+ rs.getString(3) +"$"+
+	        	            rs.getString(4) +"$"+ rs.getLong(5) +"$"+ rs.getLong(6) +"$"+ rs.getString(7);
+	            }
 	 
 	        } catch (SQLException e) {
 	            e.printStackTrace();

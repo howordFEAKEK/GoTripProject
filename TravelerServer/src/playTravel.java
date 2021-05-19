@@ -116,7 +116,7 @@ public class playTravel extends Thread{
 						writeday = wrDate.getTime()/1000;
 						
 						att = nowDate.getTime() - preDate.getTime();
-						att = logtime/10000;
+						att = att/10000;
 						if(att > 30) {
 							att = 30;
 						}
@@ -187,6 +187,8 @@ public class playTravel extends Thread{
 							
 						}else { // 리뷰 목록이 있으면 여기서 처리
 							String sendMsg = "REVIEWINDEX/";
+							
+							System.out.println(reView.reviewLists.size());
 							
 							// 메시지 작성하기
 							for(int i = 0 ; i < reView.reviewLists.size() ; i ++) {
