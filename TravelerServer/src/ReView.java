@@ -479,7 +479,61 @@ public class ReView {
 			}
 		}
 	
+		//주간 점수 초기화
+		public void resetWeek() {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			String sql = "UPDATE REVIEW SET WEEKLY_SCORE = 0";
+			try {
+				con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
+				System.out.println("풀 빌려오기");
+				try {
+		            pstmt = con.prepareStatement(sql); // SQL 해석
+		 
+		            if (pstmt.executeUpdate() == 1) {
+		                System.out.println("주간 초기화 성공");
+		            } else {
+		                System.out.println("주간 초기화 실패");
+		            }
+		 
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		        }finally {
+					pstmt.close();
+					con.close();
+				}
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	
+		//월간 점수 초기화
+		public void resetMonth() {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			String sql = "UPDATE REVIEW SET MONTHLY_SCORE = 0";
+			try {
+				con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
+				System.out.println("풀 빌려오기");
+				try {
+		            pstmt = con.prepareStatement(sql); // SQL 해석
+		 
+		            if (pstmt.executeUpdate() == 1) {
+		                System.out.println("주간 초기화 성공");
+		            } else {
+		                System.out.println("주간 초기화 실패");
+		            }
+		 
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		        }finally {
+					pstmt.close();
+					con.close();
+				}
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	
 }
 
