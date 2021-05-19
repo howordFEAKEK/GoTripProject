@@ -251,7 +251,7 @@ public class ReView {
 		}
 	}
 	
-	// 좋아요, 싫어요 확인 (통과 O)
+	// 좋아요, 싫어요 확인
 	public double getLikePoint(String name, long wrdate) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -263,15 +263,20 @@ public class ReView {
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
 			System.out.println("풀 빌려오기");
+			System.out.println(name);
+			System.out.println(wrdate);
 			try {
 	            pstmt = con.prepareStatement(sql); // SQL 해석
 	            pstmt.setString(1, name);
 	            pstmt.setLong(2, wrdate);
 	            rs = pstmt.executeQuery();
 	            
-	            while (rs.next()) {
-					like = rs.getInt(1);
-					dislike = rs.getInt(2);
+	            if (rs.next()) {
+	            	System.out.println("좋아요, 싫어요");
+					like = rs.getDouble(1);
+					dislike = rs.getDouble(2);
+					System.out.println(rs.getLong(1));
+					System.out.println(dislike);
 				}
 	 
 	        } catch (SQLException e) {
@@ -297,28 +302,35 @@ public class ReView {
 		return result;
 	}
 	
-	// 관심 조회수 확인 (하나씩)
-	public long lookAttReview(long prevtime, long nowtime) {
+	// 관심 조회수 확인 (하나씩)  (통과 O)
+	public long lookAttReview(String name, long date, long prevtime, long nowtime) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT COUNT(*) (SELECT REVIEW_LOG_NO FROM REVIEW_LOG WHERE WRITER = '작성자' AND WRITE_DATE = 작성일자 " + 
-				"AND REVIEW_ATT_POINT >= 2) WHERE REVIEW_LOG_NO BETWEEN ? AND ?";
+		String sql = "SELECT COUNT(*) FROM (SELECT REVIEW_LOG_NO FROM REVIEW_LOG WHERE WRITER = ? " + 
+				"AND WRITE_DATE = ? AND REVIEW_ATT_POINT >= 2) WHERE REVIEW_LOG_NO BETWEEN ? AND ?";
 		long result = 0;
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
 			System.out.println("풀 빌려오기");
 			try {
 	            pstmt = con.prepareStatement(sql); // SQL 해석
-	            pstmt.setLong(1, prevtime);
-	            pstmt.setLong(2, nowtime);
+	            pstmt.setString(1, name);
+	            pstmt.setLong(2, date);
+	            pstmt.setLong(3, prevtime);
+	            pstmt.setLong(4, nowtime);
 	            rs = pstmt.executeQuery();
-	            result = rs.getLong(1);
+	            if (rs.next()) {
+	            	System.out.println("동작 관심조회수");
+	            	result = rs.getLong(1);
+				}
 	 
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }finally {
-	        	rs.close();
+	        	if (rs != null) {
+	        		rs.close();
+				}
 				pstmt.close();
 				con.close();
 			}

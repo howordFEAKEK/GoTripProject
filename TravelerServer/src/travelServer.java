@@ -79,9 +79,10 @@ public class travelServer extends Thread{
 		for(int i = 0 ; i < rev.chRevs.size(); i ++) {
 			System.out.println(rev.chRevs.get(i).writer + " " + rev.chRevs.get(i).date);
 		}
-		System.out.println(rev.getLikePoint("CB76PI", 1609030813));
+		String name = "CB76PI";
+		System.out.println(rev.getLikePoint(name, 1609030813));
 		
-		
+		System.out.println(rev.lookAttReview(name, 1609030813, 1609038350, 1609038354));
 		
 	}
 

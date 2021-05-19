@@ -167,9 +167,9 @@ public class RealTimeCheck extends Thread{
 			// 좋아요, 싫어요  (비율에 따른 점수 좋아요/싫어요 값)
 			likePoint = rev.getLikePoint(name, wrdate);
 			
-			//해당 관광지의 관심 조회수 확인
-			attLook1 = rev.lookAttReview(wkdate, nowtime); // 주간
-			attLook2 = rev.lookAttReview(mtdate, nowtime); // 월간
+			//해당 리뷰의 관심 조회수 확인
+			attLook1 = rev.lookAttReview(name, wrdate, wkdate, nowtime); // 주간
+			attLook2 = rev.lookAttReview(name, wrdate, mtdate, nowtime); // 월간
 			
 			//관심 평균 계산
 			attNum1 = rev.attAvgReview(name, wrdate, wkdate, nowtime); // 주간
