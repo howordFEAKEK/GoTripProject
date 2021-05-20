@@ -152,7 +152,7 @@ public class ReView {
 		return result;
 	}
 	
-	//리뷰 좋아요
+	//리뷰 좋아요 (통과 O)
 	public void revLike (String writer, long writeDate) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -182,7 +182,7 @@ public class ReView {
 		}
 	}
 	
-	//리뷰 싫어요
+	//리뷰 싫어요 (통과 O)
 	public void rewBad (String writer, long writeDate) {
 		Connection con = null;
 		PreparedStatement pstmt = null;

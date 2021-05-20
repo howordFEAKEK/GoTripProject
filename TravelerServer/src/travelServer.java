@@ -69,11 +69,11 @@ public class travelServer extends Thread{
 		
 		//real.start(); // 알고리즘 스레드 시작
 		
-		//server.setSocket(); // 서버 시작
+		server.setSocket(); // 서버 시작
 		
 		// 각 알고리즘 테스트
-		ReView rev = new ReView();
-		Tourism tor = new Tourism();
+		//ReView rev = new ReView();
+		//Tourism tor = new Tourism();
 		//System.out.println(tor.logInflowNum(1609029233, 1609029353));
 		/*
 		tor.selectChangeTour(1609029233, 1609029353);
