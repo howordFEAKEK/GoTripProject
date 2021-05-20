@@ -4,7 +4,7 @@ import java.util.List;
 public class Infrow {
 	
 	
-	// 유입량 저장
+	// 유입량 저장 (통과 O)
 	public void infrowSave (long intime, long waitTime, long amount) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -35,14 +35,14 @@ public class Infrow {
 		}
 	}
 	
-	// 최근 유입량 조회
+	// 최근 유입량 조회 (통과 O)
 	public long lookInfrowGet () {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "SELECT WAITING_TIME, INFROW_AMOUNT " + 
 				"FROM (SELECT WAITING_TIME, INFROW_AMOUNT " + 
-				"FROM INFROW ORDER BY INFROW_DATE) WHERE ROWNUM <= 3";
+				"FROM INFROW ORDER BY INFROW_DATE DESC) WHERE ROWNUM <= 3";
 		long result = 0;
 		int set = 0;
 		try {
@@ -58,7 +58,7 @@ public class Infrow {
 	            }
 	            try {
 	            	result = result/set;
-	            }catch(ArithmeticException e) {
+	            }catch(Exception e) {
 	            	result = 0;
 	            }
 	 
@@ -75,7 +75,7 @@ public class Infrow {
 		return result;
 	}
 	
-	// 최근 로그번호 조회 (이전 로그번호가 됨)
+	// 최근 로그번호 조회 (이전 로그번호가 됨) (통과 O)
 	public long lastLogNum () {
 		Connection con = null;
 		PreparedStatement pstmt = null;

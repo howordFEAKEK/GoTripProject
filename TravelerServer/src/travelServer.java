@@ -76,6 +76,16 @@ public class travelServer extends Thread{
 		// 각 알고리즘 테스트
 		//ReView rev = new ReView();
 		//Tourism tor = new Tourism();
+		//Infrow inf = new Infrow();
+		
+		//inf.infrowSave(1609029233, 30, 0);
+		//inf.infrowSave(1609029353, 10, 131);
+		//inf.infrowSave(1609029413, 30, 100);
+		//inf.infrowSave(1609029513, 20, 160);
+		
+		//System.out.println(inf.lookInfrowGet());
+		
+		//System.out.println(inf.lastLogNum());
 		
 		//real.revChartAlgorism(1621470953, 1621471617);
 		
