@@ -299,7 +299,7 @@ public class ReView {
 		return result;
 	}
 	
-	// 관심 조회수 확인 (하나씩)  (통과 O)
+	// 관심 조회수 확인 (하나씩) (통과 O)
 	public long lookAttReview(String name, long date, long prevtime, long nowtime) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -338,7 +338,7 @@ public class ReView {
 		return result;
 	}
 	
-	// 관심 평균 계산 (하나씩)
+	// 관심 평균 계산 (하나씩) (통과 O)
 	public double attAvgReview(String writer, long date, long prevtime, long nowtime ) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -359,12 +359,16 @@ public class ReView {
 	            pstmt.setLong(4, nowtime);
 	            rs = pstmt.executeQuery();
 	            
-	            result = rs.getInt(1);
+	            if (rs.next()) {
+	            	result = rs.getDouble(1);
+				}
 	 
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }finally {
-	        	rs.close();
+	        	if (rs != null) {
+	        		rs.close();
+				}
 				pstmt.close();
 				con.close();
 			}
@@ -374,7 +378,7 @@ public class ReView {
 		return result;
 	}
 	
-	// 월간, 주간 점수 갱신 (하나씩)
+	// 월간, 주간 점수 갱신 (하나씩) (통과 O)
 	public void scoreSetting(double weeksc, double monthsc, String writer, long date) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
