@@ -18,7 +18,7 @@ public class playTravel extends Thread{
 	StringTokenizer st;
 	Socket sock;
 	
-	SimpleDateFormat sample = new SimpleDateFormat("YYYY.MM.DD HH:mm:ss");
+	SimpleDateFormat sample = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 	
 	public playTravel(Socket socket) {
 		sock = socket;
@@ -121,8 +121,6 @@ public class playTravel extends Thread{
 							att = 30;
 						}
 					}catch (ParseException e) { }
-					
-					System.out.println(ph + " " + logtime + " " + att + " " + tourName);
 					
 					tour.saveTourLog(ph, logtime, att, tourName); // 관광지 로그 저장
 					reView.saveReviewLog(ph, logtime, att, writer, writeday); // 리뷰 로그 저장

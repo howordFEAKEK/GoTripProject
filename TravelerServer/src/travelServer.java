@@ -71,6 +71,8 @@ public class travelServer extends Thread{
 		
 		server.setSocket(); // 서버 시작
 		
+		//1621470953000
+		
 		// 각 알고리즘 테스트
 		//ReView rev = new ReView();
 		//Tourism tor = new Tourism();

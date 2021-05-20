@@ -16,7 +16,7 @@ public class RealTimeCheck extends Thread{
 	ReView rev;
 	Infrow infrow;
 	
-	SimpleDateFormat sample = new SimpleDateFormat("YYYY.MM.DD HH:mm:ss");
+	SimpleDateFormat sample = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 	
 	
 	// 인기 차트 알고리즘 (유입량을 받아와야 함)
