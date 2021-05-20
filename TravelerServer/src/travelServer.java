@@ -69,17 +69,19 @@ public class travelServer extends Thread{
 		
 		//real.start(); // 알고리즘 스레드 시작
 		
-		//server.setSocket(); // 서버 시작
+		server.setSocket(); // 서버 시작
 		
 		//1621470953000
 		
 		// 각 알고리즘 테스트
-		ReView rev = new ReView();
-		Tourism tor = new Tourism();
+		//ReView rev = new ReView();
+		//Tourism tor = new Tourism();
 		
-		System.out.println(rev.attAvgReview("BT87AO", 1621386013, 1621470953, 1621471617));
+		//real.revChartAlgorism(1621470953, 1621471617);
 		
-		rev.scoreSetting(2.8, 3.5, "BT87AO", 1621386013);
+		//System.out.println(rev.attAvgReview("BT87AO", 1621386013, 1621470953, 1621471617));
+		
+		//rev.scoreSetting(2.8, 3.5, "BT87AO", 1621386013);
 		//System.out.println(tor.logInflowNum(1609029233, 1609029353));
 		/*
 		tor.selectChangeTour(1609029233, 1609029353);

@@ -29,7 +29,7 @@ public class RealTimeCheck extends Thread{
 		prevtime = prev;
 		nowtime = nowv;
 		
-		tour = new Tourism();
+		//tour = new Tourism(); // 알고리즘 테스트 시 임시 정의
 		
 		tour.resetPop(); // 인기 점수 초기화
 		
@@ -98,6 +98,8 @@ public class RealTimeCheck extends Thread{
 		nowtime = nowTi;
 		
 		// 주간, 월간 계산할 때, 필요한 변수들
+		String rePretime = null;
+		String reNowtime = null;
 		long prev = 0; // 이전 시간 계산용
 		long nowv = 0; // 최근 시간 계산용
 		long lwkdate = 0; // 한 주의 시작일(이전)
@@ -107,7 +109,7 @@ public class RealTimeCheck extends Thread{
 		Date d1 = new Date(); // 이전 시간 (날짜 형식)
 		Date d2 = new Date(); // 최근 시간 (날짜 형식)
 		
-		
+		//rev = new ReView(); // 알고리즘 테스트 시 임시 정의
 		//--------------------------- 날짜 처리 -----------------------------------//
 		
 		// 밀리 세컨드 단위로 맞춰주기
@@ -117,6 +119,15 @@ public class RealTimeCheck extends Thread{
 		//숫자를 날짜 형식으로 바꾸기
 		d1.setTime(prev); // 이전
 		d2.setTime(nowv); // 최근
+		
+		// 날짜 형식을 문자 형식으로 바꾸기
+		rePretime = caltype.format(d1);
+		reNowtime = caltype.format(d2);
+		
+		try {
+			d1 = caltype.parse(rePretime); // 문자를 날짜로
+			d2 = caltype.parse(reNowtime); // 문자를 날짜로
+		}catch (ParseException e) {}
 		
 		//이전 날짜가 속한 주차 구하기
 		cal.setTime(d1);
@@ -139,6 +150,7 @@ public class RealTimeCheck extends Thread{
 		mtdate = cal.getTimeInMillis()/1000; // 최근 달 시작일
 		
 		//--------------------------- 날짜 처리 -----------------------------------//
+		System.out.println(lwkdate + " " + wkdate);
 		
 		// 이전 주와 최근 주가 다르면 진행
 		if(lwkdate != wkdate) {
@@ -187,7 +199,7 @@ public class RealTimeCheck extends Thread{
 			
 			//월간 점수 계산 (상관점수 * 관심평균  * 관심조회수)
 			monthsc = attNum2 * attLook2 * likePoint;
-			monthsc = Math.round(weeksc * 100)/100.00;
+			monthsc = Math.round(monthsc * 100)/100.00;
 			
 			//월간, 주간 점수 갱신
 			rev.scoreSetting(weeksc, monthsc, name, wrdate);
