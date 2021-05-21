@@ -134,6 +134,8 @@ public class CusmaidFragment extends Fragment {
     }
 
     //sqlite 관련 부가코드 끝
+
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

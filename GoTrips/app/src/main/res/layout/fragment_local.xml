@@ -24,7 +24,14 @@
             android:layout_marginTop="15dp"
             />
 
-
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="위치 설정을 하면 관광지가 보입니다!"
+            android:textColor="#A1A0A0" />
 
 
     </LinearLayout>

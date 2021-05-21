@@ -119,11 +119,14 @@ public class MainActivity extends AppCompatActivity {
         adapter = new FragmentAdapter(fm, getLifecycle());
         pager2.setAdapter(adapter);
 
+
         tabLayout.addTab(tabLayout.newTab().setText("위치"));
         tabLayout.addTab(tabLayout.newTab().setText("메인"));
         tabLayout.addTab(tabLayout.newTab().setText("맞춤추천"));
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+
+
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 pager2.setCurrentItem(tab.getPosition());
@@ -143,9 +146,12 @@ public class MainActivity extends AppCompatActivity {
         pager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
+
                 tabLayout.selectTab(tabLayout.getTabAt(position));
             }
         });
+
+        pager2.setOffscreenPageLimit(3);
 
         // 소켓 통신 시도 코드
 

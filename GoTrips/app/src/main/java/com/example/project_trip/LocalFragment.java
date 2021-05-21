@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,8 +42,16 @@ public class LocalFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("checkMainFragment" , "LocalFragment onResume");
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Log.d("checkMainFragment" , "LocalFragment onCreateView");
         View vv = inflater.inflate(R.layout.fragment_local, container, false);
         marylee = (RecyclerView) vv.findViewById(R.id.Local_recyclerView);
 

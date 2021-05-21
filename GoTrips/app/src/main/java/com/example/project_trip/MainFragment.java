@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,12 +50,17 @@ public class MainFragment extends Fragment {
     }
 
 
-
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("checkMainFragment" , "MainFragment onResume");
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Log.d("checkMainFragment" , "MainFragment onCreateView");
 
         ViewGroup vv = (ViewGroup) inflater.inflate(R.layout.fragment_main, container, false);
         if (android.os.Build.VERSION.SDK_INT > 9) {
