@@ -24,8 +24,6 @@
   <component name="ChangeListManager">
     <list default="true" id="de215b88-5cf9-4dec-8e15-ba6da8343c08" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoTrips/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/GoTrips/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoTrips/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/GoTrips/app/src/main/AndroidManifest.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +41,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/GoTrips/app/src/main/res/values" />
+    <property name="last_opened_file_path" value="$USER_HOME$/AndroidStudioProjects/GoTripProject-master/GoTripProject-master/GoTrips" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -90,14 +88,14 @@
       <screen x="0" y="0" width="2492" height="1440" />
     </state>
     <state x="983" y="520" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2492.1440@0.0.2492.1440" timestamp="1620389911122" />
-    <state x="1027" y="475" key="FileChooserDialogImpl" timestamp="1620569185449">
+    <state x="1027" y="475" key="FileChooserDialogImpl" timestamp="1621677183249">
       <screen x="0" y="0" width="2492" height="1440" />
     </state>
     <state x="1054" y="462" key="FileChooserDialogImpl/-2560.0.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1617783550602" />
     <state x="1054" y="462" key="FileChooserDialogImpl/-3840.0.2560.1413/0.0.2560.1400@0.0.2560.1400" timestamp="1618331820275" />
     <state x="791" y="343" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1620414944560" />
     <state x="1025" y="475" key="FileChooserDialogImpl/0.0.2490.1440@0.0.2490.1440" timestamp="1617351949738" />
-    <state x="1027" y="475" key="FileChooserDialogImpl/0.0.2492.1440@0.0.2492.1440" timestamp="1620569185449" />
+    <state x="1027" y="475" key="FileChooserDialogImpl/0.0.2492.1440@0.0.2492.1440" timestamp="1621677183249" />
     <state x="103" y="294" key="SettingsEditor" timestamp="1620632471562">
       <screen x="0" y="0" width="2492" height="1440" />
     </state>

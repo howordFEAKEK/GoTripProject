@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.example.project_trip.R;
 
-public class Save_ReViewActivity extends AppCompatActivity {
+ class Save_ReViewActivity extends AppCompatActivity {
 
     // 리뷰작성 버튼을 클릭하면 나오는 엑티비티
 
