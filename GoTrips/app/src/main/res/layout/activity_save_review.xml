@@ -28,6 +28,7 @@
 
     >
         <EditText
+            android:id="@+id/save_review_edittitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="제목을 써보세요"
@@ -80,6 +81,7 @@
 
 
     <EditText
+        android:id="@+id/set_review_review"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="글을 써보세요"
