@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class Local_GuideRecyclerAdepter extends RecyclerView.Adapter<Local_GuideRecyclerAdepter.MyViewHodler> {
 
-    // 메인탭의 최상단에 있는 박물관 정보 리사이클뷰의 어댑터
+    // 박물관 클릭시 나오는 리뷰 리스트 어댑터
     
     private ArrayList<Main_item4> data;
     Context context;

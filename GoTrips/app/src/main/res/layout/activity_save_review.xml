@@ -42,6 +42,7 @@
 
 
         <LinearLayout
+            android:padding="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -50,18 +51,30 @@
 
             >
             <TextView
+                android:id="@+id/set_Review_guide"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="관광지명"
                 android:textSize="30dp"/>
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/set_Review_sido"
+                android:layout_marginRight="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="지역"
+                android:textSize="20dp"/>
+            <TextView
+                android:id="@+id/set_Review_gungu"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="지역"
                 android:textSize="20dp"/>
 
-
+        </LinearLayout>
         </LinearLayout>
 
 

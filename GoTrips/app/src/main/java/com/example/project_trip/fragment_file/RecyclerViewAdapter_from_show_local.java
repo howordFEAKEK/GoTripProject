@@ -55,7 +55,7 @@ public class RecyclerViewAdapter_from_show_local extends RecyclerView.Adapter<Re
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(mContext1 , Show_LocalActivity.class);
+                Intent intent = new Intent(mContext1 , Local_GuideActivity.class);
                 intent.putExtra("local_title" , temp.getLocal_title());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext1.startActivity(intent);

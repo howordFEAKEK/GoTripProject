@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.UiThread;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +20,7 @@ import com.example.project_trip.fragment_file.Local_SelectedActivity;
 import com.example.project_trip.fragment_file.Main_item_from_show_local;
 import com.example.project_trip.fragment_file.RecyclerViewAdapter_from_local_guide;
 import com.example.project_trip.fragment_file.RecyclerViewAdapter_from_show_local;
+import com.squareup.otto.Subscribe;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -71,23 +73,23 @@ public class LocalFragment extends Fragment {
         });
 
 
-
+        BusProvider.getInstance().register(this);   // 이벤트 버스
         return vv;
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    // 이벤트 버스 데이터 가져오기
+    @Subscribe
+    public void FinishLoad(PushEvent mPushEvent) {
+
+        String name11 = mPushEvent.getName3();
+
+        String name = mPushEvent.getName();
+        String name2 = mPushEvent.getName2();
+
+        tv_local_selected.setText(name11);
 
 
-        String name = data.getStringExtra("name");
-        String name2 = data.getStringExtra("data_name2");
-        String name3 = name.concat(name2);
-
-        tv_local_selected.setText(name +" " + name2);
-
-
-        if(tv_local_selected.getText().toString().equals(name +" " + name2))  {
+        if (tv_local_selected.getText().toString().equals(name + " " + name2)) {
 
             try {
                 test1 = getter.apiGetter(name, name2);
@@ -96,10 +98,10 @@ public class LocalFragment extends Fragment {
                 String str = test2;
                 String[] target = str.split("\n");
                 getMyList2 = new ArrayList<>();
-                for(int i = 0; i < target.length; i++){
+                for (int i = 0; i < target.length; i++) {
                     getMyList2.add(new Main_item_from_show_local(target[i]));
                 }
-                
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -110,8 +112,15 @@ public class LocalFragment extends Fragment {
 
         }
 
-    }
 
+    }//...이벤트 버스끝
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        BusProvider.getInstance().unregister(this);
+        Log.d("checkMainFragment" , "onDestroy");
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -119,23 +128,5 @@ public class LocalFragment extends Fragment {
 
 
     }
-
-
-//    ArrayList<Main_item2> getMyList() {
-//        ArrayList<Main_item2> main_items = new ArrayList<>();
-//
-//        Main_item2 mi = new Main_item2();
-//
-//        mi.setList("박물관주소내용");
-//        main_items.add(mi);
-//
-//        mi = new Main_item2();
-//        mi.setList("박물관2");
-//        main_items.add(mi);
-//
-//
-//        return main_items;
-//
-//    }
 
 }

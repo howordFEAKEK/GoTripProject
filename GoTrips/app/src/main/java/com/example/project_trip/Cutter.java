@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class Cutter {
 
-    String apiCutter(String imp, String cut){
+    public String apiCutter(String imp, String cut){
         Transfer t = new Transfer();
 
         String str = imp;

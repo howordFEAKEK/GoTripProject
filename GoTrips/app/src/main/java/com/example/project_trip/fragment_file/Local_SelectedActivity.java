@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.project_trip.BusProvider;
+import com.example.project_trip.PushEvent;
 import com.example.project_trip.R;
 
 public class Local_SelectedActivity extends AppCompatActivity {
@@ -304,16 +306,25 @@ public class Local_SelectedActivity extends AppCompatActivity {
 
             }
         });
+
+        // eventBus
+        // result
+
         btn_refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                rintent.putExtra("name" , spin1.getSelectedItem().toString());
-                rintent.putExtra("data_name2", spin2.getSelectedItem().toString());
+//                rintent.putExtra("name" , spin1.getSelectedItem().toString());
+//                rintent.putExtra("data_name2", spin2.getSelectedItem().toString());
+                String name1 = spin1.getSelectedItem().toString();  //스핀1값 시도 값 저장
+                String name2 = spin2.getSelectedItem().toString();  //스핀2값 군구 값 저장
+                String name3 = name1+" "+name2;                     // 합치기
                 textView.setText(spin1.getSelectedItem().toString());
-                setResult(0,rintent);
+//                setResult(0,rintent);
+                BusProvider.getInstance().post(new PushEvent(name1 , name2, name3));    //이벤트 버스에 태우기
                 //Toast.makeText(this, choice_do + "=" + choice_se, Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
     }
+
 }

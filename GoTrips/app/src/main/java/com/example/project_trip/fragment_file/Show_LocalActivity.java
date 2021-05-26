@@ -21,17 +21,17 @@ public class Show_LocalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_local);
 
-        tv1 = (TextView)findViewById(R.id.show_local_title_text);
-        tv1.setText(getIntent().getStringExtra("local_title"));
-
-        tv2 = (TextView)findViewById(R.id.local_go_navi);
-        tv2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Show_LocalActivity.this , NavigationActivity.class);
-                startActivity(intent);
-            }
-        });
+//        tv1 = (TextView)findViewById(R.id.show_local_title_text);
+//        tv1.setText(getIntent().getStringExtra("local_title"));
+//
+//        tv2 = (TextView)findViewById(R.id.local_go_navi);
+//        tv2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Show_LocalActivity.this , NavigationActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
 
     }
