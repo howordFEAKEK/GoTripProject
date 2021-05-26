@@ -354,7 +354,7 @@ public class Local_SelectedActivity extends AppCompatActivity {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL("CREATE TABLE  groupTBL ( gName CHAR(20) PRIMARY KEY, gNumber INTEGER);");
+            db.execSQL("CREATE TABLE  groupTBL ( /*gName*/dosi CHAR(20) PRIMARY KEY, /*gNumber*/gungu CHAR(20));");
         }
 
         @Override

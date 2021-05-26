@@ -70,7 +70,7 @@ public class Getter {
     public String apiGetterName(String sido, String gungu, String resnm) throws IOException {
         //시도, 군구, 관광지 이름을 입력받고, 해당되는 관광지 관련 정보를 출력함
 
-        StringBuilder urlBuilder = new StringBuilder("http://openapi.tour.go.kr/openapi/service/TourismResourceService/getTourResourceList"); /*URL*/
+        StringBuilder urlBuilder = new StringBuilder("http://openapi.tour.go.kr/openapi/service/TourismResourceService/getTourResourceDetail"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=HljdApr9dt8GOT0E0H87Ii2Ah7buUCv6SHh5AmjZJLwWZvRO9Ww4hgPgXehtDS3Ytn3hxKWk9J6sVS4MHdURJA%3D%3D"); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("SIDO","UTF-8") + "=" + URLEncoder.encode(sido, "UTF-8")); /*시도*/
         urlBuilder.append("&" + URLEncoder.encode("GUNGU","UTF-8") + "=" + URLEncoder.encode(gungu, "UTF-8")); /*시군구*/

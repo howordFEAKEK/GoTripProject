@@ -59,11 +59,6 @@ public class CusmaidFragment extends Fragment {
 
         ViewGroup vv = (ViewGroup) inflater.inflate(R.layout.fragment_cusmaid, container, false);
         marylee = (RecyclerView) vv.findViewById(R.id.Cusmaid_recyclerView);
-        edit1 = vv.findViewById(R.id.edit1);
-        edit2 = vv.findViewById(R.id.edit2);
-
-        txttest1 = vv.findViewById(R.id.textView3);
-        txttest2 = vv.findViewById(R.id.textView4);
 
         btnSelect = vv.findViewById(R.id.btnSelect);
         btnInit = vv.findViewById(R.id.button4);
@@ -72,54 +67,81 @@ public class CusmaidFragment extends Fragment {
         marylee.setLayoutManager(new LinearLayoutManager(getActivity()));
         marylee.setAdapter(rcvAd);
 
-        myHelper = new myDBHelper(getContext());
+//        myHelper = new myDBHelper(getContext());
         //조회 누를시
         btnSelect.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                sqlDB = myHelper.getReadableDatabase();
-                Cursor cursor;
-                cursor = sqlDB.rawQuery("SELECT * FROM groupTBL;", null);
+                openDialog();
 
-                // 내부 DB에 입력한 데이터 추가 코드
-
-                // 추가 코드 끝
-
-                String dosi = "도시" + "\r\n" + "--------" + "\r\n";
-                String gungu = "군구" + "\r\n" + "--------" + "\r\n";
-
-                while (cursor.moveToNext()) {
-                    dosi += cursor.getString(0) + "\r\n";
-                    gungu += cursor.getString(1) + "\r\n";
-                }
-
-                txttest1.setText(dosi);
-                txttest2.setText(gungu);
-
-
-
-
-
-
-                cursor.close();
-                sqlDB.close();
             }
+//                sqlDB = myHelper.getReadableDatabase();
+//                Cursor cursor;
+//                cursor = sqlDB.rawQuery("SELECT * FROM groupTBL;", null);
+//
+//                // 내부 DB에 입력한 데이터 추가 코드
+//
+//                // 추가 코드 끝
+//
+//                String dosi = "도시" + "\r\n" + "--------" + "\r\n";
+//                String gungu = "군구" + "\r\n" + "--------" + "\r\n";
+//
+//                while (cursor.moveToNext()) {
+//                    dosi += cursor.getString(0) + "\r\n";
+//                    gungu += cursor.getString(1) + "\r\n";
+//                }
+//
+//                txttest1.setText(dosi);
+//                txttest2.setText(gungu);
+//
+//
+//                cursor.close();
+//                sqlDB.close();
+//            }
         });
 
-        //기록 초기화(따로 건드릴 부분 없습니다.)
+        // 2021-04-10 추가, 내부 DB이용 자주 검색한 지역 찾기
         btnInit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
                 sqlDB = myHelper.getWritableDatabase();
-                myHelper.onUpgrade(sqlDB, 1, 2); // 인수는 아무거나 입력하면 됨.
-                Toast.makeText(getContext(), "초기화됨",
-                        Toast.LENGTH_SHORT).show();
+                Cursor cursor;
+                cursor = sqlDB.rawQuery("SELECT * FROM groupTBL;", null);
+                String gungu = null; // 군구
+                String dosi = null; // ㅅㄷ
+
+                sqlDB.execSQL("SELECT gungu, count(gungu) cnt from groupTBL GROUP by gungu order by cnt DESC;");
+                //
                 sqlDB.close();
+                Toast.makeText(getContext(), "조회됨",
+                        Toast.LENGTH_SHORT).show();
+                Log.d("시도" , dosi);
+                Log.d("군구" , gungu);
+
+//                while (cursor.moveToNext()) {
+//                    gungu += cursor.getString(0) + "\r\n";
+//                }
+//
+//                gungu += cursor.getString(0) + "\r\n"; //혹시 while 문에서 하나 이상 군구 정보를 가져올 시 while 지우고 해당 코드만 사용
+//
+//                sqlDB.execSQL("SELECT * FROM groupTBL where gungu = '"gungu"';");
+//
+//                while (cursor.moveToNext()) { // 2줄 위 코드와 동일하게 사용
+//                    dosi += cursor.getString(0) + "\r\n";
+//                    gungu += cursor.getString(1) + "\r\n";
+//                }
             }
         });
         return vv;
 
     }
+
+    private void openDialog() {
+        DialogFragment dialogFragment = new DialogFragment();
+        dialogFragment.show(getFragmentManager(), "dialog");
+    }
+
     //Sqlite 관련 부가코드
-    public class myDBHelper extends SQLiteOpenHelper {
+    public static class myDBHelper extends SQLiteOpenHelper {
         public myDBHelper(Context context) {
             super(context, "groupDB", null, 1);
         }

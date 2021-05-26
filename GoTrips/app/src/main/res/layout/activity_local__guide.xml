@@ -99,14 +99,16 @@
                 android:textSize="30dp" />
 <ScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="8dp">
             <TextView
                 android:id="@+id/local_guide_more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:text="상세 소개가 없다면 URL"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:padding="10dp"/>
 </ScrollView>
 
         </LinearLayout>

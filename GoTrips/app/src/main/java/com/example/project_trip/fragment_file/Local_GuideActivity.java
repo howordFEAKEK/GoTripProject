@@ -16,8 +16,6 @@ import android.widget.TextView;
 import com.example.project_trip.Cutter;
 import com.example.project_trip.Getter;
 import com.example.project_trip.Local_Data_List;
-import com.example.project_trip.Local_title_item;
-import com.example.project_trip.MainFragment;
 import com.example.project_trip.R;
 
 import java.io.IOException;
@@ -65,13 +63,37 @@ public class Local_GuideActivity extends AppCompatActivity{
         //관광지 상세정보
         try {
             String more_guide = getter.apiGetterName(local_g_sido_title , local_g_gungu_title , txt2.getText().toString()); // 관광지 정보 가져오기
-            String more_guide_cut = cutter.apiCutter(more_guide , "EPreSimpleDesc");
-            String more_guide_cutting = more_guide_cut.replace("<개요>","");
-            txt_more.setText(more_guide_cutting);
+            String more_guide_cut = cutter.apiCutter(more_guide , "FSimpleDesc");
+            String more_guide2 = getter.apiGetter2(local_g_sido_title , local_g_gungu_title , txt2.getText().toString());
+            String more_guide_cut2 = cutter.apiCutter(more_guide2 , "EPreSimpleDesc");
+            if(more_guide_cut.isEmpty()){
+                Log.d("EPreSimpleDesc" ,more_guide_cut2);
+                txt_more.setText(more_guide_cut2);
+            }else{
+                Log.d("FSimpleDesc" ,more_guide_cut);
+                txt_more.setText(more_guide_cut);
+            }
+
+
+
+
+
+
 
         } catch (IOException e) {
             e.printStackTrace();
         } //관광지 상세정보 끝
+
+//        try {
+//            String more_guide2 = getter.apiGetter2(local_g_sido_title , local_g_gungu_title , txt2.getText().toString());
+//            String more_guide_cut2 = cutter.apiCutter(more_guide2 , "EPreSimpleDesc");
+//            Log.d("EPreSimpleDesc" ,more_guide_cut2);
+//
+//
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } //관광지 상세정보 끝
 
 
         // 중단의 리뷰 리스트입니다.
@@ -101,7 +123,7 @@ public class Local_GuideActivity extends AppCompatActivity{
         txt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Local_GuideActivity.this , Save_ReViewActivity.class);
+                Intent intent = new Intent(Local_GuideActivity.this , Save_ReviewActivity.class);
                 intent.putExtra("관광지명" , txt2.getText().toString());
                 intent.putExtra("시도" , txt_dosi.getText().toString());
                 intent.putExtra("군구" , txt_gungu.getText().toString());

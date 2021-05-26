@@ -38,7 +38,7 @@
             android:value="AIzaSyDzhK7UbuTWrf2JRAPoukiNWTnFLNqUtNo" />
 
         <activity android:name=".fragment_file.Show_ReviewActivity" />
-        <activity android:name=".fragment_file.Save_ReViewActivity" />
+        <activity android:name=".fragment_file.Save_ReviewActivity" />
         <activity android:name=".fragment_file.Local_GuideActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

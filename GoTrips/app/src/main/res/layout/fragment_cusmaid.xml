@@ -33,41 +33,8 @@
             android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="초기화" />
+            android:text="관광지 추천" />
     </LinearLayout>
-
-
-    <EditText
-        android:id="@+id/edit1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="ex) 경기도 , 서울특별시"
-        android:textColor="#000000"
-        android:inputType="textPersonName" />
-
-        <EditText
-            android:id="@+id/edit2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="ex) 수원시 , 강남구"
-            android:inputType="textPersonName"
-            android:textColor="#000000" />
-
-        <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#808080"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#808080"
-        android:text="TextView" />
 
 
     <!-- TODO: Update blank fragment layout -->

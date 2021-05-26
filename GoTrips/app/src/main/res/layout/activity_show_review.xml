@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#FFE4E1"
-    tools:context=".fragment_file.Save_ReViewActivity">
+    tools:context=".fragment_file.Save_ReviewActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
 
             >
             <TextView
-                android:id="@+id/show_revire_title"
+                android:id="@+id/show_review_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="제목"
@@ -47,12 +47,14 @@
 
             >
             <TextView
+                android:id="@+id/show_review_guide"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="관광지명"
                 android:textSize="30dp"/>
 
             <TextView
+                android:id="@+id/show_review_local"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="지역"
@@ -61,14 +63,38 @@
 
         </LinearLayout>
 
-
+<RelativeLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <TextView
+            android:id="@+id/show_review_review"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="리뷰"
             android:textSize="30dp"
             android:gravity="center"/>
+    </ScrollView>
+    <Button
+        android:id="@+id/show_review_Like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="좋아요"
+        />
+    <Button
+        android:id="@+id/show_review_Hate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/show_review_Like"
+        android:layout_alignParentBottom="true"
+        android:text="싫어요"
+        />
 
+</RelativeLayout>
     </LinearLayout>
 
 

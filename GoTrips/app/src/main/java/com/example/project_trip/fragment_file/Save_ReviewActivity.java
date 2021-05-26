@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.example.project_trip.R;
 
- class Save_ReViewActivity extends AppCompatActivity {
+ public class Save_ReviewActivity extends AppCompatActivity {
 
     // 리뷰작성 버튼을 클릭하면 나오는 엑티비티
 
@@ -39,7 +39,7 @@ import com.example.project_trip.R;
         txt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder ad = new AlertDialog.Builder(Save_ReViewActivity.this);
+                AlertDialog.Builder ad = new AlertDialog.Builder(Save_ReviewActivity.this);
                 ad.setIcon(R.mipmap.ic_launcher);
                 ad.setTitle("제목");
                 ad.setMessage("추가 하겠습니까?");
