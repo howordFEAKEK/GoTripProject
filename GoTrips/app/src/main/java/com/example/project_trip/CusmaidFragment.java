@@ -7,12 +7,16 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import android.os.Bundle;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,13 +81,7 @@ public class CusmaidFragment extends Fragment {
                 cursor = sqlDB.rawQuery("SELECT * FROM groupTBL;", null);
 
                 // 내부 DB에 입력한 데이터 추가 코드
-                String a = edit1.getText().toString();
-                String b = edit2.getText().toString();
-                sqlDB = myHelper.getWritableDatabase();
-                sqlDB.execSQL("INSERT INTO groupTBL VALUES ( '" + a + "' , '"+ b + "');");
-//                sqlDB.close();
-                Toast.makeText(getContext(), "입력됨",
-                        Toast.LENGTH_SHORT).show();
+
                 // 추가 코드 끝
 
                 String dosi = "도시" + "\r\n" + "--------" + "\r\n";
@@ -96,6 +94,11 @@ public class CusmaidFragment extends Fragment {
 
                 txttest1.setText(dosi);
                 txttest2.setText(gungu);
+
+
+
+
+
 
                 cursor.close();
                 sqlDB.close();

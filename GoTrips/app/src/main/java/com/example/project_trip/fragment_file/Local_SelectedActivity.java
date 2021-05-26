@@ -3,15 +3,24 @@ package com.example.project_trip.fragment_file;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.content.Context;
 
 import com.example.project_trip.BusProvider;
+import com.example.project_trip.CusmaidFragment;
 import com.example.project_trip.PushEvent;
 import com.example.project_trip.R;
 
@@ -20,6 +29,8 @@ public class Local_SelectedActivity extends AppCompatActivity {
     ArrayAdapter<CharSequence> adspin1, adspin2;
     String choice_do = "";
     String choice_se = "";
+    myDBHelper myHelper;
+    SQLiteDatabase sqlDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +38,7 @@ public class Local_SelectedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_local__selected);
 
         Intent rintent = getIntent();
-
+        myHelper = new myDBHelper(this);
         final Spinner spin1 = (Spinner) findViewById(R.id.spinner);
         final Spinner spin2 = (Spinner) findViewById(R.id.spinner2);
         Button btn_refresh = (Button) findViewById(R.id.btn_refresh);
@@ -322,9 +333,35 @@ public class Local_SelectedActivity extends AppCompatActivity {
 //                setResult(0,rintent);
                 BusProvider.getInstance().post(new PushEvent(name1 , name2, name3));    //이벤트 버스에 태우기
                 //Toast.makeText(this, choice_do + "=" + choice_se, Toast.LENGTH_SHORT).show();
+
+
+                sqlDB = myHelper.getWritableDatabase();
+                sqlDB.execSQL("INSERT INTO groupTBL VALUES ( '" + name1 + "' , '"+ name2 + "');");
+                sqlDB.close();
+                Log.d("","입력됨");
+
+
                 finish();
             }
         });
+
+
+    }
+    public class myDBHelper extends SQLiteOpenHelper {
+        public myDBHelper(Context context) {
+            super(context, "groupDB", null, 1);
+        }
+
+        @Override
+        public void onCreate(SQLiteDatabase db) {
+            db.execSQL("CREATE TABLE  groupTBL ( gName CHAR(20) PRIMARY KEY, gNumber INTEGER);");
+        }
+
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+            db.execSQL("DROP TABLE IF EXISTS groupTBL");
+            onCreate(db);
+        }
     }
 
 }
