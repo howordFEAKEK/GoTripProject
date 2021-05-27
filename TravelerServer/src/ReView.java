@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,6 +7,8 @@ public class ReView {
 	public List<ReviewList> reviewLists = new ArrayList<ReviewList>();
 	public List<RevChange> chRevs = new ArrayList<RevChange>();
 	public List<ReviewCH> revChart = new ArrayList<>(); // 리뷰 차트 보관용	
+	
+	SimpleDateFormat sample = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss"); // 날짜 포멧용
 	
 	//리뷰 저장 (통과 O)
 	public void reviewSave (String ph, long writeTime, String title, String text, String tourName) {
@@ -93,9 +96,18 @@ public class ReView {
 	            rs = pstmt.executeQuery();
 	            
 	            while(rs.next()) {
+	            	
+	            	long wrdate = rs.getLong(2);
+	            	String wrdatStr = null;
+	            	java.util.Date wda = null;
+	            	
+	            	wrdate = wrdate * 1000;
+	            	wda = new java.util.Date(wrdate);
+	            	wrdatStr = sample.format(wda);
+	            	
 	            	result = new ReviewList();
 	            	result.writer = rs.getString(1);
-	            	result.date = rs.getLong(2);
+	            	result.date = wrdatStr;
 	            	result.title = rs.getString(3);
 	            	
 	            	reviewLists.add(result);
@@ -135,7 +147,17 @@ public class ReView {
 	            
 	            if(rs.next()) {
 	            	System.out.println("리뷰 조회하기");
-	            	result = "REVIEWCALL/" + rs.getString(1) +"$"+ rs.getLong(2) +"$"+ rs.getString(3) +"$"+
+	            	
+	            	long wrdate = rs.getLong(2);
+	            	String wrdatStr = null;
+	            	java.util.Date wda = null;
+	            	
+	            	wrdate = wrdate * 1000;
+	            	wda = new java.util.Date(wrdate);
+	            	wrdatStr = sample.format(wda);
+	            	
+	            	
+	            	result = "REVIEWCALL/" + rs.getString(1) +"$"+ wrdatStr +"$"+ rs.getString(3) +"$"+
 	        	            rs.getString(4) +"$"+ rs.getLong(5) +"$"+ rs.getLong(6) +"$"+ rs.getString(7);
 	            }
 	 
@@ -554,7 +576,7 @@ public class ReView {
 // 리뷰 목록 클래스
 class ReviewList {
 	public String writer = null; // 작성자
-	public long date = 0; //작성일자
+	public String date = null; //작성일자
 	public String title = null; //리뷰 제목
 }
 
