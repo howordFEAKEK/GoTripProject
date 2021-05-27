@@ -103,32 +103,26 @@ public class CusmaidFragment extends Fragment {
         btnInit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                sqlDB = myHelper.getWritableDatabase();
+                sqlDB = myHelper.getReadableDatabase();
                 Cursor cursor;
-                cursor = sqlDB.rawQuery("SELECT * FROM groupTBL;", null);
-                String gungu = null; // 군구
-                String dosi = null; // ㅅㄷ
 
-                sqlDB.execSQL("SELECT gungu, count(gungu) cnt from groupTBL GROUP by gungu order by cnt DESC;");
-                //
+                cursor = sqlDB.rawQuery("SELECT sido, gungu, count(gungu) cnt from groupTBL GROUP by gungu order by cnt DESC;", null);
+                String strNames = "";
+                String strNumbers = "";
+                String strCnt="";
+
+                while (cursor.moveToNext()) {
+                    strNames += cursor.getString(0) + "\r\n";
+                    strNumbers += cursor.getString(1) + "\r\n";
+                    strCnt += cursor.getString(2) + "\r\n";
+                }
+                String[] buf = strNames.split("\n");
+                String[] buf2 = strNumbers.split("\n");
+                Toast.makeText(getContext(),"자주 조회하신 도시는 "+buf[0]+"입니다.\n자주 조회하신 군구는 "+buf2[0]+"입니다.", Toast.LENGTH_LONG).show();
+                String val = buf[0];
+                cursor.close();
                 sqlDB.close();
-                Toast.makeText(getContext(), "조회됨",
-                        Toast.LENGTH_SHORT).show();
-                Log.d("시도" , dosi);
-                Log.d("군구" , gungu);
 
-//                while (cursor.moveToNext()) {
-//                    gungu += cursor.getString(0) + "\r\n";
-//                }
-//
-//                gungu += cursor.getString(0) + "\r\n"; //혹시 while 문에서 하나 이상 군구 정보를 가져올 시 while 지우고 해당 코드만 사용
-//
-//                sqlDB.execSQL("SELECT * FROM groupTBL where gungu = '"gungu"';");
-//
-//                while (cursor.moveToNext()) { // 2줄 위 코드와 동일하게 사용
-//                    dosi += cursor.getString(0) + "\r\n";
-//                    gungu += cursor.getString(1) + "\r\n";
-//                }
             }
         });
         return vv;
@@ -148,7 +142,7 @@ public class CusmaidFragment extends Fragment {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL("CREATE TABLE  groupTBL ( dosi CHAR(20) , gungu CHAR(20));");
+            db.execSQL("CREATE TABLE  groupTBL ( sido CHAR(20) , gungu CHAR(20));");
         }
 
         @Override
