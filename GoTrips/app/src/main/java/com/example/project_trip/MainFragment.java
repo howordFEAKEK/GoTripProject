@@ -158,7 +158,6 @@ public class MainFragment extends Fragment {
                     Local_Data_List.local_data.add(new Local_title_item(local_setItem_sido , local_setItem_gungu));
 
 
-
                 }
 
             } catch (IOException e) {

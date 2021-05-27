@@ -74,12 +74,6 @@ public class Local_GuideActivity extends AppCompatActivity{
                 txt_more.setText(more_guide_cut);
             }
 
-
-
-
-
-
-
         } catch (IOException e) {
             e.printStackTrace();
         } //관광지 상세정보 끝
@@ -101,6 +95,15 @@ public class Local_GuideActivity extends AppCompatActivity{
         rcyv = (RecyclerView)findViewById(R.id.local_guide_recyclerview);
         rcyv.setLayoutManager(new LinearLayoutManager(this));
 
+        /*
+        관광지명 -> 서버의 관광지명변수?
+            if(txt2.getText.toString.equals("관광지명"){
+            관광지 명에 맡는 서버에있는 리뷰 가져와서 리스트에 넣은다음(getMyList)
+            출력하면 될거같음
+        }
+
+
+         */
 
         getMyList = new ArrayList<>();
         getMyList.add(new Main_item4("리뷰입니다1"));
