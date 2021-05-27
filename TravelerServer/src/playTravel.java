@@ -118,6 +118,7 @@ public class playTravel extends Thread{
 						
 						att = nowDate.getTime() - preDate.getTime();
 						att = att/10000;
+						att = att + 1; // 최소치 보정
 						if(att > 30) {
 							att = 30;
 						}
