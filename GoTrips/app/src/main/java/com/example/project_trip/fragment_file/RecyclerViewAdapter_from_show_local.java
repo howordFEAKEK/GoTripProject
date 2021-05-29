@@ -49,14 +49,16 @@ public class RecyclerViewAdapter_from_show_local extends RecyclerView.Adapter<Re
 
         Main_item_from_show_local temp = miData1.get(position);
 
-        holder.tv_list.setText(miData1.get(position).getLocal_title());
+        holder.tv_list.setText(miData1.get(position).tour_title);
 
         holder.tv_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent intent = new Intent(mContext1 , Local_GuideActivity.class);
-                intent.putExtra("local_title" , temp.getLocal_title());
+                intent.putExtra("local_title" , temp.tour_title);
+                intent.putExtra("sido", temp.sido_name);
+                intent.putExtra("gungu", temp.gungu_name);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext1.startActivity(intent);
             }

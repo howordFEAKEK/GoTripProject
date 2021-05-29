@@ -71,10 +71,10 @@ public class Local_GuideActivity extends AppCompatActivity{
        
        
         int listNum = (getIntent().getIntExtra("number" , 0));  // 리스트 인텐트 값의 인덱스 번호
-        
-        
-        String local_g_sido_title = Local_Data_List.local_data.get(listNum).sido_name;  // 메인에서 가져온 시,도값
-        String local_g_gungu_title = Local_Data_List.local_data.get(listNum).gungu_name; // 메인에서 가져온 군,구값
+
+
+        String local_g_sido_title = getIntent().getStringExtra("sido");  // 메인에서 가져온 시,도값
+        String local_g_gungu_title = getIntent().getStringExtra("gungu"); // 메인에서 가져온 군,구값
         String local_g_sido_gungu_title = local_g_sido_title + " " + local_g_gungu_title;
         txt_dosi.setText(local_g_sido_title);   // 시,도값 세팅
         txt_gungu.setText(local_g_gungu_title); // 군,구값 세팅

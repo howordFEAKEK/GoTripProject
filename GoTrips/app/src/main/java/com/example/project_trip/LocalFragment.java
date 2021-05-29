@@ -83,8 +83,10 @@ public class LocalFragment extends Fragment {
 
         String name11 = mPushEvent.getName3();
 
-        String name = mPushEvent.getName();
-        String name2 = mPushEvent.getName2();
+        String name = mPushEvent.getName(); // 시, 도
+        String name2 = mPushEvent.getName2(); // 군, 구
+
+        String loca = name + " " + name2; // 시도 + 군구
 
         tv_local_selected.setText(name11);
 
@@ -99,7 +101,13 @@ public class LocalFragment extends Fragment {
                 String[] target = str.split("\n");
                 getMyList2 = new ArrayList<>();
                 for (int i = 0; i < target.length; i++) {
-                    getMyList2.add(new Main_item_from_show_local(target[i]));
+                    Main_item_from_show_local item = new Main_item_from_show_local();
+                    item.sido_name = name; // 시, 도
+                    item.gungu_name = name2; // 군, 구
+                    item.tour_location = loca;
+                    item.tour_title = target[i];
+                    Local_Data_List.local_tour_data_list.add(item);
+                    //getMyList2.add(new Main_item_from_show_local(target[i]));
                 }
 
             } catch (IOException e) {
