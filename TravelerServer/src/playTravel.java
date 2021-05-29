@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.sql.PooledConnection;
+import javax.swing.event.PopupMenuListener;
 
 public class playTravel extends Thread{
 	private DataInputStream in;
@@ -60,15 +61,41 @@ public class playTravel extends Thread{
 				Date wrDate = null; // 작성일자 숫자 변환용
 				
 				switch (sign) {
-				case "STARTCHART" : // 시작 메시지 - 인기 및 리뷰 차트 전달
+				case "POPCHART" : // 인기차트 갱신 - 요청
+					String popmsg = "POPCHART/";
 					
+					for(int i = 0; i < tour.poplist.size(); i ++) {
+						// 관광지명, 지역명 순서대로 보냄
+						popmsg = popmsg + tour.poplist.get(i).TUName + "$" + tour.poplist.get(i).TUlocate + "$";
+					}
+					
+					popmsg = popmsg + "last"; // 에러 처리를 하기 위해
+					
+					// 메시지 보내기 부분
+					try {
+						out.writeUTF(popmsg); // 리뷰에 대한 정보 보내기
+					}catch(IOException e) {}
 					break;
 					
-				case "POPCHART" : // 인기 차트 갱신 - 요청시
+				case "WEEKCHART" : // 리뷰 주간 차트 갱신 - 요청
+					String weekmsg = null;
+					st = new StringTokenizer(nextMsg, "$"); // 신호 자르기
+					writer = st.nextToken();
+					writeDate = st.nextToken();
+					try {
+						wrDate = sample.parse(writeDate);
+						writeday = wrDate.getTime()/1000;
+					}catch (ParseException e) { }
 					
+					weekmsg = reView.selectReview(writer, writeday); //보낼 리뷰 정보 가져오기
+					
+					// 메시지 보내기 부분
+					try {
+						out.writeUTF(weekmsg); // 리뷰에 대한 정보 보내기
+					}catch(IOException e) {}
 					break;
 					
-				case "REVIEWCHART" : // 리뷰 차트 갱신 - 지역 변경 시, 요청시
+				case "MONTHCHART" : // 리뷰 월간 차트 갱신 - 지역 변경 시, 요청
 					
 					break;
 					
@@ -135,13 +162,14 @@ public class playTravel extends Thread{
 					title = st.nextToken();
 					context = st.nextToken();
 					tourName = st.nextToken();
+					tourLoc = st.nextToken();
 					
 					try {
 						wrDate = sample.parse(writeDate);
 						writeday = wrDate.getTime()/1000;
 					}catch (ParseException e) { }
 					
-					reView.reviewSave(ph, writeday, title, context, tourName);
+					reView.reviewSave(ph, writeday, title, context, tourName, tourLoc);
 					break;
 					
 				case "REVIEWINDEX" : // 리뷰 목록 - 관광지 관련 리뷰 목록

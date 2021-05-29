@@ -65,6 +65,8 @@ public class RealTimeCheck extends Thread{
 			tour.popScoreSetting (popScore, tourName);
 		}
 		
+		tour.updatePopChart();
+		
 		/*
 		for(int i = 0; i < changeTour.size(); i ++) { //일반적인 for문 사용해서 구성
 			String tourName = null;

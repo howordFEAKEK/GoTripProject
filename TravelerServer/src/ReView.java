@@ -11,11 +11,11 @@ public class ReView {
 	SimpleDateFormat sample = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss"); // 날짜 포멧용
 	
 	//리뷰 저장 (통과 O)
-	public void reviewSave (String ph, long writeTime, String title, String text, String tourName) {
+	public void reviewSave (String ph, long writeTime, String title, String text, String tourName, String loaction) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO REVIEW(WRITER, WRITE_DATE, TITLE, CONTENT, TOUR_NAME) " + 
-				"VALUES (?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO REVIEW(WRITER, WRITE_DATE, TITLE, CONTENT, TOUR_NAME, LOCATION_DATA) " + 
+				"VALUES (?, ?, ?, ?, ?, ?)";
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
 			System.out.println("풀 빌려오기");
@@ -26,6 +26,7 @@ public class ReView {
 	            pstmt.setString(3, title);
 	            pstmt.setString(4, text);
 	            pstmt.setString(5, tourName);
+	            pstmt.setString(6, loaction);
 	 
 	            if (pstmt.executeUpdate() == 1) {
 	                System.out.println("리뷰 저장 성공");
@@ -433,21 +434,21 @@ public class ReView {
 	}
 	
 	// 리뷰 차트 조회(주간) (통과 O)
-	public void lookWeekRevChart() {
+	public void lookWeekRevChart(String loca) {
 		revChart.clear();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT WRITER, WRITE_DATE, TITLE FROM " + 
-					"(SELECT WRITER, WRITE_DATE, TITLE, WEEKLY_SCORE " + 
-					"FROM REVIEW ORDER BY WEEKLY_SCORE DESC) WHERE ROWNUM <= 10";
+		String sql = "SELECT WRITER, WRITE_DATE, TITLE FROM (SELECT WRITER, WRITE_DATE, TITLE, WEEKLY_SCORE FROM REVIEW " + 
+				"WHERE LOCATION_DATA = ? ORDER BY WEEKLY_SCORE DESC) WHERE ROWNUM <= 10";
 		ReviewCH result = null;
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
 			System.out.println("풀 빌려오기");
 			try {
 	            pstmt = con.prepareStatement(sql); // SQL 해석
-		            rs = pstmt.executeQuery();
+	            pstmt.setString(1, loca);
+		        rs = pstmt.executeQuery();
 	            
 	            while(rs.next()) {
 	            	result = new ReviewCH();
@@ -475,20 +476,20 @@ public class ReView {
 	
 	// 리뷰 차트 조회 (월간) (통과 O)
 		// 리뷰 차트 조회(월간)
-	public void lookMonthRevChart() {
+	public void lookMonthRevChart(String loca) {
 		revChart.clear();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT WRITER, WRITE_DATE, TITLE FROM " + 
-					"(SELECT WRITER, WRITE_DATE, TITLE, MONTHLY_SCORE " + 
-					"FROM REVIEW ORDER BY MONTHLY_SCORE DESC) WHERE ROWNUM <= 10";
+		String sql = "SELECT WRITER, WRITE_DATE, TITLE FROM (SELECT WRITER, WRITE_DATE, TITLE, MONTHLY_SCORE FROM REVIEW " + 
+				"WHERE LOCATION_DATA = ? ORDER BY MONTHLY_SCORE DESC) WHERE ROWNUM <= 10";
 		ReviewCH result = null;
 		try {
 			con = travelDB.pool.getConnection(); // 연결 정보 빌려오기
 			System.out.println("풀 빌려오기");
 			try {
 	            pstmt = con.prepareStatement(sql); // SQL 해석
+	            pstmt.setString(1, loca);
 	            rs = pstmt.executeQuery();
 	            
 	            while(rs.next()) {
