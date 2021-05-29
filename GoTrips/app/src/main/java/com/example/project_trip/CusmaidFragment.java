@@ -202,34 +202,34 @@ public class CusmaidFragment extends Fragment {
         gpsgetLon = addresscut[2];
 
         //GPS 끝
-//        btnGpsguide.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.d("클릭리스너 안에 gpsgetLat", gpsgetLat);
-//                Log.d("클릭리스너 안에 gpsgetLot", gpsgetLon);
-//                try {
-//                    gpsgetterapi = getter.apiGetter(gpsgetLat, gpsgetLon);
-//                    gpscutterapi = cutter.apiCutter(gpsgetterapi, "BResNm");
-//                    String str = gpscutterapi;
-//                    String[] target = str.split("\n");
-//                    getMyList = new ArrayList<>();
-//                    for (int i = 0; i < target.length; i++) {
-//                        Log.d("target", target[i]);
-//                        getMyList.add(new Main_item_from_show_local(target[i]));
-//                    }
-//
-//
-//
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                rcvAd = new RecyclerViewAdapter_from_cusmaid_list(getContext(), getMyList);
-//                marylee.setLayoutManager(new LinearLayoutManager(getActivity()));
-//                marylee.setAdapter(rcvAd);
-//
-//
-//            }
-//            });
+        btnGpsguide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("클릭리스너 안에 gpsgetLat", gpsgetLat);
+                Log.d("클릭리스너 안에 gpsgetLot", gpsgetLon);
+                try {
+                    gpsgetterapi = getter.apiGetter(gpsgetLat, gpsgetLon);
+                    gpscutterapi = cutter.apiCutter(gpsgetterapi, "BResNm");
+                    String str = gpscutterapi;
+                    String[] target = str.split("\n");
+                    getMyList = new ArrayList<>();
+                    for (int i = 0; i < target.length; i++) {
+                        Log.d("target", target[i]);
+                        getMyList.add(new Main_item_from_show_local(target[i]));
+                    }
+
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                rcvAd = new RecyclerViewAdapter_from_cusmaid_list(getContext(), getMyList);
+                marylee.setLayoutManager(new LinearLayoutManager(getActivity()));
+                marylee.setAdapter(rcvAd);
+
+
+            }
+            });
 
 
         return vv;
