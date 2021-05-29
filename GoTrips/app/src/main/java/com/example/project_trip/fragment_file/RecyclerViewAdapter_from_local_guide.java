@@ -53,7 +53,7 @@ public class RecyclerViewAdapter_from_local_guide extends RecyclerView.Adapter<R
 
         Main_item_from_show_local temp = miData1.get(position);
 
-        holder.tv_list.setText(miData1.get(position).getLocal_title());
+        holder.tv_list.setText(miData1.get(position).tour_title);
 //        holder.tv_imglist.setImageResource(miData.get(position).getImg());
         holder.tv_list.setOnClickListener(new View.OnClickListener() {
 
@@ -63,62 +63,6 @@ public class RecyclerViewAdapter_from_local_guide extends RecyclerView.Adapter<R
 //           final String get_local_guide_name = temp.getLocal_title();                    //관광지 명
             @Override
             public void onClick(View v) {
-
-//                new Thread() {
-//                    @Override
-//                    public void run() {
-//                        DataOutputStream out;
-//                        DataInputStream in;
-//
-//                        //신호
-//                        String msg = "REVIEWINDEX/";
-//
-//                        // 이 부분은 가져와서 저장(관광지 클릭 시 넘겨받아서)
-//                        // 보낼 내용 ( 관광지명, 지역명)
-//                        String text = get_local_guide_name + " " + get_sido_gungu;
-//
-//                        String readMsg = null; // 받은 메시지
-//                        String sign = null; // 신호
-//                        String context = null; // 내용
-//                        try {
-//                            msg = msg + text +"";
-//                            out = new DataOutputStream(SocketManager2.socket.getOutputStream());
-//                            in = new DataInputStream(SocketManager2.socket.getInputStream());
-//                            out.writeUTF(msg);
-//
-//                            readMsg = in.readUTF(); // 받을 때까지 대기
-//
-//                            final String finalReadMsg = readMsg; // 파이널 선언해줘서 받은 데이터 전달
-////                            runOnUiThread(new Runnable() { // 이게 메인 스레드 외에서도 수정 가능하게 함
-////                                @Override
-////                                public void run() {
-////                                    //UI 바꾸려면 이 방법을 사용하던가?
-////                                    //아니면 받은 내용 따로 보관하는 전역 변수 만들어서 보관하고, 스레드 나간 다음에 처리하기
-////                                    Toast.makeText(MainActivity.this, finalReadMsg, Toast.LENGTH_SHORT).show();
-////                                }
-////                            });
-//
-//                            st = new StringTokenizer(readMsg, "/");
-//                            sign = st.nextToken(); // 신호
-//                            context = st.nextToken(); // 내용
-//
-//                            if (sign.equals("NOLIST")){
-//                                // 목록이 없는 경우
-//                                System.out.println("목록이 없습니다.");
-//                            }else{
-//                                st = new StringTokenizer(context, "$");
-//
-//                                //목록 하나에 토큰 3개(작성자, 작성일, 제목)
-//                                System.out.println(st.countTokens()/3);
-//                                int num = st.countTokens()/3;
-//                                for (int i = 0 ; i < num ; i ++){
-//                                    System.out.println(st.nextToken() +" "+ st.nextToken() +" "+ st.nextToken());
-//                                } // 이 부분에서 데이터 어떻게 처리할지는 알아서
-//                            }
-//
-//                        }catch (IOException e){}
-//                    }
-//                }.start();
 
                 Intent intent = new Intent(mContext1 , Local_GuideActivity.class);
                 intent.putExtra("local_title" , temp.getLocal_title());

@@ -17,10 +17,16 @@ import com.example.project_trip.Cutter;
 import com.example.project_trip.Getter;
 import com.example.project_trip.Local_Data_List;
 import com.example.project_trip.R;
+import com.example.project_trip.SocketManager2;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.StringTokenizer;
 
 public class Local_GuideActivity extends AppCompatActivity{
 
@@ -30,10 +36,22 @@ public class Local_GuideActivity extends AppCompatActivity{
     TextView txt1 , txt2 , txttest1 ,txt_dosi , txt_gungu , txt_more;
     RecyclerView rcyv;
     Local_GuideRecyclerAdepter adepter;
-    ArrayList<Main_item4> getMyList;
+    ArrayList<Main_item4> getMyList = new ArrayList<>();
     List<Address> list = null;
     Getter getter = new Getter();
     Cutter cutter = new Cutter();
+
+    // 날짜 형태 포멧
+    SimpleDateFormat sample = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+
+    //조회 시간
+    Date startTime = new Date();
+    //날짜를 문자로
+    String startstr = sample.format(startTime);
+
+    //마감 시간
+    Date lastTime = null;
+    String laststr = null;
 
 
     @Override
@@ -46,6 +64,8 @@ public class Local_GuideActivity extends AppCompatActivity{
         txt_gungu = findViewById(R.id.local_guide_gungu_title);         // 00군,구
         txt2 = (TextView) findViewById(R.id.local_guide_title_text);    // 제목
         txt2.setText(getIntent().getStringExtra("local_title"));
+
+        String tourname = getIntent().getStringExtra("local_title"); // 관광지명
 
         txt_more = findViewById(R.id.local_guide_more);                 // 상세 정보
        
@@ -105,20 +125,72 @@ public class Local_GuideActivity extends AppCompatActivity{
 
          */
 
-        getMyList = new ArrayList<>();
-        getMyList.add(new Main_item4("리뷰입니다1"));
-        getMyList.add(new Main_item4("리뷰입니다2"));
-        getMyList.add(new Main_item4("리뷰입니다3"));
-        getMyList.add(new Main_item4("리뷰입니다4"));
-        getMyList.add(new Main_item4("리뷰입니다5"));
-        getMyList.add(new Main_item4("리뷰입니다6"));
-        getMyList.add(new Main_item4("리뷰입니다7"));
-        getMyList.add(new Main_item4("리뷰입니다8"));
-        getMyList.add(new Main_item4("리뷰입니다9"));
+        new Thread() {
+            public void run() {
+                DataOutputStream out;
+                DataInputStream in;
+                String msg = "REVIEWINDEX/";
+                String title = tourname;
+                String loca = local_g_sido_gungu_title;
+
+                try{
+                    out = new DataOutputStream(SocketManager2.socket.getOutputStream());
+                    in = new DataInputStream(SocketManager2.socket.getInputStream());
+
+                    msg = msg + title + "$" + loca; // 신호/관광지명$지역정보
+
+                    out.writeUTF(msg); // 서버에 전송하기
+
+                    String readmsg = in.readUTF();
+                    final String reading = readmsg;
+                    StringTokenizer st = new StringTokenizer(reading, "/");
+                    String sign = st.nextToken();
+                    String massage = st.nextToken();
+
+                    if (sign.equals("NOLIST")){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                getMyList.clear(); //일단 검증을 위해 제외
+                                adepter = new Local_GuideRecyclerAdepter(getMyList , Local_GuideActivity.this);
+                                rcyv.setAdapter(adepter);
+                            }
+                        });
+                        System.out.println("목록이 없음");
+                    }else {
+                        getMyList.clear();
+
+                        st = new StringTokenizer(massage, "$");
+                        int indexNum = st.countTokens()/3;
+                        for (int i = 0; i < indexNum ; i ++){
+                            Main_item4 item4 = new Main_item4();
+                            item4.review_index_writername = st.nextToken();
+                            item4.review_index_date = st.nextToken();
+                            item4.review_index_title = st.nextToken();
+
+                            // 이 리스트가 static으로 되어 있어야 함
+                            // 그래야 리뷰 클릭했을 때, 여기 있는 작성자, 작성일자로 가져올 수 있음
+                            getMyList.add(item4);
+                        }
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                // getMyList.clear(); //일단 검증을 위해 제외
+                                adepter = new Local_GuideRecyclerAdepter(getMyList , Local_GuideActivity.this);
+                                rcyv.setAdapter(adepter);
+                            }
+                        });
+                        System.out.println("목록이 있음");
+                    }
 
 
-        adepter = new Local_GuideRecyclerAdepter(getMyList , this);
-        rcyv.setAdapter(adepter);
+                }catch (IOException e) {}
+            }
+        }.start();
+
+
+        //adepter = new Local_GuideRecyclerAdepter(getMyList , this);
+        //rcyv.setAdapter(adepter);
 
         // 하단의 리뷰 작성 버튼입니다.
 
@@ -176,7 +248,40 @@ public class Local_GuideActivity extends AppCompatActivity{
             }
         });
 
+    }
 
+    // 뒤로가기 버튼 눌렀을 때 이벤트
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        //마감 시간 갱신
+        lastTime = new Date();
+        //날짜를 문자로
+        laststr = sample.format(lastTime);
+        // 조회시간, 마감시간 성공적
+        System.out.println(startstr + " " + laststr);
+
+        new Thread() {
+            @Override
+            public void run(){
+                DataOutputStream out;
+                DataInputStream in;
+                String user = "TUS77T"; // 나중에 제품 번호나 전화번호 받아서 처리
+                String sign = "TOURLOG/"; // 관광 로그 신호
+                String tourname = getIntent().getStringExtra("local_title"); // 관광지명
+                String msg = sign + user + "$" + startstr + "$" + laststr + "$" + tourname;
+                System.out.println(msg);
+
+                try {
+                    out = new DataOutputStream(SocketManager2.socket.getOutputStream());
+                    out.writeUTF(msg);
+                }catch (IOException e){
+
+                }
+            }
+        }.start();
+
+        finish();
     }
 
 }

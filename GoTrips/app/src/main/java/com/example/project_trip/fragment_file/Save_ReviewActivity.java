@@ -12,14 +12,24 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.project_trip.R;
+import com.example.project_trip.SocketManager2;
 
- public class Save_ReviewActivity extends AppCompatActivity {
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Save_ReviewActivity extends AppCompatActivity {
 
     // 리뷰작성 버튼을 클릭하면 나오는 엑티비티
 
 
     TextView txt_save , txt_guide , txt_sido , txt_gungu;
     EditText etxt_set_review , etxt_set_title;
+
+    SimpleDateFormat sample = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss"); // 날짜 문자변환 포멧
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +66,10 @@ import com.example.project_trip.R;
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // 서버 통신 코드 작성...
+                        String user = "TUS77T"; // 작성자 : 나중에 제품 번호나 전화번호 받아서 처리
+                        Date writeTime = new Date(); // 작성일자 //날짜를 문자로 밑 부분
+                        String wrStr = sample.format(writeTime); // 포멧형식 날짜 (작성일자)
+
                         String save_review_gettitle = etxt_set_title.getText().toString();      // 작성된 리뷰 제목 받아오기
                         String save_review_getreview = etxt_set_review.getText().toString();    // 작성된 리뷰 내용 받아오기
 
@@ -65,6 +79,28 @@ import com.example.project_trip.R;
                         Log.d("지역" , save_review_getlocal);
                         Log.d("내용" , save_review_getreview);
 
+                        new Thread() {
+                            @Override
+                            public void run() {
+                                DataOutputStream out;
+                                DataInputStream in;
+                                String msg = "REVIEWSAVE/";
+                                // 내용물(본인, 작성일자, 제목, 내용, 관광지명, 지역)
+                                String text = user + "$" + wrStr + "$" + save_review_gettitle + "$" + save_review_getreview + "$" + save_review_getguide + "$" + save_review_getlocal;
+                                msg = msg + text;
+
+                                try {
+                                    out = new DataOutputStream(SocketManager2.socket.getOutputStream());
+                                    out.writeUTF(msg);
+                                }catch (IOException e){
+
+                                }
+
+                                System.out.println(msg);
+                            }
+                        }.start();
+
+                        finish();
                     }
 
                 });
@@ -74,7 +110,7 @@ import com.example.project_trip.R;
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }
-                
+
                 });
                 ad.show();
 

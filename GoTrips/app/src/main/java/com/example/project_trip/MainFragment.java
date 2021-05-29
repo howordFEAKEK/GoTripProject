@@ -27,11 +27,14 @@ import com.example.project_trip.fragment_file.Main_item_from_show_local;
 import com.example.project_trip.fragment_file.RecyclerViewAdapter;
 import com.example.project_trip.fragment_file.RecyclerViewAdapter_from_local_guide;
 import com.example.project_trip.fragment_file.RecyclerViewAdapter_from_show_local;
-import com.squareup.otto.Subscribe;
+//import com.squareup.otto.Subscribe;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 
 public class MainFragment extends Fragment {
@@ -109,13 +112,13 @@ public class MainFragment extends Fragment {
         marylee3.setLayoutManager(layoutManager3);
         marylee3.setAdapter(rcvAd);//...주간 리뷰 끝
 
-        BusProvider.getInstance().register(this);
+        //BusProvider.getInstance().register(this);
 
 
         return vv;
 
     }
-
+/*
     @Subscribe
     public void FinishLoad(PushEvent mPushEvent) {
         Log.d("Event" , "EventBus");
@@ -171,14 +174,13 @@ public class MainFragment extends Fragment {
 
         }
     }
-
+*/
 
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        BusProvider.getInstance().unregister(this);
-
+        //BusProvider.getInstance().unregister(this);
         Log.d("checkMainFragment" , "onDestroy");
 
     }
@@ -224,10 +226,64 @@ public class MainFragment extends Fragment {
 //            onTimePickerSetListener.onTimePickerSet(sido1 , gungu1);
 //        }
 
+        // 인기 차트 요청하기
+        new Thread() {
+            @Override
+            public void run() {
+                DataOutputStream out;
+                DataInputStream in;
+                String msg = "POPCHART/list";
+                String popchart = null;
+
+                StringTokenizer st;
+                String sign = null;
+                String text = null;
+
+                try {
+                    out = new DataOutputStream(SocketManager2.socket.getOutputStream());
+                    in = new DataInputStream(SocketManager2.socket.getInputStream());
+                    out.writeUTF(msg); // 인기차트 요청
+
+                    popchart = in.readUTF();
+                    st = new StringTokenizer(popchart, "/");
+                    sign = st.nextToken();
+                    text = st.nextToken();
+
+                    Main_item_from_show_local popitem = null;
+
+                    if (sign.equals("POPCHART")){
+                        st = new StringTokenizer(text, "$");
+                        int count = 0;
+                        getMyList.clear();
+
+                        // 가져온 것이 있으면
+                        if (st.countTokens() > 1){
+                            count = st.countTokens()/2;
+                        }else {System.out.println("인기차트가 없습니다.");}
+
+                        for (int i = 0; i < count; i ++){
+                            popitem = new Main_item_from_show_local();
+                            popitem.tour_title = st.nextToken();
+                            popitem.tour_location = st.nextToken();
+                            getMyList.add(popitem);
+                            System.out.println("인기차트 동작" + i);
+                        }
+
+                    }else {
+                        System.out.println("인기차트 실패");
+                    }
+
+                }catch (IOException e){
+
+                }
+                System.out.println(msg);
+            }
+        }.start();
+
+        rcvAd3 = new RecyclerViewAdapter_from_local_guide(getContext(), getMyList);
+        marylee.setLayoutManager(new LinearLayoutManager(getActivity()));
+        marylee.setAdapter(rcvAd3);
 
     }
-
-
-
 
 }

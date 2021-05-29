@@ -40,7 +40,7 @@ public class Local_GuideRecyclerAdepter extends RecyclerView.Adapter<Local_Guide
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHodler holder, int position) {
-        holder.tv_name.setText(data.get(position).getList());
+        holder.tv_name.setText(data.get(position).review_index_title);
     }
 
     @Override
@@ -64,8 +64,12 @@ public class Local_GuideRecyclerAdepter extends RecyclerView.Adapter<Local_Guide
         @Override
         public void onClick(View v) {
             int postion = getAdapterPosition();
+            String wirter = data.get(postion).review_index_writername;
+            String wrDate = data.get(postion).review_index_date;
             Toast.makeText(context, "pstionr"+ postion +1, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(context , Show_ReviewActivity.class);
+            intent.putExtra("wirter", wirter);
+            intent.putExtra("wrdate", wrDate);
             context.startActivity(intent);
         }
     }
