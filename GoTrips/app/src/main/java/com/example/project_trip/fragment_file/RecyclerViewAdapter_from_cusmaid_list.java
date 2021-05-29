@@ -47,19 +47,18 @@ public class RecyclerViewAdapter_from_cusmaid_list extends RecyclerView.Adapter<
 
         Main_item_from_show_local temp = miData1.get(position);
 
-        holder.tv_list.setText(miData1.get(position).getLocal_title());
+        holder.tv_list.setText(miData1.get(position).tour_title);
 //        holder.tv_imglist.setImageResource(miData.get(position).getImg());
         holder.tv_list.setOnClickListener(new View.OnClickListener() {
 
-//           final String get_sido = Local_Data_List.local_data.get(position).sido_name;   //시도 값 가져오기
-//           final String get_gungu = Local_Data_List.local_data.get(position).gungu_name; //군구 값 가져오기
-//           final String get_sido_gungu = get_sido + " " + get_gungu;                     //시도,군구값 합치기 00시 00군
-//           final String get_local_guide_name = temp.getLocal_title();                    //관광지 명
             @Override
             public void onClick(View v) {
 
                 Intent intent = new Intent(mContext1 , Local_GuideActivity.class);
-                intent.putExtra("local_title" , temp.getLocal_title());
+                intent.putExtra("local_title" , temp.tour_title);
+                intent.putExtra("sido", temp.sido_name);
+                intent.putExtra("gungu", temp.gungu_name);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext1.startActivity(intent);
 
             }

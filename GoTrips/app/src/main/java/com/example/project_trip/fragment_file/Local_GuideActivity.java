@@ -98,6 +98,25 @@ public class Local_GuideActivity extends AppCompatActivity{
             e.printStackTrace();
         } //관광지 상세정보 끝
 
+        //맞춤추천탭의 맞춤추천 버튼 관광지 상세정보
+        try {
+            String more_guide = getter.apiGetterName(local_g_sido_title , local_g_gungu_title , txt2.getText().toString()); // 관광지 정보 가져오기
+            String more_guide_cut = cutter.apiCutter(more_guide , "FSimpleDesc");
+            String more_guide2 = getter.apiGetter2(local_g_sido_title , local_g_gungu_title , txt2.getText().toString());
+            String more_guide_cut2 = cutter.apiCutter(more_guide2 , "EPreSimpleDesc");
+            if(more_guide_cut.isEmpty()){
+                Log.d("EPreSimpleDesc" ,more_guide_cut2);
+                txt_more.setText(more_guide_cut2);
+            }else{
+                Log.d("FSimpleDesc" ,more_guide_cut);
+                txt_more.setText(more_guide_cut);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } //관광지 상세정보 끝
+
+
 //        try {
 //            String more_guide2 = getter.apiGetter2(local_g_sido_title , local_g_gungu_title , txt2.getText().toString());
 //            String more_guide_cut2 = cutter.apiCutter(more_guide2 , "EPreSimpleDesc");

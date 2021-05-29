@@ -90,6 +90,7 @@ public class CusmaidFragment extends Fragment {
         //조회 누를시
         btnSelect.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
                 openDialog();
 
             }
@@ -141,7 +142,8 @@ public class CusmaidFragment extends Fragment {
                 val = buf[0];
                 val2 = buf2[0];
                 val3 = val + " " +val2;
-
+                List<Cusmaid_title_item> sqltestdata = new ArrayList<>();
+                sqltestdata.add(new Cusmaid_title_item(val , val2));
                 cusmaid_local_title.setText(val3);
 
                 cursor.close();
@@ -153,31 +155,26 @@ public class CusmaidFragment extends Fragment {
 
 
                     try {
-
-
                         String name = val;
                         String name2 = val2;
-                        Log.d("시도11" , name);
-                        Log.d("군구11" , name2);
-                        Log.d("시도22" , "서울특별시");
-                        Log.d("군구22" , "강남구");
                         test1 = getter.apiGetter(name, name2);
-                        Log.d("test1" , test1);
                         test2 = cutter.apiCutter(test1, "BResNm");
-                        Log.d("test2" , test2);
                         String str = test2;
                         String[] target = str.split("\n");
                         getMyList = new ArrayList<>();
                         for (int i = 0; i < target.length; i++) {
-                            Log.d("target" , target[i]);
-                            getMyList.add(new Main_item_from_show_local(target[i]));
-
+                            Main_item_from_show_local item = new Main_item_from_show_local();
+                            item.sido_name = name; // 시, 도
+                            item.gungu_name = name2; // 군, 구
+                            item.tour_location = val3;
+                            item.tour_title = target[i];
+                            Local_Data_List.cusmaid_tour_data_list.add(item);
                         }
 
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    rcvAd = new RecyclerViewAdapter_from_cusmaid_list(getContext(), getMyList);
+                    rcvAd = new RecyclerViewAdapter_from_cusmaid_list(getContext(), Local_Data_List.cusmaid_tour_data_list);
                     marylee.setLayoutManager(new LinearLayoutManager(getActivity()));
                     marylee.setAdapter(rcvAd);
                 }
@@ -200,7 +197,7 @@ public class CusmaidFragment extends Fragment {
         Log.d("주소3" , addresscut[2]);
         gpsgetLat = addresscut[1];
         gpsgetLon = addresscut[2];
-
+        String gpspluslocal = gpsgetLat + " " + gpsgetLon;
         //GPS 끝
         btnGpsguide.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -217,8 +214,12 @@ public class CusmaidFragment extends Fragment {
                     String[] target = str.split("\n");
                     getMyList = new ArrayList<>();
                     for (int i = 0; i < target.length; i++) {
-                        Log.d("target", target[i]);
-                        getMyList.add(new Main_item_from_show_local(target[i]));
+                        Main_item_from_show_local item = new Main_item_from_show_local();
+                        item.sido_name = gpsgetLat; // 시, 도
+                        item.gungu_name = gpsgetLon; // 군, 구
+                        item.tour_location = gpspluslocal;
+                        item.tour_title = target[i];
+                        Local_Data_List.cusmaid_tour_data_list.add(item);
                     }
 
 
@@ -226,7 +227,7 @@ public class CusmaidFragment extends Fragment {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                rcvAd = new RecyclerViewAdapter_from_cusmaid_list(getContext(), getMyList);
+                rcvAd = new RecyclerViewAdapter_from_cusmaid_list(getContext(), Local_Data_List.cusmaid_tour_data_list);
                 marylee.setLayoutManager(new LinearLayoutManager(getActivity()));
                 marylee.setAdapter(rcvAd);
 
@@ -241,6 +242,7 @@ public class CusmaidFragment extends Fragment {
 
     private void openDialog() {
         DialogFragment dialogFragment = new DialogFragment();
+
         dialogFragment.show(getFragmentManager(), "dialog");
     }
 
