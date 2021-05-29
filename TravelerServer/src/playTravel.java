@@ -80,7 +80,7 @@ public class playTravel extends Thread{
 					break;
 					
 				case "WEEKCHART" : // 리뷰 주간 차트 갱신 - 요청
-					String weekmsg = null;
+					String weekmsg = "WEEKCHART/";
 					st = new StringTokenizer(nextMsg, "$"); // 신호 자르기
 					tourLoc = st.nextToken(); // 지역 가져오기
 					
@@ -100,7 +100,7 @@ public class playTravel extends Thread{
 					break;
 					
 				case "MONTHCHART" : // 리뷰 월간 차트 갱신 - 지역 변경 시, 요청
-					String monthmsg = null;
+					String monthmsg = "MONTHCHART/";
 					st = new StringTokenizer(nextMsg, "$"); // 신호 자르기
 					tourLoc = st.nextToken(); // 지역 가져오기
 					
