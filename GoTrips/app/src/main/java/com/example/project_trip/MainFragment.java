@@ -46,7 +46,7 @@ public class MainFragment extends Fragment {
     RecyclerView marylee , marylee2 , marylee3;
     RecyclerViewAdapter rcvAd;
     RecyclerViewAdapter_from_local_guide rcvAd3;
-    ArrayList<Main_item_from_show_local> getMyList;
+    ArrayList<Main_item_from_show_local> getMyList = new ArrayList<>();
     List<Main_item> getMyList1 , getMyList2;
 
     TextView txt , tv_local_selected;
