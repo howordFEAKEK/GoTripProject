@@ -267,30 +267,30 @@ public class RealTimeCheck extends Thread{
 					// 유입량이 이전 유입량 평균보다 큰 경우 시작..
 					
 					//현재 유입량 기록 및 저장하기
-					//infrow.infrowSave (nowtime, waitTime, infwAmount); // (현재시간, 대기시간, 유입량) 필요
+					infrow.infrowSave (nowtime, waitTime, infwAmount); // (현재시간, 대기시간, 유입량) 필요
 					
 					//인기 차트 알고리즘 동작하기
-					//realCheck.popChartAlgorism(infwAmount); // (유입량) 필요
+					realCheck.popChartAlgorism(prevtime, nowtime, infwAmount); // (유입량) 필요
 					
 					//리뷰 차트 알고리즘 동작하기
-					//realCheck.revChartAlgorism();
+					realCheck.revChartAlgorism(prevtime, nowtime);
 					
 				}
 			}else { // 30분 지나면 진행
 				if(infwAmount > 0){ // 유입량이 0만 아니면 진행
 					
 					//현재 유입량 기록 및 저장하기
-					//infrow.infrowSave (nowtime, waitTime, infwAmount); // (현재시간, 대기시간, 유입량) 필요
+					infrow.infrowSave (nowtime, waitTime, infwAmount); // (현재시간, 대기시간, 유입량) 필요
 					
 					//인기 차트 알고리즘 동작하기
-					//realCheck.popChartAlgorism(infwAmount); // (유입량) 필요
+					realCheck.popChartAlgorism(prevtime, nowtime, infwAmount); // (유입량) 필요
 					
 					//리뷰 차트 알고리즘 동작하기
-					//realCheck.revChartAlgorism();
+					realCheck.revChartAlgorism(prevtime, nowtime);
 					
 				}else { // 유입량이 0이면 진행
 					//현재 유입량 기록 및 저장하기
-					//infrow.infrowSave (nowtime, waitTime, infwAmount); // (현재시간, 대기시간, 유입량) 필요
+					infrow.infrowSave (nowtime, waitTime, infwAmount); // (현재시간, 대기시간, 유입량) 필요
 					// ---> 유입량 0 기록 후 차트 갱신하지 않음
 				}
 			}
