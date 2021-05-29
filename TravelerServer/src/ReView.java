@@ -452,8 +452,17 @@ public class ReView {
 	            
 	            while(rs.next()) {
 	            	result = new ReviewCH();
+	            	
+	            	long wrdate = rs.getLong(2);
+	            	String wrdatStr = null;
+	            	java.util.Date wda = null;
+	            	
+	            	wrdate = wrdate * 1000;
+	            	wda = new java.util.Date(wrdate);
+	            	wrdatStr = sample.format(wda);
+	            	
 	            	result.writer = rs.getString(1);
-	            	result.date = rs.getLong(2);
+	            	result.date = wrdatStr;
 	            	result.title = rs.getString(3);
 		            	
 	            	revChart.add(result);
@@ -494,8 +503,17 @@ public class ReView {
 	            
 	            while(rs.next()) {
 	            	result = new ReviewCH();
+	            	
+	            	long wrdate = rs.getLong(2);
+	            	String wrdatStr = null;
+	            	java.util.Date wda = null;
+	            	
+	            	wrdate = wrdate * 1000;
+	            	wda = new java.util.Date(wrdate);
+	            	wrdatStr = sample.format(wda);
+	            	
 	            	result.writer = rs.getString(1);
-	            	result.date = rs.getLong(2);
+	            	result.date = wrdatStr;
 	            	result.title = rs.getString(3);
 	            	
 	            	revChart.add(result);
@@ -589,6 +607,6 @@ class RevChange {
 //리뷰 차트 담기용
 class ReviewCH {
 	public String writer = null; // 작성자
-	public long date = 0; //작성일자
+	public String date = null; //작성일자
 	public String title = null; //리뷰 제목
 }

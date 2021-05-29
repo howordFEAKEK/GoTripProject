@@ -64,6 +64,8 @@ public class playTravel extends Thread{
 				case "POPCHART" : // 인기차트 갱신 - 요청
 					String popmsg = "POPCHART/";
 					
+					tour.lookingPopChart(); // 인기차트 갱신 조회
+					
 					for(int i = 0; i < tour.poplist.size(); i ++) {
 						// 관광지명, 지역명 순서대로 보냄
 						popmsg = popmsg + tour.poplist.get(i).TUName + "$" + tour.poplist.get(i).TUlocate + "$";
@@ -80,14 +82,16 @@ public class playTravel extends Thread{
 				case "WEEKCHART" : // 리뷰 주간 차트 갱신 - 요청
 					String weekmsg = null;
 					st = new StringTokenizer(nextMsg, "$"); // 신호 자르기
-					writer = st.nextToken();
-					writeDate = st.nextToken();
-					try {
-						wrDate = sample.parse(writeDate);
-						writeday = wrDate.getTime()/1000;
-					}catch (ParseException e) { }
+					tourLoc = st.nextToken(); // 지역 가져오기
 					
-					weekmsg = reView.selectReview(writer, writeday); //보낼 리뷰 정보 가져오기
+					reView.lookWeekRevChart(tourLoc);
+					
+					for(int i = 0; i < reView.revChart.size() ; i ++) {
+						// 관광지명, 지역명 순서대로 보냄
+						weekmsg = weekmsg + reView.revChart.get(i).writer + "$" + reView.revChart.get(i).date + "$" + reView.revChart.get(i).title + "$";
+					}
+					
+					weekmsg = weekmsg + "last"; // 에러 처리를 하기 위해
 					
 					// 메시지 보내기 부분
 					try {
@@ -96,7 +100,23 @@ public class playTravel extends Thread{
 					break;
 					
 				case "MONTHCHART" : // 리뷰 월간 차트 갱신 - 지역 변경 시, 요청
+					String monthmsg = null;
+					st = new StringTokenizer(nextMsg, "$"); // 신호 자르기
+					tourLoc = st.nextToken(); // 지역 가져오기
 					
+					reView.lookMonthRevChart(tourLoc);
+					
+					for(int i = 0; i < reView.revChart.size() ; i ++) {
+						// 관광지명, 지역명 순서대로 보냄
+						monthmsg = monthmsg + reView.revChart.get(i).writer + "$" + reView.revChart.get(i).date + "$" + reView.revChart.get(i).title + "$";
+					}
+					
+					monthmsg = monthmsg + "last"; // 에러 처리를 하기 위해
+					
+					// 메시지 보내기 부분
+					try {
+						out.writeUTF(monthmsg); // 리뷰에 대한 정보 보내기
+					}catch(IOException e) {}
 					break;
 					
 				case "TOURLOG" : // 관광지 조회 로그 저장
