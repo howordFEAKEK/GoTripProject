@@ -296,7 +296,7 @@ public class MainFragment extends Fragment {
             }
         }.start();
 
-        rcvAd3 = new RecyclerViewAdapter_from_local_guide(getContext(), getMyList);
+        rcvAd3 = new RecyclerViewAdapter_from_local_guide(getContext(), Local_Data_List.main_tour_data_list);
         marylee.setLayoutManager(new LinearLayoutManager(getActivity()));
         marylee.setAdapter(rcvAd3);
 
