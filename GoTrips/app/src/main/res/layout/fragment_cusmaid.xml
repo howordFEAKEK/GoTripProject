@@ -17,8 +17,9 @@
             android:id="@+id/cusmaid_local_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="가장 많이 조회한 지역 이름"
+            android:text="맞춤 추천 관광지"
             android:textSize="20dp"
+            android:textColor="@color/black"
             android:gravity="center"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"/>

@@ -32,7 +32,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="제목"
-                android:textSize="30dp"/>
+                android:textSize="30dp"
+                android:textColor="@color/black"/>
 
 
         </LinearLayout>
@@ -51,14 +52,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="관광지명"
-                android:textSize="30dp"/>
+                android:textSize="30dp"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/show_review_local"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="지역"
-                android:textSize="20dp"/>
+                android:textSize="20dp"
+                android:textColor="@color/black"/>
 
 
         </LinearLayout>
@@ -76,7 +79,8 @@
             android:layout_height="wrap_content"
             android:text="리뷰"
             android:textSize="30dp"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:textColor="@color/black"/>
     </ScrollView>
     <Button
         android:id="@+id/show_review_Like"

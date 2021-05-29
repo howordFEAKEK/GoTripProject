@@ -205,6 +205,9 @@ public class CusmaidFragment extends Fragment {
         btnGpsguide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Toast.makeText(getContext(), "조사중 " + longitude, Toast.LENGTH_LONG).show();
+                
                 Log.d("클릭리스너 안에 gpsgetLat", gpsgetLat);
                 Log.d("클릭리스너 안에 gpsgetLot", gpsgetLon);
                 try {

@@ -17,6 +17,7 @@
         android:padding="10dp"
         android:layout_gravity="center"
         android:id="@+id/textView"
+        android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <fragment

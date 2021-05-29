@@ -57,7 +57,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="관광지명"
-                android:textSize="30dp"/>
+                android:textSize="30dp"
+                android:textColor="@color/black"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -68,13 +69,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="지역"
-                android:textSize="20dp"/>
+                android:textSize="20dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/set_Review_gungu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="지역"
-                android:textSize="20dp"/>
+                android:textSize="20dp"
+                android:textColor="@color/black"/>
 
         </LinearLayout>
         </LinearLayout>
@@ -85,7 +88,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="글을 써보세요"
-        android:textSize="30dp"
+        android:textSize="20dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:gravity="top"
@@ -106,8 +109,10 @@
           android:id="@+id/save_click_text1"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
+          android:gravity="center"
           android:text="저장하기"
-          android:textSize="30dp"/>
+          android:textSize="30dp"
+          android:textColor="@color/black"/>
 
   </LinearLayout>
 

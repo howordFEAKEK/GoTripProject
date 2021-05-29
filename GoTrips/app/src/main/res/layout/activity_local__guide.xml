@@ -38,6 +38,7 @@
                     android:text="충남 박물관"
                     android:layout_marginStart="20dp"
                     android:textSize="30dp"
+                    android:textColor="@color/black"
                      />
 
                 <Button
@@ -59,7 +60,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
 
             <TextView
                 android:id="@+id/local_guide_sido_title"
@@ -68,7 +70,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginBottom="10dp"
                 android:text="아산시"
-                android:textSize="30dp"
+                android:textColor="@color/black"
+                android:textSize="20dp"
                 />
                 <TextView
                     android:id="@+id/local_guide_gungu_title"
@@ -77,7 +80,9 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginBottom="10dp"
                     android:text="탕정면"
-                    android:textSize="30dp"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:gravity="center"
                     />
             </LinearLayout>
         </LinearLayout>
@@ -95,20 +100,22 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:text="상세 소개"
+                android:textColor="@color/black"
                 android:textSize="30dp" />
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="2dp">
-            <TextView
-                android:id="@+id/local_guide_more"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="상세 소개가 없다면 URL"
-                android:textSize="20dp"
-                android:padding="10dp"/>
-</ScrollView>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="13dp">
+
+                <TextView
+                    android:id="@+id/local_guide_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="상세 소개가 없다면 URL"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"/>
+            </ScrollView>
 
         </LinearLayout>
 
@@ -148,7 +155,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="리뷰작성"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:textColor="@color/black"/>
     </LinearLayout>
 
 
