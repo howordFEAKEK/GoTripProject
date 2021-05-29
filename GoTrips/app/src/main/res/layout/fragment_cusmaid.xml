@@ -9,6 +9,22 @@
     android:id="@+id/ly_2"
     android:background="#FFE4E1"
     >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/cusmaid_local_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="가장 많이 조회한 지역 이름"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"/>
+
+
+    </LinearLayout>
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
