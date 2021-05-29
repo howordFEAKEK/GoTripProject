@@ -59,10 +59,14 @@ public class MainActivity extends AppCompatActivity {
     ViewPager2 pager2;
     FragmentAdapter adapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Local_Data_List.username = "TUS77T"; // 일단 여기서 이름 바꾸고 하시오
+
         checkSelfPermission(); // 권한 확인 우선 실행
         //gps 관련 코드 시작
         if (!checkLocationServicesStatus()) {
@@ -155,18 +159,18 @@ public class MainActivity extends AppCompatActivity {
 
         // 소켓 통신 시도 코드
 
-//        new Thread() {
-//            public void run() {
-//                SocketManager socketManager = new SocketManager();
-//                System.out.println("시작");
-//                try {
-//                    socketManager.socket = socketManager.getSocket();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                    System.out.println("실패");
-//                }
-//            }
-//        }.start();
+        new Thread() {
+            public void run() {
+                SocketManager2 socketManager = new SocketManager2();
+                System.out.println("시작");
+                try {
+                    socketManager.socket = socketManager.getSocket();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.out.println("실패");
+                }
+            }
+        }.start();
 
     }
 

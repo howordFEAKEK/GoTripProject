@@ -239,6 +239,11 @@ public class MainFragment extends Fragment {
                 String sign = null;
                 String text = null;
 
+                if (SocketManager2.socket == null){
+                    //소켓이 없으면 진행 안 함
+                    return;
+                }
+
                 try {
                     out = new DataOutputStream(SocketManager2.socket.getOutputStream());
                     in = new DataInputStream(SocketManager2.socket.getInputStream());
@@ -254,7 +259,8 @@ public class MainFragment extends Fragment {
                     if (sign.equals("POPCHART")){
                         st = new StringTokenizer(text, "$");
                         int count = 0;
-                        getMyList.clear();
+                        //getMyList.clear();
+                        Local_Data_List.main_tour_data_list.clear();
 
                         // 가져온 것이 있으면
                         if (st.countTokens() > 1){
@@ -263,9 +269,16 @@ public class MainFragment extends Fragment {
 
                         for (int i = 0; i < count; i ++){
                             popitem = new Main_item_from_show_local();
-                            popitem.tour_title = st.nextToken();
-                            popitem.tour_location = st.nextToken();
-                            getMyList.add(popitem);
+                            StringTokenizer stnext;
+                            popitem.tour_title = st.nextToken(); // 관광지명
+                            popitem.tour_location = st.nextToken(); // 지역
+
+                            stnext = new StringTokenizer(popitem.tour_location, " ");
+                            popitem.sido_name = stnext.nextToken(); // 시, 도
+                            popitem.gungu_name = stnext.nextToken(); // 군, 구
+
+                            Local_Data_List.main_tour_data_list.add(popitem);
+                            //getMyList.add(popitem);
                             System.out.println("인기차트 동작" + i);
                         }
 
@@ -275,6 +288,9 @@ public class MainFragment extends Fragment {
 
                 }catch (IOException e){
 
+                }catch (Exception e){
+                    // 마구잡이로 탭을 바꿨을 때, 인덱스바운드 뜨는 것 방지
+                    System.out.println(e);
                 }
                 System.out.println(msg);
             }

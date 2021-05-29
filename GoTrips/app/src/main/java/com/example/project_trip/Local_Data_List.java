@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Local_Data_List {
+    public static String username = "TUS77T";
+
     public static List<Local_title_item> local_data = new ArrayList<>(); // 어디에서 쓰는지 모르겠음
 
     //위치탭에서 관광지명, 관광지역, 시도, 군구 를 가지고 있기 (위치탭용 데이터 모음)

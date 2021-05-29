@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.project_trip.Local_Data_List;
 import com.example.project_trip.R;
 import com.example.project_trip.SocketManager2;
 
@@ -66,7 +67,7 @@ public class Save_ReviewActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // 서버 통신 코드 작성...
-                        String user = "TUS77T"; // 작성자 : 나중에 제품 번호나 전화번호 받아서 처리
+                        String user = Local_Data_List.username; // 작성자 : 나중에 제품 번호나 전화번호 받아서 처리
                         Date writeTime = new Date(); // 작성일자 //날짜를 문자로 밑 부분
                         String wrStr = sample.format(writeTime); // 포멧형식 날짜 (작성일자)
 

@@ -266,7 +266,7 @@ public class Local_GuideActivity extends AppCompatActivity{
             public void run(){
                 DataOutputStream out;
                 DataInputStream in;
-                String user = "TUS77T"; // 나중에 제품 번호나 전화번호 받아서 처리
+                String user = Local_Data_List.username; // 나중에 제품 번호나 전화번호 받아서 처리
                 String sign = "TOURLOG/"; // 관광 로그 신호
                 String tourname = getIntent().getStringExtra("local_title"); // 관광지명
                 String msg = sign + user + "$" + startstr + "$" + laststr + "$" + tourname;

@@ -66,6 +66,9 @@ public class RecyclerViewAdapter_from_local_guide extends RecyclerView.Adapter<R
 
                 Intent intent = new Intent(mContext1 , Local_GuideActivity.class);
                 intent.putExtra("local_title" , temp.tour_title);
+                intent.putExtra("sido", temp.sido_name);
+                intent.putExtra("gungu", temp.gungu_name);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext1.startActivity(intent);
 
 

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.project_trip.Local_Data_List;
 import com.example.project_trip.R;
 import com.example.project_trip.SocketManager2;
 
@@ -197,7 +198,7 @@ public class Show_ReviewActivity extends AppCompatActivity {
             public void run(){
                 DataOutputStream out;
                 DataInputStream in;
-                String user2 = "TUS77T"; // 나중에 제품 번호나 전화번호 받아서 처리
+                String user2 = Local_Data_List.username; // 나중에 제품 번호나 전화번호 받아서 처리
                 String sign2 = "REVLOG/"; // 리뷰 로그 신호
                 String wrname = null; //작성자
                 String wrday = null; // 작성일자
