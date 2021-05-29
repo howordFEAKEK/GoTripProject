@@ -88,6 +88,9 @@ public class LocalFragment extends Fragment {
 
         String loca = name + " " + name2; // 시도 + 군구
 
+        Local_Data_List.sett_sido = name; // 시, 도
+        Local_Data_List.sett_gungo = name2; // 군, 구
+
         tv_local_selected.setText(name11);
 
 

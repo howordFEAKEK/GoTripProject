@@ -44,7 +44,7 @@ public class MainFragment extends Fragment {
     private Activity activity;
     View v;
     RecyclerView marylee , marylee2 , marylee3;
-    RecyclerViewAdapter rcvAd;
+    RecyclerViewAdapter rcvAd, rcvBd;
     RecyclerViewAdapter_from_local_guide rcvAd3;
     ArrayList<Main_item_from_show_local> getMyList = new ArrayList<>();
     List<Main_item> getMyList1 , getMyList2;
@@ -108,7 +108,7 @@ public class MainFragment extends Fragment {
         LinearLayoutManager layoutManager3 = new LinearLayoutManager(getContext());
         // 가로 모드
         layoutManager3.setOrientation(LinearLayoutManager.HORIZONTAL);
-        rcvAd = new RecyclerViewAdapter(getContext(), getMyList1);
+        rcvBd = new RecyclerViewAdapter(getContext(), getMyList1);
         marylee3.setLayoutManager(layoutManager3);
         marylee3.setAdapter(rcvAd);//...주간 리뷰 끝
 
@@ -299,6 +299,158 @@ public class MainFragment extends Fragment {
         rcvAd3 = new RecyclerViewAdapter_from_local_guide(getContext(), Local_Data_List.main_tour_data_list);
         marylee.setLayoutManager(new LinearLayoutManager(getActivity()));
         marylee.setAdapter(rcvAd3);
+
+/*
+        // 리뷰 주간 차트 요청하기
+        new Thread() {
+            @Override
+            public void run() {
+                DataOutputStream out;
+                DataInputStream in;
+                String msg2 = "WEEKCHART/";
+                String weekchart = null;
+
+                StringTokenizer st2;
+                String wsign = null;
+                String wtext = null;
+
+                msg2 = msg2 + Local_Data_List.sett_sido + " " + Local_Data_List.sett_gungo;
+
+                if (SocketManager2.socket == null){
+                    //소켓이 없으면 진행 안 함
+                    return;
+                }
+
+                try {
+                    out = new DataOutputStream(SocketManager2.socket.getOutputStream());
+                    in = new DataInputStream(SocketManager2.socket.getInputStream());
+                    out.writeUTF(msg2); // 인기차트 요청
+
+                    weekchart = in.readUTF();
+                    st2 = new StringTokenizer(weekchart, "/");
+                    wsign = st2.nextToken();
+                    wtext = st2.nextToken();
+
+                    Main_item weekitem = null;
+
+                    if (wsign.equals("WEEKCHART")){
+                        st2 = new StringTokenizer(wtext, "$");
+                        int count = 0;
+                        //getMyList.clear();
+                        Local_Data_List.main_review_week_list.clear();
+
+                        // 가져온 것이 있으면
+                        if (st2.countTokens() > 1){
+                            count = st2.countTokens()/3;
+                        }else {System.out.println("인기차트가 없습니다.");}
+
+                        for (int i = 0; i < count; i ++){
+                            weekitem = new Main_item();
+                            StringTokenizer stnext;
+                            weekitem.review_index_writername = st2.nextToken(); // 관광지명
+                            weekitem.review_index_date = st2.nextToken(); // 지역
+                            weekitem.review_index_title = st2.nextToken();
+
+                            Local_Data_List.main_review_week_list.add(weekitem);
+                            //getMyList.add(popitem);
+                            System.out.println("주간차트 동작" + i);
+                        }
+
+                    }else {
+                        System.out.println("주간차트 실패");
+                    }
+
+                }catch (IOException e){
+
+                }catch (Exception e){
+                    // 마구잡이로 탭을 바꿨을 때, 인덱스바운드 뜨는 것 방지
+                    System.out.println(e);
+                }
+                System.out.println(msg2);
+            }
+        }.start();
+
+        LinearLayoutManager layoutManager3 = new LinearLayoutManager(getContext());
+        rcvBd = new RecyclerViewAdapter(getContext(), Local_Data_List.main_review_month_list);
+        marylee3.setLayoutManager(layoutManager3);
+        marylee3.setAdapter(rcvBd);//...주간 리뷰 끝
+
+
+        // 리뷰 월간 차트 요청하기
+        new Thread() {
+            @Override
+            public void run() {
+                DataOutputStream out;
+                DataInputStream in;
+                String msg3 = "MONTHCHART/";
+                String monthchart = null;
+
+                StringTokenizer st3;
+                String msign = null;
+                String mtext = null;
+
+                msg3 = msg3 + Local_Data_List.sett_sido + " " + Local_Data_List.sett_gungo;
+
+                if (SocketManager2.socket == null){
+                    //소켓이 없으면 진행 안 함
+                    return;
+                }
+
+                try {
+                    out = new DataOutputStream(SocketManager2.socket.getOutputStream());
+                    in = new DataInputStream(SocketManager2.socket.getInputStream());
+                    out.writeUTF(msg3); // 인기차트 요청
+
+                    monthchart = in.readUTF();
+                    st3 = new StringTokenizer(monthchart, "/");
+                    msign = st3.nextToken();
+                    mtext = st3.nextToken();
+
+                    Main_item monthitem = null;
+
+                    if (msign.equals("MONTHCHART")){
+                        st3 = new StringTokenizer(mtext, "$");
+                        int count = 0;
+                        //getMyList.clear();
+                        Local_Data_List.main_review_month_list.clear();
+
+                        // 가져온 것이 있으면
+                        if (st3.countTokens() > 1){
+                            count = st3.countTokens()/3;
+                        }else {System.out.println("인기차트가 없습니다.");}
+
+                        for (int i = 0; i < count; i ++){
+                            monthitem = new Main_item();
+                            StringTokenizer stnext;
+                            monthitem.review_index_writername = st3.nextToken(); // 관광지명
+                            monthitem.review_index_date = st3.nextToken(); // 지역
+                            monthitem.review_index_title = st3.nextToken();
+
+                            Local_Data_List.main_review_month_list.add(monthitem);
+                            //getMyList.add(popitem);
+                            System.out.println("월간차트 동작" + i);
+                        }
+
+                    }else {
+                        System.out.println("월간차트 실패");
+                    }
+
+                }catch (IOException e){
+
+                }catch (Exception e){
+                    // 마구잡이로 탭을 바꿨을 때, 인덱스바운드 뜨는 것 방지
+                    System.out.println(e);
+                }
+                System.out.println(msg3);
+            }
+        }.start();
+
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(getContext());
+        layoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);//가로모드
+        rcvAd = new RecyclerViewAdapter(getContext(), Local_Data_List.main_review_month_list);
+        marylee2.setLayoutManager(layoutManager2);
+        marylee2.setAdapter(rcvAd);//...월간 리뷰 끝
+*/
 
     }
 
