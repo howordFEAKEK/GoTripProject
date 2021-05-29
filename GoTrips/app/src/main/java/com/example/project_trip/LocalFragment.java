@@ -114,7 +114,7 @@ public class LocalFragment extends Fragment {
                 e.printStackTrace();
             }
 
-            rcvAd2 = new RecyclerViewAdapter_from_show_local(getContext(), getMyList2);
+            rcvAd2 = new RecyclerViewAdapter_from_show_local(getContext(), Local_Data_List.local_tour_data_list);
             marylee.setLayoutManager(new LinearLayoutManager(getActivity()));
             marylee.setAdapter(rcvAd2);
 
