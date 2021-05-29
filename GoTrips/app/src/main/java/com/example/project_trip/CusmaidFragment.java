@@ -161,8 +161,9 @@ public class CusmaidFragment extends Fragment {
                         test2 = cutter.apiCutter(test1, "BResNm");
                         String str = test2;
                         String[] target = str.split("\n");
-                        getMyList = new ArrayList<>();
+                        Local_Data_List.cusmaid_tour_data_list = new ArrayList<>();
                         for (int i = 0; i < target.length; i++) {
+
                             Main_item_from_show_local item = new Main_item_from_show_local();
                             item.sido_name = name; // 시, 도
                             item.gungu_name = name2; // 군, 구
@@ -215,13 +216,16 @@ public class CusmaidFragment extends Fragment {
                     String str = gpscutterapi;
                     String[] target = str.split("\n");
                     getMyList = new ArrayList<>();
+                    Local_Data_List.cusmaid_tour_data_list = new ArrayList<>();
                     for (int i = 0; i < target.length; i++) {
+
                         Main_item_from_show_local item = new Main_item_from_show_local();
                         item.sido_name = gpsgetLat; // 시, 도
                         item.gungu_name = gpsgetLon; // 군, 구
                         item.tour_location = gpspluslocal;
                         item.tour_title = target[i];
-                        Local_Data_List.cusmaid_GPS_tour_data_list.add(item);
+                        Local_Data_List.cusmaid_tour_data_list.add(item);
+//
                     }
 
 
@@ -229,7 +233,7 @@ public class CusmaidFragment extends Fragment {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                rcvAd = new RecyclerViewAdapter_from_cusmaid_list(getContext(), Local_Data_List.cusmaid_GPS_tour_data_list);
+                rcvAd = new RecyclerViewAdapter_from_cusmaid_list(getContext(), Local_Data_List.cusmaid_tour_data_list);
                 marylee.setLayoutManager(new LinearLayoutManager(getActivity()));
                 marylee.setAdapter(rcvAd);
 
