@@ -103,6 +103,7 @@ public class LocalFragment extends Fragment {
                 String str = test2;
                 String[] target = str.split("\n");
                 getMyList2 = new ArrayList<>();
+                Local_Data_List.local_tour_data_list = new ArrayList<>();
                 for (int i = 0; i < target.length; i++) {
                     Main_item_from_show_local item = new Main_item_from_show_local();
                     item.sido_name = name; // 시, 도

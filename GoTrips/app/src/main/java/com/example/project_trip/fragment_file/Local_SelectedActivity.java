@@ -324,24 +324,26 @@ public class Local_SelectedActivity extends AppCompatActivity {
         btn_refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                rintent.putExtra("name" , spin1.getSelectedItem().toString());
-//                rintent.putExtra("data_name2", spin2.getSelectedItem().toString());
-                String name1 = spin1.getSelectedItem().toString();  //스핀1값 시도 값 저장
-                String name2 = spin2.getSelectedItem().toString();  //스핀2값 군구 값 저장
-                String name3 = name1+" "+name2;                     // 합치기
-                textView.setText(spin1.getSelectedItem().toString());
-//                setResult(0,rintent);
-                BusProvider.getInstance().post(new PushEvent(name1 , name2, name3));    //이벤트 버스에 태우기
-                //Toast.makeText(this, choice_do + "=" + choice_se, Toast.LENGTH_SHORT).show();
+                try {
+                    String name1 = spin1.getSelectedItem().toString();  //스핀1값 시도 값 저장
+                    String name2 = spin2.getSelectedItem().toString();  //스핀2값 군구 값 저장
+                    String name3 = name1 + " " + name2;                     // 합치기
+                    textView.setText(spin1.getSelectedItem().toString());
+
+                    BusProvider.getInstance().post(new PushEvent(name1, name2, name3));    //이벤트 버스에 태우기
+                    //Toast.makeText(this, choice_do + "=" + choice_se, Toast.LENGTH_SHORT).show();
 
 
-                sqlDB = myHelper.getWritableDatabase();
-                sqlDB.execSQL("INSERT INTO groupTBL VALUES ( '" + name1 + "' , '"+ name2 + "');");
-                sqlDB.close();
-                Log.d("","입력됨");
+                    sqlDB = myHelper.getWritableDatabase();
+                    sqlDB.execSQL("INSERT INTO groupTBL VALUES ( '" + name1 + "' , '" + name2 + "');");
+                    sqlDB.close();
+                    Log.d("", "입력됨");
 
 
-                finish();
+                    finish();
+                }catch (Exception e){
+                    Toast.makeText(Local_SelectedActivity.this, "지역을 선택해주세요", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -364,4 +366,9 @@ public class Local_SelectedActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+
+        super.onBackPressed();
+    }
 }
