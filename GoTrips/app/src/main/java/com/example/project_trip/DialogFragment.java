@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -29,7 +30,7 @@ public class DialogFragment extends AppCompatDialogFragment {
         View view = inflater.inflate(R.layout.fragment_dialog, null);
 
         builder.setView(view)
-                .setTitle("조회정보")
+                .setTitle(Html.fromHtml("<font color='#000000'>조회정보</font>"))
                 .setNegativeButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
