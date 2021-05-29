@@ -204,7 +204,9 @@ public class CusmaidFragment extends Fragment {
             public void onClick(View v) {
 
                 Toast.makeText(getContext(), "조사중 " + longitude, Toast.LENGTH_LONG).show();
-                
+
+                cusmaid_local_title.setText(gpspluslocal);
+
                 Log.d("클릭리스너 안에 gpsgetLat", gpsgetLat);
                 Log.d("클릭리스너 안에 gpsgetLot", gpsgetLon);
                 try {
@@ -219,7 +221,7 @@ public class CusmaidFragment extends Fragment {
                         item.gungu_name = gpsgetLon; // 군, 구
                         item.tour_location = gpspluslocal;
                         item.tour_title = target[i];
-                        Local_Data_List.cusmaid_tour_data_list.add(item);
+                        Local_Data_List.cusmaid_GPS_tour_data_list.add(item);
                     }
 
 
@@ -227,7 +229,7 @@ public class CusmaidFragment extends Fragment {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                rcvAd = new RecyclerViewAdapter_from_cusmaid_list(getContext(), Local_Data_List.cusmaid_tour_data_list);
+                rcvAd = new RecyclerViewAdapter_from_cusmaid_list(getContext(), Local_Data_List.cusmaid_GPS_tour_data_list);
                 marylee.setLayoutManager(new LinearLayoutManager(getActivity()));
                 marylee.setAdapter(rcvAd);
 
@@ -271,12 +273,6 @@ public class CusmaidFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        getMyList = new ArrayList<>();
-//        getMyList.add(new Main_item_from_show_local("경기도 화성 박물관"));
-//        getMyList.add(new Main_item_from_show_local("제주도 돌하르방 박물관"));
-//        getMyList.add(new Main_item_from_show_local("제주도 한라산 박물관"));
-//        getMyList.add(new Main_item_from_show_local("제주도 올레길"));
-//        getMyList.add(new Main_item_from_show_local("경주 박물관"));
 
     }
     //GPS
