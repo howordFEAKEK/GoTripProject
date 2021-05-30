@@ -31,7 +31,7 @@ public class RealTimeCheck extends Thread{
 		
 		//tour = new Tourism(); // 알고리즘 테스트 시 임시 정의
 		
-		tour.resetPop(); // 인기 점수 초기화
+		tour.resetPop(); // 인기 점수 초기화 // 여기서 널 포인트 문제
 		
 		changeTour = tour.selectChangeTour (prevtime, nowtime); // 변동 있는 관광지 확인
 		
@@ -218,7 +218,7 @@ public class RealTimeCheck extends Thread{
 		infrow = new Infrow();
 		
 		try {
-			Thread.sleep(10000); // 10분 대기 (실험은 10초 대기)
+			Thread.sleep(600000); // 10분 대기 (실험은 10초 대기)
 			System.out.println("휴식");
 		}catch(InterruptedException e) {}
 		long waitTime = 10; // 대기 시간 
@@ -282,7 +282,7 @@ public class RealTimeCheck extends Thread{
 					//현재 유입량 기록 및 저장하기
 					infrow.infrowSave (nowtime, waitTime, infwAmount); // (현재시간, 대기시간, 유입량) 필요
 					
-					//인기 차트 알고리즘 동작하기
+					//인기 차트 알고리즘 동작하기 // 여기서 널 포인트 문제, RealTimeCheck 34번과 이어짐
 					realCheck.popChartAlgorism(prevtime, nowtime, infwAmount); // (유입량) 필요
 					
 					//리뷰 차트 알고리즘 동작하기
@@ -297,7 +297,7 @@ public class RealTimeCheck extends Thread{
 			
 			
 			try { // 처리 작업 후 10분 딜레이
-				Thread.sleep(10000); // 10분 대기 (실험은 10초 대기)
+				Thread.sleep(600000); // 10분 대기 (실험은 10초 대기)
 				System.out.println("휴식");
 				 waitTime = 10; // 인기 및 리뷰 차트 마치고 10분 대기했으니, 대기시간 10으로 지정
 			}catch(InterruptedException e) {}

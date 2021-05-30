@@ -67,7 +67,7 @@ public class travelServer extends Thread{
 		
 		DB.connectDatabase(); // 연습
 		
-		//real.start(); // 알고리즘 스레드 시작
+		real.start(); // 알고리즘 스레드 시작
 		
 		server.setSocket(); // 서버 시작
 		

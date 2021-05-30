@@ -6,6 +6,7 @@ import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.NoSuchElementException;
 
 import javax.sql.PooledConnection;
 import javax.swing.event.PopupMenuListener;
@@ -34,9 +35,10 @@ public class playTravel extends Thread{
 			ReView reView = new ReView();
 			out = new DataOutputStream(sock.getOutputStream());
 			while(true) {
+				try {
 				System.out.println("접속 확인");
 				in = new DataInputStream(sock.getInputStream()); // 해당 클라이언트에서 받기
-				allmsg = in.readUTF(); // 신호 및 매세지 받기
+				allmsg = in.readUTF(); // 신호 및 매세지 받기 // 여기서 java.net.SocketException: Connection reset 문제
 				System.out.println(allmsg);
 				st = new StringTokenizer(allmsg, "/"); // 신호 자르기
 				sign =  st.nextToken(); // 신호
@@ -182,7 +184,7 @@ public class playTravel extends Thread{
 					title = st.nextToken();
 					context = st.nextToken();
 					tourName = st.nextToken();
-					tourLoc = st.nextToken();
+					tourLoc = st.nextToken(); // 리뷰 저장 시 여기서 java.util.NoSuchElementException 문제
 					
 					try {
 						wrDate = sample.parse(writeDate);
@@ -299,6 +301,8 @@ public class playTravel extends Thread{
 				default:
 					break;
 				}
+				}catch(NoSuchElementException e) { System.out.println(e);}
+				catch(NullPointerException e) {System.out.println(e);}
 			}
 		}catch(IOException e) {
 			e.printStackTrace();
