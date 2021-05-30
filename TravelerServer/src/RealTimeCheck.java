@@ -12,9 +12,9 @@ import oracle.net.aso.i;
 
 public class RealTimeCheck extends Thread{
 	private int MININFROW = 100;
-	Tourism tour;
-	ReView rev;
-	Infrow infrow;
+	Tourism tour = new Tourism();
+	ReView rev = new ReView();
+	Infrow infrow = new Infrow();
 	
 	SimpleDateFormat sample = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 	
@@ -213,9 +213,9 @@ public class RealTimeCheck extends Thread{
 	
 	public void run () {
 		RealTimeCheck realCheck = new RealTimeCheck(); 
-		tour = new Tourism();
-		rev = new ReView();
-		infrow = new Infrow();
+		//tour = new Tourism();
+		//rev = new ReView();
+		//infrow = new Infrow();
 		
 		try {
 			Thread.sleep(600000); // 10분 대기 (실험은 10초 대기)
