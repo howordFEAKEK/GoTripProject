@@ -366,7 +366,7 @@ public class CusmaidFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getContext(), "현재 지역은 : " + gpspluslocal +"입니다" ,Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "현재 지역은 " + gpspluslocal +"입니다" ,Toast.LENGTH_LONG).show();
 
                 cusmaid_local_title.setText(gpspluslocal);
 
