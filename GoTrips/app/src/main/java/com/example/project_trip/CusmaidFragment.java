@@ -1,6 +1,8 @@
 package com.example.project_trip;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -14,6 +16,7 @@ import android.content.DialogInterface;
 
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -72,7 +75,7 @@ public class CusmaidFragment extends Fragment {
 
     Getter getter = new Getter();
     Cutter cutter = new Cutter();
-
+    String gpspluslocal;
     public CusmaidFragment() {
         // Required empty public constructor
     }
@@ -328,24 +331,36 @@ public class CusmaidFragment extends Fragment {
 
         });
 
+
+
         //GPS 사용
-        GpsTracker gpsTracker = new GpsTracker(getContext());
+        int hasFineLocationPermission = ContextCompat.checkSelfPermission(getContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION);
+        int hasCoarseLocationPermission = ContextCompat.checkSelfPermission(getContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION);
 
-        double latitude = gpsTracker.getLatitude();
-        double longitude = gpsTracker.getLongitude();
 
-        String address = getCurrentAddress(latitude, longitude);
+        if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED &&
+                hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED) {
 
-        Toast.makeText(getContext(), "현재위치 \n위도 " + latitude + "\n경도 " + longitude, Toast.LENGTH_LONG).show();
-        Log.d("주소",address);
-        String[] addresscut = address.split(" ");
-        Log.d("주소2" , addresscut[1]);
-        Log.d("주소3" , addresscut[2]);
-        gpsgetLat = addresscut[1];
-        gpsgetLon = addresscut[2];
-        Local_Data_List.sett_sido = gpsgetLat;
-        Local_Data_List.sett_gungo = gpsgetLon;
-        String gpspluslocal = gpsgetLat + " " + gpsgetLon;
+            GpsTracker gpsTracker = new GpsTracker(getContext());
+
+            double latitude = gpsTracker.getLatitude();
+            double longitude = gpsTracker.getLongitude();
+
+            String address = getCurrentAddress(latitude, longitude);
+
+            Toast.makeText(getContext(), "현재위치 \n위도 " + latitude + "\n경도 " + longitude, Toast.LENGTH_LONG).show();
+            Log.d("주소", address);
+            String[] addresscut = address.split(" ");
+            Log.d("주소2", addresscut[1]);
+            Log.d("주소3", addresscut[2]);
+            gpsgetLat = addresscut[1];
+            gpsgetLon = addresscut[2];
+            Local_Data_List.sett_sido = gpsgetLat;
+            Local_Data_List.sett_gungo = gpsgetLon;
+            gpspluslocal = gpsgetLat + " " + gpsgetLon;
+        }
         //GPS 끝
         btnGpsguide.setOnClickListener(new View.OnClickListener() {
             @Override
