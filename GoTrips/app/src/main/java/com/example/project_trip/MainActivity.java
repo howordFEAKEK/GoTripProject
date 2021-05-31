@@ -476,13 +476,13 @@ public class MainActivity extends AppCompatActivity {
             temp += Manifest.permission.READ_PHONE_NUMBERS + " ";
         }
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED) {
-            temp += Manifest.permission.READ_PHONE_NUMBERS + " ";
+            temp += Manifest.permission.INTERNET + " ";
         }
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            temp += Manifest.permission.READ_PHONE_NUMBERS + " ";
+            temp += Manifest.permission.WRITE_EXTERNAL_STORAGE + " ";
         }
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            temp += Manifest.permission.READ_PHONE_NUMBERS + " ";
+            temp += Manifest.permission.READ_EXTERNAL_STORAGE + " ";
         }
 
         if (TextUtils.isEmpty(temp) == false) {
