@@ -198,6 +198,8 @@ public class CusmaidFragment extends Fragment {
         Log.d("주소3" , addresscut[2]);
         gpsgetLat = addresscut[1];
         gpsgetLon = addresscut[2];
+        Local_Data_List.sett_sido = gpsgetLat;
+        Local_Data_List.sett_gungo = gpsgetLon;
         String gpspluslocal = gpsgetLat + " " + gpsgetLon;
         //GPS 끝
         btnGpsguide.setOnClickListener(new View.OnClickListener() {

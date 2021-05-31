@@ -9,8 +9,8 @@ import java.util.List;
 public class Local_Data_List {
     public static String username = "TUS77T";
 
-    public static String sett_sido = "서울특별시";
-    public static String sett_gungo = "강남구";
+    public static String sett_sido ;
+    public static String sett_gungo ;
 
     public static List<Local_title_item> local_data = new ArrayList<>(); // 어디에서 쓰는지 모르겠음
 

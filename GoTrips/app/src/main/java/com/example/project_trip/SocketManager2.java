@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.*;
 
 public class SocketManager2 {
-    public final static String ip = "192.168.35.228"; //아이피 주소(로컬 접속)192.168.35.228
+    public final static String ip = "222.233.97.158"; //아이피 주소(로컬 접속)192.168.35.228
     public final static int port = 12021; // 포트 번호
 
     public static Socket socket; //정적 형식 소켓 저장

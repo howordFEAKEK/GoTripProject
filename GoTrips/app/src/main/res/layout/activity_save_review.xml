@@ -7,10 +7,13 @@
     android:orientation="vertical"
     android:background="#FFE4E1"
     tools:context=".fragment_file.Save_ReviewActivity">
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="480dp"
+
+        android:layout_height="500dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="30dp"
         android:layout_marginLeft="30dp"
@@ -33,6 +36,7 @@
             android:layout_height="match_parent"
             android:hint="제목을 써보세요"
             android:textSize="30dp"
+            android:textColorHint="#B4B4B4"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:gravity="top"
@@ -88,6 +92,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="글을 써보세요"
+        android:textColorHint="#B4B4B4"
         android:textSize="20dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
@@ -115,5 +120,5 @@
           android:textColor="@color/black"/>
 
   </LinearLayout>
-
+</ScrollView>
 </LinearLayout>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".LocalFragment"
-    android:background="#FFE4E1"
+    android:background="@drawable/asdasd1111111"
     >
 
     <LinearLayout
@@ -40,7 +40,8 @@
 
         android:id="@+id/Local_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="650dp"
+
         android:layout_margin="30dp"
         android:background="@drawable/border"
         android:padding="5dp"
