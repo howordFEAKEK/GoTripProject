@@ -104,31 +104,30 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center">
-    <Button
-        android:id="@+id/show_review_Like"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#00000000"
-        android:textColor="@color/black"
 
-        android:drawableLeft="@drawable/asdf1212"
-        android:layout_marginStart="35dp"
-        android:text="좋아요"
-        />
-    <Button
-        android:id="@+id/show_review_Hate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/show_review_Like"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="20dp"
-        android:background="#00000000"
-        android:textColor="@color/black"
-        android:drawableLeft="@drawable/asdf12112"
-        android:text="싫어요"
-        />
+            <Button
+                android:id="@+id/show_review_Like"
+                android:layout_width="125dp"
+                android:layout_height="60dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="35dp"
+                android:background="#00000000"
+
+                android:drawableLeft="@drawable/asdf1212"
+                android:text="좋아요"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/show_review_Hate"
+                android:layout_width="125dp"
+                android:layout_height="60dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@id/show_review_Like"
+
+                android:background="#00000000"
+                android:drawableLeft="@drawable/asdf12112"
+                android:text="싫어요"
+                android:textColor="@color/black" />
         </RelativeLayout>
 
     </LinearLayout>
