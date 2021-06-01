@@ -27,7 +27,7 @@ public class Show_ReviewActivity extends AppCompatActivity {
 
     SimpleDateFormat sample = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 
-    //리뷰 하나에 토큰 7개 (작성자, 작성일, 제목, 내용, 좋아요, 싫어요, 관광지명)
+    //리뷰 하나에 토큰 8개 (작성자, 작성일, 제목, 내용, 좋아요, 싫어요, 관광지명, 관광지역)
     String writer = null; // 작성자
     String wrdate = null; // 작성일자
     String title = null; // 제목
@@ -35,6 +35,7 @@ public class Show_ReviewActivity extends AppCompatActivity {
     String like = null; // 좋아요
     String dislike = null; // 싫어요
     String tourname = null; // 관광지명
+    String tourLoacs = null; // 관광지역
 
     boolean rock = true;
 
@@ -100,7 +101,7 @@ public class Show_ReviewActivity extends AppCompatActivity {
                     if (sign.equals("REVIEWCALL")) {
                         // 신호가 맞는 경우
                         st = new StringTokenizer(context, "$");
-                        //리뷰 하나에 토큰 7개 (작성자, 작성일, 제목, 내용, 좋아요, 싫어요, 관광지명)
+                        //리뷰 하나에 토큰 8개 (작성자, 작성일, 제목, 내용, 좋아요, 싫어요, 관광지명, 관광지역)
                         writer = st.nextToken(); // 작성자
                         wrdate = st.nextToken(); // 작성일자
                         title = st.nextToken(); // 제목
@@ -108,10 +109,11 @@ public class Show_ReviewActivity extends AppCompatActivity {
                         like = st.nextToken(); // 좋아요
                         dislike = st.nextToken(); // 싫어요
                         tourname = st.nextToken(); // 관광지명
+                        tourLoacs = st.nextToken(); // 관광지역
                         System.out.println("리뷰 조회 내용");
                         System.out.println(writer + " " + wrdate + " " + title
                                 + " " + contextveiw + " " + like + " " + dislike + " " +
-                                tourname);
+                                tourname + " " + tourLoacs);
                         // 이 부분에서 데이터 어떻게 처리할지는 알아서
 
                         runOnUiThread(new Runnable() {
@@ -119,7 +121,7 @@ public class Show_ReviewActivity extends AppCompatActivity {
                             public void run() {
                                 txt_Review_title.setText(title);
                                 txt_Review_guide.setText(tourname);
-                                //txt_Review_local.setText(); // 지역은 안 가져오는데..?
+                                txt_Review_local.setText(tourLoacs); // 지역은 안 가져오는데..?
                                 txt_Review.setText(contextveiw);
                             }
                         });
