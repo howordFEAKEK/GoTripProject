@@ -83,6 +83,19 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:id="@+id/text1"/>
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="#00ff0000"
+                    android:fontFamily="@font/gmaketsansttf"
+                    android:text="첫 조회 시 1분 정도 시간이 걸립니다."
+                    android:textColor="#808080"
+                    android:textSize="10dp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/gmaketsansttf"
