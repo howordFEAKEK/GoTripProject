@@ -134,7 +134,7 @@ public class ReView {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT WRITER, WRITE_DATE, TITLE, CONTENT, GOOD_POINT, BAD_POINT, TOUR_NAME " + 
+		String sql = "SELECT WRITER, WRITE_DATE, TITLE, CONTENT, GOOD_POINT, BAD_POINT, TOUR_NAME, LOCATION_DATA " + 
 				"FROM REVIEW WHERE WRITER = ? AND WRITE_DATE = ?";
 		String result = null;
 		try {
@@ -159,7 +159,7 @@ public class ReView {
 	            	
 	            	
 	            	result = "REVIEWCALL/" + rs.getString(1) +"$"+ wrdatStr +"$"+ rs.getString(3) +"$"+
-	        	            rs.getString(4) +"$"+ rs.getLong(5) +"$"+ rs.getLong(6) +"$"+ rs.getString(7);
+	        	            rs.getString(4) +"$"+ rs.getLong(5) +"$"+ rs.getLong(6) +"$"+ rs.getString(7) +"$"+ rs.getString(8);
 	            }
 	 
 	        } catch (SQLException e) {
