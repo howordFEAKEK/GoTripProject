@@ -108,7 +108,7 @@ public class LocalFragment extends Fragment {
                 Local_Data_List.sett_sido = gpsgetLat;
                 Local_Data_List.sett_gungo = gpsgetLon;
                String gpspluslocal = gpsgetLat + " " + gpsgetLon;
-               tv_local_selected.setText(gpsgetLat + gpsgetLon);
+               tv_local_selected.setText(gpsgetLat + " " + gpsgetLon);
 
                 // 테스트 시작
                 try {

@@ -355,7 +355,7 @@ public class CusmaidFragment extends Fragment {
 
             String address = getCurrentAddress(latitude, longitude);
 
-            Toast.makeText(getContext(), "현재위치 \n위도 " + latitude + "\n경도 " + longitude, Toast.LENGTH_LONG).show();
+
             Log.d("주소", address);
             String[] addresscut = address.split(" ");
             Log.d("주소2", addresscut[1]);
@@ -366,6 +366,7 @@ public class CusmaidFragment extends Fragment {
             Local_Data_List.sett_sido = gpsgetLat;
             Local_Data_List.sett_gungo = gpsgetLon;
             gpspluslocal = gpsgetLat + " " + gpsgetLon;
+            Toast.makeText(getContext(), "현재위치  " + gpspluslocal, Toast.LENGTH_LONG).show();
         }
         //GPS 끝
         btnGpsguide.setOnClickListener(new View.OnClickListener() {
