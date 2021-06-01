@@ -44,14 +44,17 @@
                         android:layout_marginLeft="1sp"
                         android:layout_weight="0.25"
                         android:text="시 도"
-                        android:textColor="#ff0000" />
+                        android:background="@drawable/spinner_background"
+                        android:textColor="#000000" />
 
                     <Spinner
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/spinner2"
-                    android:text="시 군 구"
-                    android:layout_weight="0.25" />
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/spinner2"
+                        android:textColor="#000000"
+                        android:background="@drawable/spinner_background"
+                        android:text="시 군 구"
+                        android:layout_weight="0.25" />
                 </LinearLayout>
                 <Button
                     android:layout_marginLeft="20dp"
