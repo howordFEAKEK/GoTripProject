@@ -23,7 +23,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de215b88-5cf9-4dec-8e15-ba6da8343c08" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoTrips/app/src/main/java/com/example/project_trip/CusmaidFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/GoTrips/app/src/main/java/com/example/project_trip/CusmaidFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoTrips/app/src/main/java/com/example/project_trip/LocalFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/GoTrips/app/src/main/java/com/example/project_trip/LocalFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoTrips/app/src/main/java/com/example/project_trip/fragment_file/Local_SelectedActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/GoTrips/app/src/main/java/com/example/project_trip/fragment_file/Local_SelectedActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoTrips/app/src/main/java/com/example/project_trip/fragment_file/Show_ReviewActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/GoTrips/app/src/main/java/com/example/project_trip/fragment_file/Show_ReviewActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoTrips/app/src/main/res/drawable/border.xml" beforeDir="false" afterPath="$PROJECT_DIR$/GoTrips/app/src/main/res/drawable/border.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoTrips/app/src/main/res/drawable/border1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/GoTrips/app/src/main/res/drawable/border1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoTrips/app/src/main/res/layout/activity_local__guide.xml" beforeDir="false" afterPath="$PROJECT_DIR$/GoTrips/app/src/main/res/layout/activity_local__guide.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoTrips/app/src/main/res/layout/activity_local__selected.xml" beforeDir="false" afterPath="$PROJECT_DIR$/GoTrips/app/src/main/res/layout/activity_local__selected.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoTrips/app/src/main/res/layout/activity_maps.xml" beforeDir="false" afterPath="$PROJECT_DIR$/GoTrips/app/src/main/res/layout/activity_maps.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoTrips/app/src/main/res/layout/activity_show_review.xml" beforeDir="false" afterPath="$PROJECT_DIR$/GoTrips/app/src/main/res/layout/activity_show_review.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoTrips/app/src/main/res/layout/fragment_cusmaid.xml" beforeDir="false" afterPath="$PROJECT_DIR$/GoTrips/app/src/main/res/layout/fragment_cusmaid.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoTrips/app/src/main/res/layout/fragment_dialog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/GoTrips/app/src/main/res/layout/fragment_dialog.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoTrips/app/src/main/res/layout/fragment_local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/GoTrips/app/src/main/res/layout/fragment_local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoTrips/app/src/main/res/layout/fragment_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/GoTrips/app/src/main/res/layout/fragment_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoTrips/app/src/main/res/layout/row2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/GoTrips/app/src/main/res/layout/row2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoTrips/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/GoTrips/app/src/main/res/values/themes.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +56,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/AndroidStudioProjects/GoTripProject-master/GoTripProject-master/GoTrips" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/GoTrips" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -88,10 +103,11 @@
       <screen x="0" y="0" width="2492" height="1440" />
     </state>
     <state x="983" y="520" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2492.1440@0.0.2492.1440" timestamp="1620389911122" />
-    <state x="1027" y="475" key="FileChooserDialogImpl" timestamp="1621677183249">
-      <screen x="0" y="0" width="2492" height="1440" />
+    <state x="1055" y="462" key="FileChooserDialogImpl" timestamp="1622515546942">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1054" y="462" key="FileChooserDialogImpl/-2560.0.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1617783550602" />
+    <state x="1055" y="462" key="FileChooserDialogImpl/-3840.0.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1622515546942" />
     <state x="1054" y="462" key="FileChooserDialogImpl/-3840.0.2560.1413/0.0.2560.1400@0.0.2560.1400" timestamp="1618331820275" />
     <state x="791" y="343" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1620414944560" />
     <state x="1025" y="475" key="FileChooserDialogImpl/0.0.2490.1440@0.0.2490.1440" timestamp="1617351949738" />

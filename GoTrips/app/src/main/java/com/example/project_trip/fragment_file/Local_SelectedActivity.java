@@ -43,6 +43,7 @@ public class Local_SelectedActivity extends AppCompatActivity {
         final Spinner spin2 = (Spinner) findViewById(R.id.spinner2);
         Button btn_refresh = (Button) findViewById(R.id.btn_refresh);
         TextView textView = findViewById(R.id.text1);
+        TextView textView2 = findViewById(R.id.text2);
         adspin1 = ArrayAdapter.createFromResource(this, R.array.spinner_region, android.R.layout.simple_spinner_dropdown_item);
         adspin1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin1.setAdapter(adspin1);
@@ -324,11 +325,14 @@ public class Local_SelectedActivity extends AppCompatActivity {
         btn_refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                textView.setText(spin1.getSelectedItem().toString());
+                textView2.setText("지역을 설정 중입니다. 약 30초정도 걸립니다!");
+
                 try {
                     String name1 = spin1.getSelectedItem().toString();  //스핀1값 시도 값 저장
                     String name2 = spin2.getSelectedItem().toString();  //스핀2값 군구 값 저장
                     String name3 = name1 + " " + name2;                     // 합치기
-                    textView.setText(spin1.getSelectedItem().toString());
+
 
                     BusProvider.getInstance().post(new PushEvent(name1, name2, name3));    //이벤트 버스에 태우기
                     //Toast.makeText(this, choice_do + "=" + choice_se, Toast.LENGTH_SHORT).show();

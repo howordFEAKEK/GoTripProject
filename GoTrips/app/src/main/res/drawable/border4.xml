@@ -4,16 +4,21 @@
 
 
 
-    <item>
-
-
+    <item
+        android:bottom="5dp"
+        android:left="2dp"
+        android:right="2dp"
+        android:top="1dp"
+        >
 
         <shape android:shape="rectangle">
-            <corners android:radius="20dp"/>
+            <corners android:topLeftRadius="20dp" android:topRightRadius="20dp"
+                />
+
             <solid android:color="@color/white" />
 
             <stroke
-                android:width="3dp"
+                android:width="1dp"
                 android:color="#E7E7E7"/>
 
         </shape>

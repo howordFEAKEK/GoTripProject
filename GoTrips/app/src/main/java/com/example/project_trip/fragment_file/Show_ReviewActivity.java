@@ -36,6 +36,8 @@ public class Show_ReviewActivity extends AppCompatActivity {
     String dislike = null; // 싫어요
     String tourname = null; // 관광지명
 
+    boolean rock = true;
+
     //조회 시간
     Date startTime2 = new Date();
     //날짜를 문자로
@@ -95,7 +97,7 @@ public class Show_ReviewActivity extends AppCompatActivity {
                     sign = st.nextToken(); // 신호
                     context = st.nextToken(); // 내용
 
-                    if (sign.equals("REVIEWCALL")){
+                    if (sign.equals("REVIEWCALL")) {
                         // 신호가 맞는 경우
                         st = new StringTokenizer(context, "$");
                         //리뷰 하나에 토큰 7개 (작성자, 작성일, 제목, 내용, 좋아요, 싫어요, 관광지명)
@@ -122,67 +124,76 @@ public class Show_ReviewActivity extends AppCompatActivity {
                             }
                         });
 
-                    }else{}// 리뷰가 없는 경우 없음
+                    } else {
+                    }// 리뷰가 없는 경우 없음
 
 
-                }catch (IOException e){}
+                } catch (IOException e) {
+                }
             }
         }.start();
 
-        btn_like.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new Thread() {
-                    @Override
-                    public void run() {
-                        DataOutputStream out;
-                        DataInputStream in;
-                        String msg = "REVIEWGOOD/"; // 리뷰 보기 신호
-                        String wruser = getIntent().getStringExtra("wirter"); //작성자
-                        String wrtime = getIntent().getStringExtra("wrdate"); //작성일자
-                        try {
-                            msg = msg + wruser + "$" + wrtime;
+        if (rock == true) {
+            btn_like.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            DataOutputStream out;
+                            DataInputStream in;
+                            String msg = "REVIEWGOOD/"; // 리뷰 보기 신호
+                            String wruser = getIntent().getStringExtra("wirter"); //작성자
+                            String wrtime = getIntent().getStringExtra("wrdate"); //작성일자
+                            try {
+                                msg = msg + wruser + "$" + wrtime;
 
-                            System.out.println("리뷰 좋아요: " + msg);
+                                System.out.println("리뷰 좋아요: " + msg);
 
-                            out = new DataOutputStream(SocketManager2.socket.getOutputStream());
-                            in = new DataInputStream(SocketManager2.socket.getInputStream());
-                            out.writeUTF(msg);
+                                out = new DataOutputStream(SocketManager2.socket.getOutputStream());
+                                in = new DataInputStream(SocketManager2.socket.getInputStream());
+                                out.writeUTF(msg);
 
-                        }catch (IOException e){}
-                    }
-                }.start();
-            }
-        });
+                            } catch (IOException e) {
+                            }
+                        }
+                    }.start();
+                }
+            });
+            rock = false;
+        }
 
-        btn_hate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new Thread() {
-                    @Override
-                    public void run() {
-                        DataOutputStream out;
-                        DataInputStream in;
-                        String msg = "REVIEWBAD/"; // 리뷰 보기 신호
-                        String wruser = getIntent().getStringExtra("wirter"); //작성자
-                        String wrtime = getIntent().getStringExtra("wrdate"); //작성일자
-                        try {
-                            msg = msg + wruser + "$" + wrtime;
 
-                            System.out.println("리뷰 싫어요: " + msg);
+        if (rock == true) {
+            btn_hate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            DataOutputStream out;
+                            DataInputStream in;
+                            String msg = "REVIEWBAD/"; // 리뷰 보기 신호
+                            String wruser = getIntent().getStringExtra("wirter"); //작성자
+                            String wrtime = getIntent().getStringExtra("wrdate"); //작성일자
+                            try {
+                                msg = msg + wruser + "$" + wrtime;
 
-                            out = new DataOutputStream(SocketManager2.socket.getOutputStream());
-                            in = new DataInputStream(SocketManager2.socket.getInputStream());
-                            out.writeUTF(msg);
+                                System.out.println("리뷰 싫어요: " + msg);
 
-                        }catch (IOException e){}
-                    }
-                }.start();
-            }
-        });
+                                out = new DataOutputStream(SocketManager2.socket.getOutputStream());
+                                in = new DataInputStream(SocketManager2.socket.getInputStream());
+                                out.writeUTF(msg);
 
+                            } catch (IOException e) {
+                            }
+                        }
+                    }.start();
+                }
+            });
+            rock = false;
+        }
     }
-
     @Override
     public void onBackPressed() { // 뒤로 가기 버튼을 누르면
         super.onBackPressed();

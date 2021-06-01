@@ -9,7 +9,13 @@
     android:orientation="vertical"
     tools:context=".fragment_file.Local_GuideActivity">
 
-
+<ScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +28,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/border"
+            android:background="@drawable/border4"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -31,6 +37,7 @@
                 >
 
                 <TextView
+                    android:fontFamily="@font/gmaketsansttf"
                     android:id="@+id/local_guide_title_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -42,6 +49,7 @@
                      />
 
                 <Button
+                    android:fontFamily="@font/gmaketsansttf"
                     android:id="@+id/button2"
                     android:layout_width="120dp"
                     android:layout_height="45dp"
@@ -66,6 +74,7 @@
                 android:layout_marginTop="5dp">
 
             <TextView
+                android:fontFamily="@font/gmaketsansttf"
                 android:id="@+id/local_guide_sido_title"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -76,6 +85,7 @@
                 android:textSize="20dp"
                 />
                 <TextView
+                    android:fontFamily="@font/gmaketsansttf"
                     android:id="@+id/local_guide_gungu_title"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -97,6 +107,7 @@
             >
 
             <TextView
+                android:fontFamily="@font/gmaketsansttf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -111,6 +122,7 @@
                 android:padding="13dp">
 
                 <TextView
+                    android:fontFamily="@font/gmaketsansttf"
                     android:id="@+id/local_guide_more"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -161,7 +173,6 @@
             android:textColor="@color/black"/>
     </LinearLayout>
 
-
-
-
+</LinearLayout>
+</ScrollView>
 </LinearLayout>

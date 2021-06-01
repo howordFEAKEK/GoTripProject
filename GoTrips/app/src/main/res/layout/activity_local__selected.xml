@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment_file.Local_SelectedActivity">
+    tools:context=".fragment_file.Local_SelectedActivity"
+    android:background="@drawable/asdasd1111113">
 
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -14,11 +15,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/text1"
-                />
+
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
@@ -30,24 +27,75 @@
                 android:layout_height="80dp"
                 android:layout_gravity="center_horizontal"
                 android:weightSum="1">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="1dp"
+                    android:background="@color/white"
+                    android:layout_marginStart="40dp"
+                    android:layout_weight="0.3"
+                    >
                 <Spinner
-                    android:layout_width="120dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/spinner"
-                    android:layout_weight="0.21" />
+                    android:layout_weight="0.25"
+                    />
                 <Spinner
-                    android:layout_width="120dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/spinner2"
-                    android:layout_weight="0.21" />
+                    android:layout_weight="0.25" />
+                </LinearLayout>
                 <Button
+                    android:layout_marginLeft="20dp"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:text="검   색"
+                    android:background="@drawable/border"
+                    android:text="검  색"
+                    android:textColor="#000000"
+                    android:textSize="17dp"
+                    android:fontFamily="@font/gmaketsansttf"
                     android:id="@+id/btn_refresh"
-                    android:layout_weight="0.21" />
+                    android:layout_weight="0.5" />
+
 
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="지역을 선택해 주세요!"
+                    android:fontFamily="@font/gmaketsansttf"
+                    android:textSize="20dp"
+                    android:background="@drawable/border1"
+                    android:textColor="#808080"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:id="@+id/text1"/>
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/gmaketsansttf"
+                    android:textSize="15dp"
+                    android:textColor="#808080"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border1"
+                    android:id="@+id/text2"
+                    />
+
+
+
+            </LinearLayout>
+
+
+
         </LinearLayout>
     </LinearLayout>
 

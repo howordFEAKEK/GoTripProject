@@ -144,7 +144,7 @@ public class CusmaidFragment extends Fragment {
                 cursor = sqlDB.rawQuery("SELECT sido, gungu, count(gungu) cnt from groupTBL GROUP by gungu order by cnt DESC;", null);
                 String strNames = "";
                 String strNumbers = "";
-                String strCnt="";
+                String strCnt = "";
 
                 while (cursor.moveToNext()) {
                     strNames += cursor.getString(0) + "\r\n";
@@ -153,20 +153,24 @@ public class CusmaidFragment extends Fragment {
                 }
                 String[] buf = strNames.split("\r\n");
                 String[] buf2 = strNumbers.split("\r\n");
-                Toast.makeText(getContext(),"자주 조회하신 도시는 "+buf[0]+"입니다.\n자주 조회하신 군구는 "+buf2[0]+"입니다.", Toast.LENGTH_LONG).show();
-                vall1 = buf[0];
-                vall2 = buf2[0];
-                vall3 = vall1 + " " +vall2;
-                List<Cusmaid_title_item> sqltestdata = new ArrayList<>();
-                sqltestdata.add(new Cusmaid_title_item(vall1 , vall2));
-                cusmaid_local_title.setText(vall3);
+                if (buf[0].isEmpty()) {
+                    Toast.makeText(getContext(), "조회하신 관광지가 없습니다. 위치 탭으로 가셔서 위치 설정을 하신다음에 눌러주세요!", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getContext(), "자주 조회하신 도시는 " + buf[0] + "입니다.\n자주 조회하신 군구는 " + buf2[0] + "입니다.", Toast.LENGTH_LONG).show();
 
-                cursor.close();
-                sqlDB.close();
-                Log.d("시도" , vall1);
-                Log.d("군구" , vall2);
-                Log.d("합" , vall3);
-                if(cusmaid_local_title.getText().toString().equals(vall1 + " " + vall2)) {
+                    vall1 = buf[0];
+                    vall2 = buf2[0];
+                    vall3 = vall1 + " " + vall2;
+                    List<Cusmaid_title_item> sqltestdata = new ArrayList<>();
+                    sqltestdata.add(new Cusmaid_title_item(vall1, vall2));
+                    cusmaid_local_title.setText(vall3);
+
+                    cursor.close();
+                    sqlDB.close();
+                    Log.d("시도", vall1);
+                    Log.d("군구", vall2);
+                    Log.d("합", vall3);
+                    if (cusmaid_local_title.getText().toString().equals(vall1 + " " + vall2)) {
 
 
 //                    try {
@@ -194,32 +198,108 @@ public class CusmaidFragment extends Fragment {
 //                    marylee.setLayoutManager(new LinearLayoutManager(getActivity()));
 //                    marylee.setAdapter(rcvAd);
 
-                    // 테스트 시작
-                    try {
-                        String val = null;
-                        String fileName = Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+vall1 + " " + vall2+".txt";
-                        File file = new File(fileName);
-                        boolean isExists = file.exists();
+                        // 테스트 시작
+                        try {
+                            String val = null;
+                            String fileName = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + vall1 + " " + vall2 + ".txt";
+                            File file = new File(fileName);
+                            boolean isExists = file.exists();
 
-                        if(isExists) {
-                            //파일이 있다면
-                            Log.d("","파일읽기");
-                            try{
-                                StringBuffer strBuffer = new StringBuffer();
+                            if (isExists) {
+                                //파일이 있다면
+                                Log.d("", "파일읽기");
+                                try {
+                                    StringBuffer strBuffer = new StringBuffer();
 
-                                InputStream is = new FileInputStream(fileName);
-                                BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-                                String line="";
-                                while((line=reader.readLine())!=null){
-                                    strBuffer.append(line+"\n");
+                                    InputStream is = new FileInputStream(fileName);
+                                    BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+                                    String line = "";
+                                    while ((line = reader.readLine()) != null) {
+                                        strBuffer.append(line + "\n");
+                                    }
+
+                                    reader.close();
+                                    is.close();
+                                    val = strBuffer.toString();
+                                    Log.d("read test", val);
+
+                                    String test1111 = cutter.apiCutter(val, "BResNm");
+                                    String str = test1111;
+                                    String[] target = str.split("\n");
+
+                                    Local_Data_List.cusmaid_tour_data_list = new ArrayList<>();
+                                    for (int i = 0; i < target.length; i++) {
+                                        Main_item_from_show_local item = new Main_item_from_show_local();
+                                        item.sido_name = vall1; // 시, 도
+                                        item.gungu_name = vall2; // 군, 구
+                                        item.tour_location = vall3;
+                                        item.tour_title = target[i];
+                                        Local_Data_List.cusmaid_tour_data_list.add(item);
+                                        //getMyList2.add(new Main_item_from_show_local(target[i]));
+
+                                        rcvAd = new RecyclerViewAdapter_from_cusmaid_list(getContext(), Local_Data_List.cusmaid_tour_data_list);
+                                        marylee.setLayoutManager(new LinearLayoutManager(getActivity()));
+                                        marylee.setAdapter(rcvAd);
+                                    }
+                                } catch (IOException e) {
+                                    e.printStackTrace();
                                 }
 
-                                reader.close();
-                                is.close();
-                                val=strBuffer.toString();
-                                Log.d("read test",val);
 
-                                String test1111 = cutter.apiCutter(val , "BResNm");
+                            } else {
+                                Log.d("", "파일쓰기");
+                                //파일이 없다면
+                                // 도시의 이름과 군구를 입력 받고 그에 해당하는 관광지를 전송함
+                                StringBuilder urlBuilder = new StringBuilder(
+                                        "http://openapi.tour.go.kr/openapi/service/TourismResourceService/getTourResourceList"); /* URL */
+                                urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8")
+                                        + "=HljdApr9dt8GOT0E0H87Ii2Ah7buUCv6SHh5AmjZJLwWZvRO9Ww4hgPgXehtDS3Ytn3hxKWk9J6sVS4MHdURJA%3D%3D"); /*
+                                 * Service
+                                 * Key
+                                 */
+                                urlBuilder
+                                        .append("&" + URLEncoder.encode("SIDO", "UTF-8") + "=" + URLEncoder.encode(vall1, "UTF-8")); /* 시도 */
+                                urlBuilder.append(
+                                        "&" + URLEncoder.encode("GUNGU", "UTF-8") + "=" + URLEncoder.encode(vall2, "UTF-8")); /* 시군구 */
+                                urlBuilder.append(
+                                        "&" + URLEncoder.encode("RES_NM", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /* 관광지 */
+                                URL url = new URL(urlBuilder.toString());
+                                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                                conn.setRequestMethod("GET");
+                                conn.setRequestProperty("Content-type", "application/json");
+                                System.out.println("Response code: " + conn.getResponseCode());
+                                BufferedReader rd;
+                                if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+                                    rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                                } else {
+                                    rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+                                }
+                                StringBuilder sb = new StringBuilder();
+                                String line;
+                                while ((line = rd.readLine()) != null) {
+                                    sb.append(line);
+                                }
+
+                                val = sb.toString();
+                                rd.close();
+                                conn.disconnect();
+
+                                //파일 output stream 생성
+                                FileOutputStream fos = new FileOutputStream(fileName);
+                                //파일쓰기
+
+                                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(fos));
+                                writer.write(sb.toString());
+                                writer.flush();
+                                Log.d("write test", sb.toString());
+                                String val1 = sb.toString();
+
+                                writer.close();
+                                fos.close();
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+                                String test1111 = cutter.apiCutter(val1, "BResNm");
                                 String str = test1111;
                                 String[] target = str.split("\n");
 
@@ -237,98 +317,23 @@ public class CusmaidFragment extends Fragment {
                                     marylee.setLayoutManager(new LinearLayoutManager(getActivity()));
                                     marylee.setAdapter(rcvAd);
                                 }
-                            }catch (IOException e){
-                                e.printStackTrace();
-                            }
-
-
-                        }else {
-                            Log.d("","파일쓰기");
-                            //파일이 없다면
-                            // 도시의 이름과 군구를 입력 받고 그에 해당하는 관광지를 전송함
-                            StringBuilder urlBuilder = new StringBuilder(
-                                    "http://openapi.tour.go.kr/openapi/service/TourismResourceService/getTourResourceList"); /* URL */
-                            urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8")
-                                    + "=HljdApr9dt8GOT0E0H87Ii2Ah7buUCv6SHh5AmjZJLwWZvRO9Ww4hgPgXehtDS3Ytn3hxKWk9J6sVS4MHdURJA%3D%3D"); /*
-                             * Service
-                             * Key
-                             */
-                            urlBuilder
-                                    .append("&" + URLEncoder.encode("SIDO", "UTF-8") + "=" + URLEncoder.encode(vall1, "UTF-8")); /* 시도 */
-                            urlBuilder.append(
-                                    "&" + URLEncoder.encode("GUNGU", "UTF-8") + "=" + URLEncoder.encode(vall2, "UTF-8")); /* 시군구 */
-                            urlBuilder.append(
-                                    "&" + URLEncoder.encode("RES_NM", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /* 관광지 */
-                            URL url = new URL(urlBuilder.toString());
-                            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                            conn.setRequestMethod("GET");
-                            conn.setRequestProperty("Content-type", "application/json");
-                            System.out.println("Response code: " + conn.getResponseCode());
-                            BufferedReader rd;
-                            if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
-                                rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                            } else {
-                                rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-                            }
-                            StringBuilder sb = new StringBuilder();
-                            String line;
-                            while ((line = rd.readLine()) != null) {
-                                sb.append(line);
-                            }
-
-                            val = sb.toString();
-                            rd.close();
-                            conn.disconnect();
-
-                            //파일 output stream 생성
-                            FileOutputStream fos = new FileOutputStream(fileName);
-                            //파일쓰기
-
-                            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(fos));
-                            writer.write(sb.toString());
-                            writer.flush();
-                            Log.d("write test",sb.toString());
-                            String val1 = sb.toString();
-
-                            writer.close();
-                            fos.close();
-//                new Thread(new Runnable() {
-//                    @Override
-//                    public void run() {
-                            String test1111 = cutter.apiCutter(val1 , "BResNm");
-                            String str = test1111;
-                            String[] target = str.split("\n");
-
-                            Local_Data_List.cusmaid_tour_data_list = new ArrayList<>();
-                            for (int i = 0; i < target.length; i++) {
-                                Main_item_from_show_local item = new Main_item_from_show_local();
-                                item.sido_name = vall1; // 시, 도
-                                item.gungu_name = vall2; // 군, 구
-                                item.tour_location = vall3;
-                                item.tour_title = target[i];
-                                Local_Data_List.cusmaid_tour_data_list.add(item);
-                                //getMyList2.add(new Main_item_from_show_local(target[i]));
-
-                                rcvAd = new RecyclerViewAdapter_from_cusmaid_list(getContext(), Local_Data_List.cusmaid_tour_data_list);
-                                marylee.setLayoutManager(new LinearLayoutManager(getActivity()));
-                                marylee.setAdapter(rcvAd);
-                            }
 
 //                    }
 //                }).start();
+                            }
+
+                        } catch (IOException e) {
+                            Toast.makeText(getContext(), "현재 조회된 지역이 없습니다. 지역을 먼저 설정하신 후 눌러주세요", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
                         }
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
+
+                        // 테스트 끝
+
+
                     }
-
-
-                    // 테스트 끝
-
-
                 }
             }
-
         });
 
 
@@ -357,6 +362,7 @@ public class CusmaidFragment extends Fragment {
             Log.d("주소3", addresscut[2]);
             gpsgetLat = addresscut[1];
             gpsgetLon = addresscut[2];
+
             Local_Data_List.sett_sido = gpsgetLat;
             Local_Data_List.sett_gungo = gpsgetLon;
             gpspluslocal = gpsgetLat + " " + gpsgetLon;

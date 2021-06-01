@@ -5,11 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FFE4E1"
+    android:background="@drawable/asdasd1111111"
     tools:context=".fragment_file.Save_ReviewActivity">
-<ScrollView
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
 
@@ -26,11 +32,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@drawable/border"
+        android:background="@drawable/border4"
 
 
     >
         <EditText
+            android:padding="10dp"
             android:id="@+id/save_review_edittitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -52,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/border"
+            android:background="@drawable/border3"
 
 
             >
@@ -88,6 +95,7 @@
 
 
     <EditText
+        android:padding="10dp"
         android:id="@+id/set_review_review"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -120,5 +128,6 @@
           android:textColor="@color/black"/>
 
   </LinearLayout>
-</ScrollView>
+</LinearLayout>
+    </ScrollView>
 </LinearLayout>

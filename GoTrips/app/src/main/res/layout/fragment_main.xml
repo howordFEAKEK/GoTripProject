@@ -15,10 +15,11 @@
         android:orientation="vertical">
 
         <TextView
+            android:fontFamily="@font/gmaketsansttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/title_tv_mainfragment"
-            android:text="위치"
+            android:text="인기 차트"
             android:layout_gravity="center"
             android:textSize="20sp"
             android:layout_marginTop="15dp"
@@ -26,12 +27,13 @@
             />
 
         <TextView
+            android:fontFamily="@font/gmaketsansttf"
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="위치 설정을 하면 관광지가 보입니다!"
+            android:text="인기가 좋은 관광지 리스트입니다"
             android:textColor="#000000" />
 
 
@@ -48,11 +50,19 @@
         android:layout_marginTop="30dp"
         android:layout_marginRight="25dp"
         android:background="@drawable/border"
-        android:padding="5dp"
+        android:padding="10dp"
 
         />
 
-
+    <TextView
+        android:fontFamily="@font/gmaketsansttf"
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="월간 리뷰 차트"
+        android:textColor="#000000" />
     <androidx.recyclerview.widget.RecyclerView
 
         android:id="@+id/recycler_view2"
@@ -61,8 +71,17 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="25dp"
-        android:background="@drawable/border" />
-
+        android:background="@drawable/border"
+        android:padding="10dp"/>
+    <TextView
+        android:fontFamily="@font/gmaketsansttf"
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="주간 리뷰 차트"
+        android:textColor="#000000" />
     <androidx.recyclerview.widget.RecyclerView
 
         android:id="@+id/recycler_view3"
@@ -73,7 +92,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="25dp"
         android:background="@drawable/border"
-
+        android:padding="10dp"
         />
 
 

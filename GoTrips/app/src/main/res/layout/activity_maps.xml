@@ -5,15 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FFE4E1"
+    android:background="#FFFFE0"
     tools:context=".fragment_file.Save_ReviewActivity">
 
 
     <TextView
+        android:fontFamily="@font/gmaketsansttf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25dp"
-        android:text="THIS IS GOOGLE MAP"
+        android:text="NAVIGATION MAP"
+        android:textStyle="bold"
         android:padding="10dp"
         android:layout_gravity="center"
         android:id="@+id/textView"

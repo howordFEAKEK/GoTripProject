@@ -8,12 +8,15 @@
 
     android:id="@+id/ly_2"
     android:background="@drawable/asdasd1111113"
+    android:weightSum="1"
     >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <TextView
+            android:fontFamily="@font/gmaketsansttf"
             android:id="@+id/cusmaid_local_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -33,30 +36,38 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="1">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_weight="0.1">
 
         <Button
+            android:fontFamily="@font/gmaketsansttf"
             android:id="@+id/btnSelect"
+            android:background="@drawable/border2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="조회"
             />
 
         <Button
+            android:fontFamily="@font/gmaketsansttf"
             android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/border2"
             android:text="맞춤 관광지"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"/>
         <Button
+            android:fontFamily="@font/gmaketsansttf"
             android:id="@+id/button5"
+            android:background="@drawable/border2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="주변 관광지" />
@@ -68,7 +79,7 @@
 
         android:id="@+id/Cusmaid_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="400dp"
         android:layout_marginTop="35dp"
         android:layout_marginBottom="35dp"
         android:layout_marginLeft="15dp"

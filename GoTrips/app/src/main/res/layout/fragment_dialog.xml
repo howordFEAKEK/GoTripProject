@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
     <TextView
+        android:fontFamily="@font/gmaketsansttf"
         android:id="@+id/dialog_txtsido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,9 +20,11 @@
         android:textSize="30dp"
         android:textColor="@color/black"/>
     <TextView
+        android:fontFamily="@font/gmaketsansttf"
         android:id="@+id/dialog_txtgungu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
         android:text="시도"
         android:textSize="30dp"
         android:textColor="@color/black"
