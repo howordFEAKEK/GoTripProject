@@ -6,7 +6,9 @@ public class Transfer {
         str = str.replaceAll("&gt;", "> ")
                 .replaceAll("&#xD;", " ")
                 .replaceAll("&lt;", " <")
-                .replaceAll("&lt;;", " <");
+                .replaceAll("&lt;;", " <")
+                .replaceAll("&amp;", "&");;
+
 
 
         return str;
